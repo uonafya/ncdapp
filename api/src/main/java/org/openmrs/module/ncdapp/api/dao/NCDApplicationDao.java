@@ -9,29 +9,6 @@
  */
 package org.openmrs.module.ncdapp.api.dao;
 
-import org.hibernate.criterion.Restrictions;
-import org.openmrs.api.db.hibernate.DbSession;
-import org.openmrs.api.db.hibernate.DbSessionFactory;
-import org.openmrs.module.ncdapp.Item;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-@Repository("ncdapp.NCDApplicationDao")
 public class NCDApplicationDao {
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
-	
-	private DbSession getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-	
-	public Item getItemByUuid(String uuid) {
-		return (Item) getSession().createCriteria(Item.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
-	}
-	
-	public Item saveItem(Item item) {
-		getSession().saveOrUpdate(item);
-		return item;
-	}
 }

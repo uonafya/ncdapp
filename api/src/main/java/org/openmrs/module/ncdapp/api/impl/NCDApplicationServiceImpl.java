@@ -9,10 +9,8 @@
  */
 package org.openmrs.module.ncdapp.api.impl;
 
-import org.openmrs.api.APIException;
 import org.openmrs.api.UserService;
 import org.openmrs.api.impl.BaseOpenmrsService;
-import org.openmrs.module.ncdapp.Item;
 import org.openmrs.module.ncdapp.api.NCDApplicationService;
 import org.openmrs.module.ncdapp.api.dao.NCDApplicationDao;
 
@@ -22,31 +20,4 @@ public class NCDApplicationServiceImpl extends BaseOpenmrsService implements NCD
 	
 	UserService userService;
 	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setDao(NCDApplicationDao dao) {
-		this.dao = dao;
-	}
-	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
-	@Override
-	public Item getItemByUuid(String uuid) throws APIException {
-		return dao.getItemByUuid(uuid);
-	}
-	
-	@Override
-	public Item saveItem(Item item) throws APIException {
-		if (item.getOwner() == null) {
-			item.setOwner(userService.getUser(1));
-		}
-		
-		return dao.saveItem(item);
-	}
 }
