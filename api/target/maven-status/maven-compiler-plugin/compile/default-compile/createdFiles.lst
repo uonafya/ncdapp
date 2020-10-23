@@ -1,0 +1,6 @@
+org/openmrs/module/ncdapp/api/NCDApplicationService.class
+org/openmrs/module/ncdapp/Item.class
+org/openmrs/module/ncdapp/api/impl/NCDApplicationServiceImpl.class
+org/openmrs/module/ncdapp/api/dao/NCDApplicationDao.class
+org/openmrs/module/ncdapp/NCDApplicationConfig.class
+org/openmrs/module/ncdapp/NCDApplicationActivator.class

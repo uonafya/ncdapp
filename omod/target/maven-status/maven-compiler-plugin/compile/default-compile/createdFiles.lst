@@ -1,0 +1,3 @@
+org/openmrs/module/ncdapp/fragment/controller/UsersFragmentController.class
+org/openmrs/module/ncdapp/web/controller/NCDApplicationController.class
+org/openmrs/module/ncdapp/extension/html/AdminList.class

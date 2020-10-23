@@ -1,0 +1,6 @@
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/api/dao/NCDApplicationDao.java
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/api/NCDApplicationService.java
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/Item.java
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/NCDApplicationActivator.java
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/api/impl/NCDApplicationServiceImpl.java
+/home/codehub/workspace/integrated_EHR/ncdapp/api/src/main/java/org/openmrs/module/ncdapp/NCDApplicationConfig.java

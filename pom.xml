@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.openmrs.maven.parents</groupId>
+        <artifactId>maven-parent-openmrs-module</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+	<groupId>org.openmrs.module</groupId>
+	<artifactId>ncdapp</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>NCD Application</name>
+	<description>Module designed to handle the NCD related complications</description>
+
+	<url>https://wiki.openmrs.org/x/FQ4z</url>
+
+	<scm>
+		<connection>scm:git:git@github.com:openmrs/openmrs-module-ncdapp.git</connection>
+		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-ncdapp.git</developerConnection>
+		<url>https://github.com/openmrs/openmrs-module-ncdapp/</url>
+	</scm>
+
+	<modules>
+		<module>api</module>
+		<module>omod</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>kenyaemr-api</artifactId>
+				<version>${kenyaemrVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>appframework-api</artifactId>
+				<version>${appframeworkVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>calculation-api</artifactId>
+				<version>${calculationVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlformentry-api</artifactId>
+				<version>${htmlformentryVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>htmlwidgets-api</artifactId>
+				<version>${htmlwidgetsVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>idgen-api</artifactId>
+				<version>${idgenVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>metadatadeploy-api</artifactId>
+				<version>${metadatadeployVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>metadatasharing-api</artifactId>
+				<version>${metadatasharingVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>uiframework-api</artifactId>
+				<version>${uiframeworkVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>kenyacore-api</artifactId>
+				<version>${kenyacoreVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>kenyaui-api</artifactId>
+				<version>${kenyauiVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>openmrs-repo</id>
+			<name>OpenMRS Nexus Repository</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<layout>default</layout>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>openmrs-repo</id>
+			<name>OpenMRS Nexus Repository</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+		<appframeworkVersion>2.2.1</appframeworkVersion>
+		<calculationVersion>1.0</calculationVersion>
+		<htmlformentryVersion>2.3</htmlformentryVersion>
+		<htmlwidgetsVersion>1.6.6</htmlwidgetsVersion>
+		<idgenVersion>2.6</idgenVersion>
+		<metadatadeployVersion>1.2</metadatadeployVersion>
+		<metadatasharingVersion>1.1.8</metadatasharingVersion>
+		<reportingVersion>0.9.8.1</reportingVersion>
+		<serializationxstreamVersion>0.2.7</serializationxstreamVersion>
+		<uiframeworkVersion>3.3.1</uiframeworkVersion>
+		<kenyacoreVersion>2.4.1</kenyacoreVersion>
+		<kenyauiVersion>2.1.1</kenyauiVersion>
+		<kenyaemrVersion>17.0.3</kenyaemrVersion>
+		<jodaTimeVersion>2.9.1</jodaTimeVersion>
+	</properties>
+</project>
