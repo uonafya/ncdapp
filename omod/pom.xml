@@ -38,6 +38,14 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>appframework-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>kenyacore-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>kenyaui-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

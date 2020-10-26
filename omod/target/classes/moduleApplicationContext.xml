@@ -29,7 +29,7 @@
         <constructor-arg value="ncdapp.ncd" />
         <constructor-arg value="NCD" />
         <constructor-arg value="ncdapp/ncdappHome.page" />
-        <constructor-arg value="ncdapp:apps/ncd.png" />
+        <constructor-arg value="ncdapp:apps/ncds.png" />
         <constructor-arg value="20010" />
     </bean>
 </beans>

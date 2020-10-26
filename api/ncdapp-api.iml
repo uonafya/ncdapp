@@ -4,7 +4,9 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="Entities" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -35,6 +37,10 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.openmrs.module:appframework-api:2.2.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.hibernate:hibernate-validator:4.3.0.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.logging:jboss-logging:3.1.0.CR2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.openmrs.module:kenyacore-api:2.4.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.openmrs.module:kenyaui-api:2.1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: joda-time:joda-time:2.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.ocpsoft.prettytime:prettytime:2.1.2.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.openmrs.api:openmrs-api:1.11.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
