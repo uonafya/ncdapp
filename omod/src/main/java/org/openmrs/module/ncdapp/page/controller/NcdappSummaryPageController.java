@@ -6,4 +6,8 @@ import org.openmrs.module.ncdapp.NcdappConstants;
 @AppPage(NcdappConstants.APP_NCD_APP)
 public class NcdappSummaryPageController {
 	
+	public void controller() {
+		
+	}
+	
 }
