@@ -32,4 +32,49 @@
         <constructor-arg value="ncdapp:apps/ncds.png" />
         <constructor-arg value="20010" />
     </bean>
+    <bean id="ncdapp.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
+        <property name="commonVisitForms">
+            <set>
+                <ref bean="ncdapp.form.htndtninitial" />
+                <ref bean="ncdapp.form.htndtnfollowup" />
+                <ref bean="ncdapp.form.htndtnfootclinic" />
+            </set>
+        </property>
+    </bean>
+    <bean id="ncdapp.form.htndtninitial" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="edd8c072-18fb-11eb-9c05-839296c291c4" />
+        <property name="apps">
+            <set>
+                <ref bean="ncdapp.app.ncd" />
+            </set>
+        </property>
+
+        <property name="icon" value="kenyaui:forms/generic.png.png" />
+        <property name="htmlform" value="ncdapp:htndtninitial.html" />
+        <property name="order" value="10000" />
+    </bean>
+    <bean id="ncdapp.form.htndtnfollowup" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="b3e07c84-18fb-11eb-bab2-6f7808a09aa6" />
+        <property name="apps">
+            <set>
+                <ref bean="ncdapp.app.ncd" />
+            </set>
+        </property>
+
+        <property name="icon" value="kenyaui:forms/generic.png.png" />
+        <property name="htmlform" value="ncdapp:htndtnfollowup.html" />
+        <property name="order" value="10001" />
+    </bean>
+    <bean id="ncdapp.form.htndtnfootclinic" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="099d5e12-18fc-11eb-86f3-231df7469c4e" />
+        <property name="apps">
+            <set>
+                <ref bean="ncdapp.app.ncd" />
+            </set>
+        </property>
+
+        <property name="icon" value="kenyaui:forms/generic.png.png" />
+        <property name="htmlform" value="ncdapp:htndtnfootclinic.html" />
+        <property name="order" value="10002" />
+    </bean>
 </beans>
