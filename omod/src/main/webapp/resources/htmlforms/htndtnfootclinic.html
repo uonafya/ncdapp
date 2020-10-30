@@ -17,6 +17,41 @@
 
 
     </script>
+    <style>
+        .align-radio-input label {
+            margin-top: -8px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            margin-left: 10px;
+        }
+        .align-checkbox-input input{
+            top: 10px;
+            color:red;
+        }
+        .align-checkbox-input label] {
+            color:red;
+        }
+    </style>
+    <ifMode mode="ENTER">
+        <includeIf velocityTest="$fn.allEncounters('edd8c072-18fb-11eb-9c05-839296c291c4').size() == 0">
+            <script>
+                jq(function () {
+                    alert('This Patient has no initial , you will now be forwarded to the patient dashboard to fill initial form first');
+
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                        re = /([^&amp;=]+)=([^&amp;]*)/g, m;
+
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                    }
+                    location.href = window.location.protocol + "//" + window.location.host +
+                        '/' + OPENMRS_CONTEXT_PATH + '/ncdapp/ncdappSummary.page?patientId='
+                        + queryParameters['patientId'];
+                });
+            </script>
+        </includeIf>
+    </ifMode>
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
@@ -30,9 +65,130 @@
         </table>
     </div>
     <div class="ke-form-content">
-        <fieldset>
-            <p>The contents to include the input fileds </p>
-        </fieldset>
+        <div>
+            <table idth="80%">
+                <tr>
+                    <td width="35%">Date</td>
+                    <td>
+                        <encounterDate default="now" disallowMultipleEncountersOnDate="block" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Visit type:</td>
+                    <td>
+                        <obs conceptId="164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Visit,Revisit" />
+                    </td>
+                </tr>
+                <tr>
+                    <td> Past conditions:</td>
+                    <td>
+                        <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="118983" answerLabel="Peripheral neuropathy" style="checkbox" class="align-checkbox-input"   />
+                        <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="123919" answerLabel="Ulcers" style="checkbox" class="align-checkbox-input" />
+                        <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="165104" answerLabel="Amputation" style="checkbox" class="align-checkbox-input"   />
+                        <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="e5c2bf32-ecd4-4e52-a161-8327e9d74ad7" answerLabel="Acute joint" style="checkbox" class="align-checkbox-input" />
+                    </td>
+                </tr>
+                <tr>
+                    <td> Foot risk assessment</td>
+                    <td>
+                        <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="0d2aa75a-3903-45ed-a040-c948842479ba" answerLabel="Low current risk" style="radio" answerSeparator="" class="align-radio-input"   />
+                        <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="a3758dd9-b172-40fb-b78a-8697aa9abe9a" answerLabel="At risk" style="radio" answerSeparator="" class="align-radio-input" />
+                        <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="e39ac969-5f99-4674-9cfa-8e0439a5eea8" answerLabel="High risk" style="radio" answerSeparator="" class="align-radio-input"   />
+                        <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="123919" answerLabel="Ulcerated foot" style="radio" answerSeparator="" class="align-radio-input" />
+                        <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="f8f1dae8-9674-4957-b93e-d842832d7416" answerLabel="Foot emergency" style="radio" answerSeparator="" class="align-radio-input" />
+                    </td>
+                </tr>
+            </table>
+            <section>
+                <label style="background:  #ff7100; padding: 5px; color: #fff;">Foot examination</label>
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <th style="background:  #00b4ef; padding: 3px; color: #fff;" width="35%">Foot Exam</th>
+                        <th style="background:  #00b4ef; padding: 3px; color: #fff;">Status</th>
+                    </tr>
+                    <tr>
+                        <td>Pedal Pulse:</td>
+                        <td>
+                            <obs conceptId="2e5a4594-e10c-40ef-94c2-fe6f9a725ac9" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Peripheral neuropathy:</td>
+                        <td>
+                            <obs conceptId="f99ef1c4-7d2b-445d-82f6-729c3de4b149"  style="radio" answerSeparator="" class="align-radio-input"
+                                 answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Deformity:</td>
+                        <td>
+                            <obs conceptId="da9de57f-0f8f-468b-afbb-06c1537c6f44" style="radio" answerSeparator="" class="align-radio-input"  answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Foot Ulcer:</td>
+                        <td>
+                            <obs conceptId="1cb3fefb-e44a-4092-adbc-b33cf068a37a"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Amputation:</td>
+                        <td>
+                            <obs conceptId="99290a23-7b79-460d-b982-ea9f32486259"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Acute joint:</td>
+                        <td>
+                            <obs conceptId="be3b8237-1818-4adc-b2d4-eb9a727ca20b" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Loss of sensation:</td>
+                        <td>
+                            <obs conceptId="fadecc5f-f848-4240-8bb7-0a617c088bfe" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments:</td>
+                        <td>
+                            <obs conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <label></label>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <obs conceptId="165122" answerConceptId="165132" answerLabel="Continue Care in clinic" style="checkbox" class="align-checkbox-input" />
+                        </td>
+                        <td>
+                            Return date:
+                            <obs conceptId="5096" allowFutureDates="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Seen by</td>
+                        <td>
+                            <encounterProvider default="currentUser" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Designation</td>
+                        <td>
+                            <obs conceptId="163556" answerConceptIds="5507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1577AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Consultant,Medical officer,Clinical Officer,Nurse" style="dropdown" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </div>
     <div class="ke-form-footer">
         <submit/>
