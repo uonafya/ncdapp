@@ -35,7 +35,7 @@
     <!-- ===================== Program ===================== -->
 
     <bean id="ncdapp.ncd.program" class="org.openmrs.module.kenyacore.program.ProgramDescriptor">
-        <property name="targetUuid" value="10a4ff04-4eab-11ec-8f7c-83335f22aa18" />
+        <property name="targetUuid" value="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" />
         <property name="eligibilityCalculation" value="org.openmrs.module.ncdapp.calculation.EligibleForNcdProgramCalculation" />
         <property name="defaultEnrollmentForm" ref="ncdapp.form.htndtninitial" />
         <property name="defaultCompletionForm" ref="ncdapp.ncd.form.completion" />
