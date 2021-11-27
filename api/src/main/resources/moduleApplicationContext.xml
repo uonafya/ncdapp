@@ -132,7 +132,7 @@
         <property name="description" value="NCD Daily Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:daily.xls" />
-        <property name="repeatingSection" value="sheet:1,row:5,dataset:daily" />
+        <property name="repeatingSection" value="sheet:2,row:9,dataset:daily" />
     </bean>
 
     <bean id="ncdapp.ncd.report.permanent.Register" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
