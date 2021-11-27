@@ -15,7 +15,18 @@
     <script type="text/javascript">
         jq(document ).ready(function() {
             jq('.if_diabetes').css('display','none');
+            jq('.if_hypertension').css('display','none');
         });
+
+
+        function diabetes(){
+            var val= getValue('diabetes.value');
+            jq('.if_diabetes :input').prop('disabled', true);
+            if(val == 165087){
+                jq('.if_diabetes :input').prop('disabled', false);
+                jq('.if_diabetes').css('display', 'all');
+            }
+        }
 
 
 
@@ -53,7 +64,7 @@
                             <td valign="top">
                                 <div class="if_diabetes">
                                     <label>Year of Diagnosis</label>
-                                    <obs conceptId="" />
+                                    <obs conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                                 </div>
                             </td> 
                             <td valign="top">
@@ -84,13 +95,13 @@
                         <tr>
                             <td valign="top">
                                 <label>HIV Status</label>
-                                <obs conceptId="" answerConceptIds="165087,165088" answerLabels="New HTN Patient,Known HTN Patient" style="radio" answerSeparator="" id="hiv_status" class="align-radio-input"/>
+                                <obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="165087,165088" answerLabels="HIV-ve,HIV+ve,Unknown" style="radio" answerSeparator="" id="hiv_status" class="align-radio-input"/>
                                 <!-- <span id="diabetes_status_msg"></span> -->
                             </td> 
                             <td valign="top">
                                 <div class="if_hiv">
                                     <label>Enrolled to Care?</label>
-                                    <obs conceptId="" answerConceptIds="165087,165088" answerLabels="Yes,No" style="radio" answerSeparator="" class="align-radio-input"/>
+                                    <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" class="align-radio-input"/>
                                 </div>
                             </td> 
                         </tr>
@@ -140,18 +151,28 @@
                             <td valign="top">  
                                 <label> Chief Complaints </label> <br />
 
-                                <obs conceptId="6042" answerConceptId="110265" answerLabel="Shortness of breath on activity" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="158627" answerLabel="Palpitations (heart racing)" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="156046" answerLabel="Recurrent dizziness" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="112961" answerLabel="Fainting" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="135966" answerLabel="Leg swelling" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="134185" answerLabel="Frequent urination and fatigue" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="135592" answerLabel="Loss of consciousness" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="147104" answerLabel="Blurring of vision" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="6005" answerLabel="Focal weakness" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="164529" answerLabel="Foot complaints" style="checkbox" class="align-checkbox-input"/>
-                                <obs conceptId="6042" answerConceptId="115782" answerLabel="Headaches / Migraines" style="checkbox" class="align-checkbox-input"/>
-                                <obs id="other_chief_complaint" conceptId="6042" answerConceptId="5622" answerLabel="Other" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Shortness of breath on activity" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="158627AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Palpitations (heart racing)" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="156046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Recurrent dizziness" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Fainting Spells" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Leg swelling" style="checkbox" class="align-checkbox-input"/>
+
+                                <!-- <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="134185" answerLabel="Frequent urination and fatigue" style="checkbox" class="align-checkbox-input"/> -->
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Loss of consciousness" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Blurring of vision" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Focal weakness" style="checkbox" class="align-checkbox-input"/>
+
+                                <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Foot complaints" style="checkbox" class="align-checkbox-input"/>
+
+                                <!-- <obs conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="115782" answerLabel="Headaches / Migraines" style="checkbox" class="align-checkbox-input"/> -->
+                                <!-- <obs id="other_chief_complaint" conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622" answerLabel="Other" style="checkbox" class="align-checkbox-input"/> -->
                             </td>
                         </tr>
                         <tr>
@@ -160,12 +181,199 @@
                                 <obs conceptId="" />
                             </td>                          
                         </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>TB Screening</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" id="tb_screening" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_tb_screened">
+                                    <label>Any Features of TB?</label>
+
+
+                                    <obs conceptId="" answerConceptId="" answerLabel="Cough" style="checkbox" class="align-checkbox-input"/>
+                                    <obs conceptId="" answerConceptId="" answerLabel="Night Sweats" style="checkbox" class="align-checkbox-input"/>
+                                    <obs conceptId="" answerConceptId="" answerLabel="Weight Loss" style="checkbox" class="align-checkbox-input"/>
+                                    <obs conceptId="" answerConceptId="" answerLabel="Lymph Nodes" style="checkbox" class="align-checkbox-input"/>
+
+                                </div>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Do you smoke cigarettes</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No,Stopped" style="radio" answerSeparator="" id="smoke_cigarettes" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_smoker_stopped">
+                                    <label>How long ago did the patient stop smoking?</label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                            <td valign="top">
+                                <div class="if_smoker_stopped">
+                                    <label>Cessation Counselling</label>
+                                    <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" class="align-radio-input"/>
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Do you sometimes drink alcohol?</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No,Stopped" style="radio" answerSeparator="" id="drink_alcohol" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_drinks_alcohol">
+                                    <label>How long ago did the patient stop smoking?</label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                            <td valign="top">
+                                <div class="if_drinks_alcohol">
+                                    <label>Cessation Counselling</label>
+                                    <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" class="align-radio-input"/>
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Medications</label>
+
+                                <obs conceptId="" answerConceptId="" answerLabel="None" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Metformin" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Glibenclamide" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Insulin 70/30" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="NPH" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Soluble Insulin" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Others" style="checkbox" class="align-checkbox-input"/>
+
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Adhering to Current Medications</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="N/A,Yes,No" style="radio" answerSeparator="" id="adhering_to_medication" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_not_adhering">
+                                    <label>Specify reason  </label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Any known allergies to drugs?</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" id="allergies_to_medication" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_allergic">
+                                    <label>Specify drug  </label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr class="if_is_female">
+                            <td valign="top">
+                                <label>Pregnancy Status</label>
+                                <obs conceptId="" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" answerSeparator="" id="allergies_to_medication" class="align-radio-input"/>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Vital Signs</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Temp(<sup>o</sup>C)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>BP(1<sup>st</sup> Reading)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>BP(2<sup>nd</sup> Reading)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>Waist Circ (cm)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>Height (cm)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>Weight (kg) </label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>BMI</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>MUAC (cm)</label>
+                                <obs conceptId="" />
+                            </td>
+                            <td valign="top">
+                                <label>General Exam</label>
+
+                                <obs conceptId="" answerConceptId="" answerLabel="Pallor" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Jaundice" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Cyanosis" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Edema" style="checkbox" class="align-checkbox-input"/>
+                                <obs conceptId="" answerConceptId="" answerLabel="Other" style="checkbox" class="align-checkbox-input"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Cardiovascular ()</label>
+                                <obs conceptId="" answerConceptIds="" answerLabels="Normal,Abnormal" style="radio" answerSeparator="" id="cardiovascular" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_cardiovascular_abnormal">
+                                    <label>Describe if abnormal </label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Respiratory System (RR,air entry,abnormal sounds)</label>
+                                <obs conceptId="" answerConceptIds="" answerLabels="Normal,Abnormal" style="radio" answerSeparator="" id="respiratory" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_respiratory_abnormal">
+                                    <label>Describe if abnormal </label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <label>Abdominal Pelvic ()</label>
+                                <obs conceptId="" answerConceptIds="" answerLabels="Normal,Abnormal" style="radio" answerSeparator="" id="abdmominal" class="align-radio-input"/>
+                            </td> 
+                            <td valign="top">
+                                <div class="if_abdominal_abnormal">
+                                    <label>Describe if abnormal </label>
+                                    <obs conceptId="" />
+                                </div>                                
+                            </td>
+                        </tr>
+
+
                         </tbody>
                     </table>
                     <br/>
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" showDate="true"/>
     </div>
     <div class="ke-form-footer">
         <submit/>
