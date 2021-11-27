@@ -109,6 +109,12 @@
 				<version>${reportingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>ehrconfigs-api</artifactId>
+				<version>${ehrconfigsVersion}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -137,7 +143,7 @@
 	</pluginRepositories>
 
 	<properties>
-		<openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+		<openmrsPlatformVersion>1.12.0</openmrsPlatformVersion>
 		<appframeworkVersion>2.2.1</appframeworkVersion>
 		<calculationVersion>1.0</calculationVersion>
 		<htmlformentryVersion>2.3</htmlformentryVersion>
@@ -152,5 +158,6 @@
 		<kenyauiVersion>2.1.1</kenyauiVersion>
 		<kenyaemrVersion>17.0.3</kenyaemrVersion>
 		<jodaTimeVersion>2.9.1</jodaTimeVersion>
+		<ehrconfigsVersion>1.0.10-SNAPSHOT</ehrconfigsVersion>
 	</properties>
 </project>

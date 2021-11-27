@@ -30,7 +30,7 @@
         <constructor-arg value="NCD" />
         <constructor-arg value="ncdapp/ncdappHome.page" />
         <constructor-arg value="ncdapp:apps/ncds.png" />
-        <constructor-arg value="20010" />
+        <constructor-arg value="2001000" />
     </bean>
     <!-- ===================== Program ===================== -->
 
@@ -77,7 +77,7 @@
 
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="ncdapp:htndtninitial.html" />
-        <property name="order" value="10000" />
+        <property name="order" value="10000000" />
     </bean>
     <bean id="ncdapp.form.htndtnfollowup" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="b3e07c84-18fb-11eb-bab2-6f7808a09aa6" />
