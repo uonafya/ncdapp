@@ -120,7 +120,7 @@
     <!-- ===================== Reports ===================== -->
     <bean id="ncdapp.ncd.report.moh740" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
         <property name="targetUuid" value="73fbda3a-4ead-11ec-91d5-bb9a3159893a" />
-        <property name="name" value="MOH 740" />
+        <property name="name" value="Monthly Summary_MOH 740" />
         <property name="description" value="Monthly Summary Report" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:moh740.xls" />
@@ -128,7 +128,7 @@
 
     <bean id="ncdapp.ncd.report.dailyRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
         <property name="targetUuid" value="9803d33c-4eae-11ec-aad8-c3a3ef5b2ff1" />
-        <property name="name" value="Daily Register" />
+        <property name="name" value="Daily Register DAR_MOH 222" />
         <property name="description" value="NCD Daily Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:daily.xls" />
@@ -137,7 +137,7 @@
 
     <bean id="ncdapp.ncd.report.permanent.Register" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
         <property name="targetUuid" value="09446b2e-4eaf-11ec-96e2-1b3e44da0d72" />
-        <property name="name" value="Permanent Register" />
+        <property name="name" value="Permanent Register PERMANENT_MOH 270" />
         <property name="description" value="NCD Permanent Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:permanent.xls" />
