@@ -15,8 +15,8 @@
 
     <script type="text/javascript">
 
-        var Discontinuation_VELOCITY = "<lookup expression="kenyaemr.DiscontinuationVelocityCalculation()" />";
-        var artStartDate = Discontinuation_VELOCITY.split(",")[0].split(":")[1];
+        var Discontinuation_VELOCITY = "<lookup expression="ncdapp.NcdDiscontinuationVelocityCalculation()" />";
+        var treatmentStartDate = Discontinuation_VELOCITY.split(",")[0].split(":")[1];
         var enrollmentDate = Discontinuation_VELOCITY.split(",")[1].split(":")[1];
 
         jq(document).ready(function(){
@@ -86,7 +86,7 @@
                     getField('discontinue-date.error').html('Discontinue date, should not be earlier than Birth date').show();
                     return false;
                 }
-                if(discontinueDate &lt; artStartDate){
+                if(discontinueDate &lt; treatmentStartDate){
                     getField('discontinue-date.error').html('Discontinue date, should not be earlier than art start date').show();
                     return false;
                 }
@@ -100,7 +100,7 @@
                     getField('encounter-date.error').html('Encounter date, should not be earlier than Birth date').show();
                     return false;
                 }
-                if(encounterDate &lt; artStartDate){
+                if(encounterDate &lt; treatmentStartDate){
                     getField('encounter-date.error').html('Encounter date, should not be earlier than art start date').show();
                     return false;
                 }
@@ -137,7 +137,7 @@
 
     <div class="ke-form-content">
         <fieldset>
-            <legend>Discontinue HIV Care</legend>
+            <legend>Discontinue NCD Care</legend>
             <table >
                 <tr>
                     <td>Encounter Date:</td>
