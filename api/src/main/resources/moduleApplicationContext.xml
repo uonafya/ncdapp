@@ -32,12 +32,38 @@
         <constructor-arg value="ncdapp:apps/ncds.png" />
         <constructor-arg value="20010" />
     </bean>
+    <!-- ===================== Program ===================== -->
+
+    <bean id="ncdapp.ncd.program" class="org.openmrs.module.kenyacore.program.ProgramDescriptor">
+        <property name="targetUuid" value="10a4ff04-4eab-11ec-8f7c-83335f22aa18" />
+        <property name="eligibilityCalculation" value="org.openmrs.module.ncdapp.calculation.EligibleForNcdProgramCalculation" />
+        <property name="defaultEnrollmentForm" ref="ncdapp.form.htndtninitial" />
+        <property name="defaultCompletionForm" ref="ncdapp.ncd.form.completion" />
+        <property name="visitForms">
+            <set>
+                <ref bean="ncdapp.form.htndtnfollowup" />
+            </set>
+        </property>
+        <property name="reports">
+            <set>
+                <ref bean="ncdapp.ncd.report.dailyRegister" />
+                <ref bean="ncdapp.ncd.report.moh740" />
+                <ref bean="ncdapp.ncd.report.permanent.Register" />
+            </set>
+        </property>
+        <property name="fragments">
+            <map>
+                <entry key="enrollment-summary" value="ncdapp:ncdappEnrollmentSummary" />
+                <entry key="care-panel" value="ncdapp:ncdappCarePanel" />
+                <entry key="completion-summary" value="ncdapp:ncdappCompletionSummary" />
+            </map>
+        </property>
+        <property name="order" value="100" />
+    </bean>
     <bean id="ncdapp.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
         <property name="commonVisitForms">
             <set>
-                <ref bean="ncdapp.form.htndtninitial" />
-                <ref bean="ncdapp.form.htndtnfollowup" />
-                <ref bean="ncdapp.form.htndtnfootclinic" />
+                <ref bean="ncdapp.form.htndtnscreening" />
             </set>
         </property>
     </bean>
@@ -65,16 +91,56 @@
         <property name="htmlform" value="ncdapp:htndtnfollowup.html" />
         <property name="order" value="10001" />
     </bean>
-    <bean id="ncdapp.form.htndtnfootclinic" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+    <bean id="ncdapp.form.htndtnscreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="099d5e12-18fc-11eb-86f3-231df7469c4e" />
+        <property name="apps">
+            <set>
+                <ref bean="ncdapp.app.ncd" />
+                <ref bean="kenyaemr.app.registration" />
+            </set>
+        </property>
+
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="ncdapp:htndtnScreening.html" />
+        <property name="order" value="10002" />
+    </bean>
+
+    <!-- NCD Completion form -->
+    <bean id="ncdapp.ncd.form.completion" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="d2c4ae9a-18fb-11eb-ab7d-1b8027b414d7" />
         <property name="apps">
             <set>
                 <ref bean="ncdapp.app.ncd" />
             </set>
         </property>
+        <property name="icon" value="kenyaui:forms/completion.png" />
+        <property name="htmlform" value="ncdapp:ncdappDiscontinuation.html" />
+    </bean>
 
-        <property name="icon" value="kenyaui:forms/generic.png" />
-        <property name="htmlform" value="ncdapp:htndtnfootclinic.html" />
-        <property name="order" value="10002" />
+    <!-- ===================== Reports ===================== -->
+    <bean id="ncdapp.ncd.report.moh740" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
+        <property name="targetUuid" value="73fbda3a-4ead-11ec-91d5-bb9a3159893a" />
+        <property name="name" value="MOH 740" />
+        <property name="description" value="Monthly Summary Report" />
+        <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
+        <property name="template" value="ncdapp:moh740.xls" />
+    </bean>
+
+    <bean id="ncdapp.ncd.report.dailyRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+        <property name="targetUuid" value="9803d33c-4eae-11ec-aad8-c3a3ef5b2ff1" />
+        <property name="name" value="Daily Register" />
+        <property name="description" value="NCD Daily Register" />
+        <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
+        <property name="template" value="ncdapp:daily.xls" />
+        <property name="repeatingSection" value="sheet:1,row:5,dataset:daily" />
+    </bean>
+
+    <bean id="ncdapp.ncd.report.permanent.Register" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+        <property name="targetUuid" value="09446b2e-4eaf-11ec-96e2-1b3e44da0d72" />
+        <property name="name" value="Permanent Register" />
+        <property name="description" value="NCD Permanent Register" />
+        <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
+        <property name="template" value="ncdapp:permanent.xls" />
+        <property name="repeatingSection" value="sheet:1,row:5,dataset:permanent" />
     </bean>
 </beans>

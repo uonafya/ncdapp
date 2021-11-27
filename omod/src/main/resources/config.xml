@@ -20,20 +20,14 @@
 	<require_version>${openmrsPlatformVersion}</require_version>
 
 	<require_modules>
-		<require_module version="${appframeworkVersion}">
-			org.openmrs.module.appframework
-		</require_module>
-		<require_module version="${uiframeworkVersion}">
-			org.openmrs.module.uiframework
-		</require_module>
-		<require_module version="${uicommonsModuleVersion}">
-			org.openmrs.module.uicommons
-		</require_module>
-		<require_module version="${appuiVersion}">
-			org.openmrs.module.appui
-		</require_module>
+		<require_module version="${appframeworkVersion}">org.openmrs.module.appframework</require_module>
+		<require_module version="${uiframeworkVersion}">org.openmrs.module.uiframework</require_module>
+		<require_module version="${uicommonsModuleVersion}">org.openmrs.module.uicommons</require_module>
+		<require_module version="${appuiVersion}">org.openmrs.module.appui</require_module>
 		<require_module version="${kenyaemrVersion}">org.openmrs.module.kenyaemr</require_module>
-		<require_module version="${ehrconfigsVersion}">org.openmrs.module.ehrconfigs</require_module>
+		<require_module>org.openmrs.module.metadatadeploy</require_module>
+		<require_module>org.openmrs.module.hospitalcore</require_module>
+		<require_module>org.openmrs.module.ehrconfigs</require_module>
 	</require_modules>
 	
 	<!-- Extensions -->
