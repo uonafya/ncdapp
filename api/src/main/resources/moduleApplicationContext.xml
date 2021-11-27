@@ -141,6 +141,6 @@
         <property name="description" value="NCD Permanent Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:permanent.xls" />
-        <property name="repeatingSection" value="sheet:1,row:5,dataset:permanent" />
+        <property name="repeatingSection" value="sheet:2,row:7,dataset:permanent" />
     </bean>
 </beans>
