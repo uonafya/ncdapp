@@ -13,17 +13,29 @@
 -->
 <htmlform>
     <script type="text/javascript">
-        function populateDrugFields(){
-            var captopril_obs_group = "<lookup expression="fn.latestObs(165253).obsId" />"
+        function populateDrugFields() {
+            var captopril_obs_group = "<lookup expression="
+            fn.latestObs(165253).obsId
+            " />"
 
-            var captopril_qsn_obs = "<lookup expression="fn.latestObs(1282).obsGroup.obsId" />"
-            var captopril_qsn_obs_value = "<lookup expression="fn.latestObs(1282).valueCoded" />"
+            var captopril_qsn_obs = "<lookup expression="
+            fn.latestObs(1282).obsGroup.obsId
+            " />"
+            var captopril_qsn_obs_value = "<lookup expression="
+            fn.latestObs(1282).valueCoded
+            " />"
 
-            var captopril_qsn_obs_coded = "<lookup expression="fn.latestObs(1282).valueCoded" />"
-            var captopril_obs_numeric = "<lookup expression="fn.latestObs(1443).valueNuemric" />"
-            var captopril_obs_coded = "<lookup expression="fn.latestObs(160855).valueCoded" />"
+            var captopril_qsn_obs_coded = "<lookup expression="
+            fn.latestObs(1282).valueCoded
+            " />"
+            var captopril_obs_numeric = "<lookup expression="
+            fn.latestObs(1443).valueNuemric
+            " />"
+            var captopril_obs_coded = "<lookup expression="
+            fn.latestObs(160855).valueCoded
+            " />"
 
-            if(captopril_qsn_obs == captopril_obs_group){
+            if (captopril_qsn_obs == captopril_obs_group) {
 
                 setValue('Captopril.value', captopril_qsn_obs_value);
             }
@@ -31,83 +43,85 @@
             setValue('captoprilDose.value', 90);
             setValue('captroprilFrequency.value', "Yes");
         }
-        jq(document ).ready(function() {
+
+        jq(document).ready(function () {
             populateDrugFields();
-            jq('.hfe-hours').css('display','none');
-            jq('.hfe-minutes').css('display','none');
-            jq('.hfe-seconds').css('display','none');
+            jq('.hfe-hours').css('display', 'none');
+            jq('.hfe-minutes').css('display', 'none');
+            jq('.hfe-seconds').css('display', 'none');
         });
 
-        function glucose(){
-            var val= getValue('glucose.value');
+        function glucose() {
+            var val = getValue('glucose.value');
             jq('#glucose-level :input').prop('disabled', true);
-            if(val == 1065){
+            if (val == 1065) {
                 jq('#glucose-level :input').prop('disabled', false);
             }
         }
-        function protein(){
-            var val= getValue('protein.value');
+
+        function protein() {
+            var val = getValue('protein.value');
             jq('#protein-level :input').prop('disabled', true);
-            if(val == 1065){
+            if (val == 1065) {
                 jq('#protein-level :input').prop('disabled', false);
             }
         }
-        function ketone(){
-            var val= getValue('ketone.value');
+
+        function ketone() {
+            var val = getValue('ketone.value');
             jq('#ketone-level :input').prop('disabled', true);
-            if(val == 1065){
+            if (val == 1065) {
                 jq('#ketone-level :input').prop('disabled', false);
             }
         }
 
-        function flagInputByRange(inputElementId,min,max){
+        function flagInputByRange(inputElementId, min, max) {
             var value = getValue(inputElementId + '.value');
-            if (value &lt; min || value &gt; max)  {
-                jq('#'+inputElementId).last().addClass("red_flag");
-            }else{
-                jq('#'+inputElementId).last().removeClass("red_flag");
+            if (value &lt; min || value &gt; max) {
+                jq('#' + inputElementId).last().addClass("red_flag");
+            } else {
+                jq('#' + inputElementId).last().removeClass("red_flag");
             }
 
         }
 
-        function displayTabs(){
-            var tabsObj=jq( "#tabs" ).tabs();
-            jQuery(".ui-tabs-panel").each(function(i){
+        function displayTabs() {
+            var tabsObj = jq("#tabs").tabs();
+            jQuery(".ui-tabs-panel").each(function (i) {
 
                 var totalSize = jq(".ui-tabs-panel").size() - 1;
-                var prevTag='';
-                var nextTag='';
+                var prevTag = '';
+                var nextTag = '';
                 if (i != totalSize) {
                     next = i + 2;
-                    nextTag='<div class="nav-button"><a href="#"  class="next" rel="' + next + '">Next Page &#187;</a></div>';
+                    nextTag = '<div class="nav-button"><a href="#"  class="next" rel="' + next + '">Next Page &#187;</a></div>';
 
-                    if(next == 2)
-                        nextTag='<div class="nav-button"><a href="#"   class="next" rel="' + next + '">Next Page &#187;</a></div>';
+                    if (next == 2)
+                        nextTag = '<div class="nav-button"><a href="#"   class="next" rel="' + next + '">Next Page &#187;</a></div>';
                 }
 
                 if (i != 0) {
                     prev = i;
-                    prevTag='<div class="nav-button"><a href="#" class="previous" rel="' + prev + '">&#171; Prev Page</a></div>';
+                    prevTag = '<div class="nav-button"><a href="#" class="previous" rel="' + prev + '">&#171; Prev Page</a></div>';
                 }
 
 
-
-                if(prevTag){
-                    if(nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag + nextTag+'</div>');
+                if (prevTag) {
+                    if (nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag + nextTag + '</div>');
                 }
 
-                if(prevTag){
-                    if(!nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag+'</div>');
+                if (prevTag) {
+                    if (!nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag + '</div>');
                 }
 
-                if(nextTag){
-                    if(!prevTag) jQuery(this).append('<div class="form-nav-container">' + nextTag +'</div>');
+                if (nextTag) {
+                    if (!prevTag) jQuery(this).append('<div class="form-nav-container">' + nextTag + '</div>');
                 }
 
 
             });
 
-            jQuery('.next, .previous').click(function() {
+            jQuery('.next, .previous').click(function () {
                 tabsObj.tabs('select', jQuery(this).attr("rel"));
                 return false;
             });
@@ -122,66 +136,71 @@
             numericValues('height');
             // validateWeightAndHeight();
             var displayDiv = 'calculated-bmi';
-            if (!isNaN(weightKg) &amp;&amp; !isNaN(heightM))  {
+            if (!isNaN(weightKg) &amp;&amp; !isNaN(heightM)) {
                 var bmi = weightKg / (heightM * heightM);
                 if (isNaN(bmi) || bmi &lt; 10 || bmi &gt; 50) {
                     display = 'Abnormal value. Were weight and height entered correctly?';
-                }
-                else {
+                } else {
                     display = bmi.toFixed(2);
-                    flagBMI(display,displayDiv);
+                    flagBMI(display, displayDiv);
                 }
             }
 
             jq('#calculated-bmi').html(display);
         }
 
-        function flagBMI(bmi,displayDiv) {
-            var display =displayDiv;
+        function flagBMI(bmi, displayDiv) {
+            var display = displayDiv;
             var normal_range_min = 18.50;
             var normal_range_max = 24.99;
             var overweight = 25.00;
             var obese = 30.00;
-            jq('#'+display).last().removeClass("flag_green");
-            jq('#'+display).last().removeClass("flag_yellow");
-            jq('#'+display).last().removeClass("flag_red");
+            jq('#' + display).last().removeClass("flag_green");
+            jq('#' + display).last().removeClass("flag_yellow");
+            jq('#' + display).last().removeClass("flag_red");
 
-            if(bmi == obese || bmi &gt; obese){
-                jq('#'+display).last().addClass("flag_red");
+            if (bmi == obese || bmi &gt; obese) {
+                jq('#' + display).last().addClass("flag_red");
                 return;
             }
 
-            if(bmi == overweight || bmi &gt;overweight){
-                jq('#'+display).last().addClass("flag_yellow");
+            if (bmi == overweight || bmi &gt; overweight) {
+                jq('#' + display).last().addClass("flag_yellow");
                 return;
             }
 
-            if(bmi == normal_range_min || bmi &gt;normal_range_min){
-                jq('#'+display).last().addClass("flag_green");
+            if (bmi == normal_range_min || bmi &gt; normal_range_min) {
+                jq('#' + display).last().addClass("flag_green");
                 return;
             }
 
-            if(bmi &lt; normal_range_min){
-                jq('#'+display).last().addClass("flag_red");
+            if (bmi &lt; normal_range_min) {
+                jq('#' + display).last().addClass("flag_red");
                 return;
             }
         }
 
-        function displayRecentBmi(){
-            var weightKg = "<lookup expression="fn.latestObs(5089).valueNumeric"/>"
-            var heightM = ("<lookup expression="fn.latestObs(5090).valueNumeric"/>")/100
-            var bmi ='';
+        function displayRecentBmi() {
+            var weightKg = "<lookup expression="
+            fn.latestObs(5089).valueNumeric
+            "/>"
+            var heightM = ("<lookup expression="
+            fn.latestObs(5090).valueNumeric
+            "/>"
+        )/
+            100
+            var bmi = '';
             var displayDiv = 'recent-calculated-bmi';
-            if (!isNaN(weightKg) &amp;&amp; !isNaN(heightM))  {
+            if (!isNaN(weightKg) &amp;&amp; !isNaN(heightM)) {
                 bmi = weightKg / (heightM * heightM);
-                flagBMI(bmi,displayDiv);
+                flagBMI(bmi, displayDiv);
             }
 
             jq('#recent-calculated-bmi').html(bmi.toFixed(2));
         }
 
-        function numericValues(id){
-            jq("#"+id).keydown(function (e) {
+        function numericValues(id) {
+            jq("#" + id).keydown(function (e) {
                 // Allow: backspace, delete, tab, escape, enter and .
                 if (jq.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
                     // Allow: Ctrl/cmd+A
@@ -202,34 +221,44 @@
             });
         }
 
-        function fillTreatmentSupportDetails(){
+        function fillTreatmentSupportDetails() {
 
-            var supporter_name ="<lookup expression="personAttributes.get('Treatment Supporter Name')"/>";
-            var supporter_phone_number ="<lookup expression="personAttributes.get('Treatment Supporter Phone Number')"/>";
-            var supporter_other_phone_number ="<lookup expression="personAttributes.get('Other Treatment Supporter Phone Number')"/>";
-            var supporter_alternative_phone_number ="<lookup expression="personAttributes.get('Alternative Treatment Supporter Phone Number')"/>";
+            var supporter_name = "<lookup expression="
+            personAttributes.get('Treatment Supporter Name')
+            "/>";
+            var supporter_phone_number = "<lookup expression="
+            personAttributes.get('Treatment Supporter Phone Number')
+            "/>";
+            var supporter_other_phone_number = "<lookup expression="
+            personAttributes.get('Other Treatment Supporter Phone Number')
+            "/>";
+            var supporter_alternative_phone_number = "<lookup expression="
+            personAttributes.get('Alternative Treatment Supporter Phone Number')
+            "/>";
 
-            setValue('supporter_name.value',supporter_name);
-            setValue('supporter_phone_number.value',supporter_phone_number);
-            setValue('supporter_other_phone_number.value',supporter_other_phone_number);
-            setValue('supporter_alternative_phone_number.value',supporter_alternative_phone_number);
+            setValue('supporter_name.value', supporter_name);
+            setValue('supporter_phone_number.value', supporter_phone_number);
+            setValue('supporter_other_phone_number.value', supporter_other_phone_number);
+            setValue('supporter_alternative_phone_number.value', supporter_alternative_phone_number);
 
         }
 
         function flagWaistRatio(waistRatio) {
 
-            var gender= "<lookup expression="patient.gender"/>";
+            var gender = "<lookup expression="
+            patient.gender
+            "/>";
             var maxMaleRatio = 0.9;
             var maxFemaleRatio = 0.85;
 
             jq('#hip_waist_ratio').last().removeClass("flagRed");
 
-            if(gender=='M' &amp;&amp; waistRatio &gt; maxMaleRatio){
+            if (gender == 'M' &amp;&amp; waistRatio &gt; maxMaleRatio) {
                 jq('#hip_waist_ratio').last().addClass("flagRed");
                 return;
             }
 
-            if(gender=='F' &amp;&amp; waistRatio &gt; maxFemaleRatio){
+            if (gender == 'F' &amp;&amp; waistRatio &gt; maxFemaleRatio) {
                 jq('#hip_waist_ratio').last().addClass("flagRed");
                 return;
             }
@@ -241,12 +270,11 @@
             var wcirc = parseFloat(getValue('wcirc.value'));
             numericValues('hip_circ');
             numericValues('wcirc');
-            if (!isNaN(wcirc) &amp;&amp; !isNaN(hip_circ))  {
+            if (!isNaN(wcirc) &amp;&amp; !isNaN(hip_circ)) {
                 var hipWaist = hip_circ / wcirc;
                 if (isNaN(hipWaist)) {
                     display = '';
-                }
-                else {
+                } else {
                     display = hipWaist.toFixed(2);
                     flagWaistRatio(display);
                 }
@@ -254,7 +282,7 @@
             jq('#hip_waist_ratio').html(display);
         }
 
-        function isValidPrescription(drug,value){
+        function isValidPrescription(drug, value) {
             var weight = getValue('weight.value');
             var max = weight * drug.maxIuByKg;
             var min = weight * drug.minIuByKg;
@@ -262,16 +290,16 @@
             var obese = isObese();
             var nph = drug.name.includes('nph_type_1_');
 
-            if(nph){
+            if (nph) {
                 var nphGMin = 0.5 * weight;
                 var nphGMax = 1 * weight;
-                if(drug.obese==1 &amp;&amp; obese==true){
-                    if(value &gt; max || value &lt; min) {
+                if (drug.obese == 1 &amp;&amp; obese == true) {
+                    if (value &gt; max || value &lt; min) {
                         return drug.message;
                     }
-                }else{
-                    if(drug.obese==2  &amp;&amp; obese==false){
-                        if(value &gt; max || value &lt; min) {
+                } else {
+                    if (drug.obese == 2 &amp;&amp; obese == false) {
+                        if (value &gt; max || value &lt; min) {
                             return drug.message;
                         }
                     }
@@ -279,145 +307,166 @@
 
             }
 
-            if(drug.maxIuByKg &gt; 0) {
-                if(value &gt; max || value &lt; min) {
+            if (drug.maxIuByKg &gt; 0) {
+                if (value &gt; max || value &lt; min) {
                     return drug.message;
                 }
             } else {
-                if(value &lt; min) {
+                if (value &lt; min) {
                     return drug.message;
                 }
             }
 
             return 1;
         }
-        function  invalidDrugPrescription(){
 
-            var requiredFields=medLimitByCategory();
-            var divHtml="";
+        function invalidDrugPrescription() {
+
+            var requiredFields = medLimitByCategory();
+            var divHtml = "";
 
             var obese = isObese();
 
-            divHtml=divHtml+checkDrug(requiredFields[0] );
-            divHtml=divHtml+checkDrug(requiredFields[1]);
+            divHtml = divHtml + checkDrug(requiredFields[0]);
+            divHtml = divHtml + checkDrug(requiredFields[1]);
 
-            if(obese==true){
-                divHtml=divHtml+checkDrug(requiredFields[2]);
+            if (obese == true) {
+                divHtml = divHtml + checkDrug(requiredFields[2]);
             }
 
-            if(obese == false){
-                divHtml=divHtml+checkDrug(requiredFields[3]);
+            if (obese == false) {
+                divHtml = divHtml + checkDrug(requiredFields[3]);
             }
-            divHtml=divHtml+checkDrug(requiredFields[4]);
+            divHtml = divHtml + checkDrug(requiredFields[4]);
 
             jq('#displayRequiredFields').html(divHtml);
-            if(divHtml){
+            if (divHtml) {
                 return true;
             }
             return false;
 
         }
 
-        function isObese(){
+        function isObese() {
             var weightKg = parseFloat(getValue('weight.value'));
             var heightM = parseFloat(getValue('height.value')) / 100;
             var bmi = weightKg / (heightM * heightM);
             var obese = 30.00;
-            if(bmi == obese || bmi &gt; obese) {
+            if (bmi == obese || bmi &gt; obese) {
                 return true;
             }
             return false;
         }
 
-        function limitedDoseChanges(){
+        function limitedDoseChanges() {
             jq("#insulin_70_30, #insulin_70_30_frequency, #soluble_insulin, #soluble_insulin_frequency, #nph_type_1, #nph_type_1_frequency, #nph_type_2, #nph_type_2_frequency").change(invalidDrugPrescription);
         }
 
-        function displayRecentDiabeticStatus(){
-            var lastObs = "<lookup expression="fn.latestObs(165086).valueCoded"/>";
+        function displayRecentDiabeticStatus() {
+            var lastObs = "<lookup expression="
+            fn.latestObs(165086).valueCoded
+            "/>";
 
             var sectionId = 'diabetes_status';
 
-            if(lastObs){
+            if (lastObs) {
                 lastObs = lastObs.trim().split('#')[1];
-                selectElementByValue(sectionId,lastObs);
+                selectElementByValue(sectionId, lastObs);
             }
 
         }
-        function displayRecentHTNStatus(){
-            var lastObs = "<lookup expression="fn.latestObs(165091).valueCoded"/>"
+
+        function displayRecentHTNStatus() {
+            var lastObs = "<lookup expression="
+            fn.latestObs(165091).valueCoded
+            "/>"
             var sectionId = 'htn_status';
-            if(lastObs){
+            if (lastObs) {
                 lastObs = lastObs.trim().split('#')[1];
-                selectElementByValue(sectionId,lastObs);
+                selectElementByValue(sectionId, lastObs);
             }
         }
-        function disableGDMFormMale(){
-            var gender= "<lookup expression="patient.gender"/>";
+
+        function disableGDMFormMale() {
+            var gender = "<lookup expression="
+            patient.gender
+            "/>";
             var sectionId = 'type_of_diabetes';
 
-            if(gender=='M'){
-                disableElementByValue(sectionId,1449);
+            if (gender == 'M') {
+                disableElementByValue(sectionId, 1449);
                 jq('#pdt :input').prop('disabled', true);
             }
 
         }
 
-        function selectElementByValue(sectionId,value){
-            jq('#' + sectionId + ' :input').each(function(){
+        function selectElementByValue(sectionId, value) {
+            jq('#' + sectionId + ' :input').each(function () {
                 var inputElement = jq(this);
-                if(inputElement.val() == value){
+                if (inputElement.val() == value) {
                     inputElement.prop("checked", true);
                 }
             })
         }
 
-        function disableElementByValue(sectionId,value){
-            jq('#' + sectionId + ' :input').each(function(){
+        function disableElementByValue(sectionId, value) {
+            jq('#' + sectionId + ' :input').each(function () {
                 var inputElement = jq(this);
-                if(inputElement.val() == value){
+                if (inputElement.val() == value) {
                     inputElement.prop("disabled", true);
                 }
             })
         }
 
-        function setupDefaultValues(){
-            var diabeticType = "<lookup expression="fn.latestObs(165094).valueCoded"/>";
-            var hypertensionType = "<lookup expression="fn.latestObs(165198).valueCoded"/>";
-            var hivStatus = "<lookup expression="fn.latestObs(138405).valueCoded"/>";
-            var nhifStatus = "<lookup expression="fn.latestObs(1917).valueCoded"/>";
-            var tbScreen = "<lookup expression="fn.latestObs(164800).valueCoded"/>";
-            var tbStatus = "<lookup expression="fn.latestObs(165330).valueCoded"/>";
+        function setupDefaultValues() {
+            var diabeticType = "<lookup expression="
+            fn.latestObs(165094).valueCoded
+            "/>";
+            var hypertensionType = "<lookup expression="
+            fn.latestObs(165198).valueCoded
+            "/>";
+            var hivStatus = "<lookup expression="
+            fn.latestObs(138405).valueCoded
+            "/>";
+            var nhifStatus = "<lookup expression="
+            fn.latestObs(1917).valueCoded
+            "/>";
+            var tbScreen = "<lookup expression="
+            fn.latestObs(164800).valueCoded
+            "/>";
+            var tbStatus = "<lookup expression="
+            fn.latestObs(165330).valueCoded
+            "/>";
 
-            if(diabeticType){
+            if (diabeticType) {
                 diabeticType = diabeticType.trim().split('#')[1];
-                selectElementByValue('type_of_diabetes',diabeticType);
+                selectElementByValue('type_of_diabetes', diabeticType);
             }
 
-            if(hypertensionType){
+            if (hypertensionType) {
                 hypertensionType = hypertensionType.trim().split('#')[1];
-                selectElementByValue('htn_type',hypertensionType);
+                selectElementByValue('htn_type', hypertensionType);
             }
-            if(hivStatus){
+            if (hivStatus) {
                 hivStatus = hivStatus.trim().split('#')[1];
-                selectElementByValue('hiv_status',hivStatus);
+                selectElementByValue('hiv_status', hivStatus);
             }
-            if(nhifStatus){
+            if (nhifStatus) {
                 nhifStatus = nhifStatus.trim().split('#')[1];
-                selectElementByValue('nhif',nhifStatus);
+                selectElementByValue('nhif', nhifStatus);
             }
-            if(tbScreen){
+            if (tbScreen) {
                 tbScreen = tbScreen.trim().split('#')[1];
-                selectElementByValue('screened_for_tb',tbScreen);
+                selectElementByValue('screened_for_tb', tbScreen);
             }
-            if(tbStatus){
+            if (tbStatus) {
                 tbStatus = tbStatus.trim().split('#')[1];
-                selectElementByValue('tb_status',tbStatus);
+                selectElementByValue('tb_status', tbStatus);
             }
         }
 
 
-        jQuery(function() {
+        jQuery(function () {
             displayTabs();
             getField('weight.value').change(onWeightOrHeightChange);
             getField('height.value').change(onWeightOrHeightChange);
@@ -436,28 +485,39 @@
             jq('#protein').change(protein);
             jq('#ketone').change(ketone);
 
-            jq('#sodium').change(function(){
-                flagInputByRange('sodium',135,155);
+            jq('#sodium').change(function () {
+                flagInputByRange('sodium', 135, 155);
             });
-            jq('#chloride').change(function(){
-                flagInputByRange('chloride',98,108);
+            jq('#chloride').change(function () {
+                flagInputByRange('chloride', 98, 108);
             });
-            jq('#potassium').change(function(){
-                flagInputByRange('potassium',3.5 ,5.5);
+            jq('#potassium').change(function () {
+                flagInputByRange('potassium', 3.5, 5.5);
             });
-            jq('#urea').change(function(){
-                flagInputByRange('urea',2.70 ,8.0);
+            jq('#urea').change(function () {
+                flagInputByRange('urea', 2.70, 8.0);
             });
-
 
 
         });
     </script>
 
     <style>
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+        text-decoration: none
+
+        ;
+        display: inline-block
+
+        ;
+        padding:
+
+        8
+        px
+
+        16
+        px
+
+        ;
         }
 
         .nav-button a:hover {
@@ -478,18 +538,18 @@
         }
 
         .form-nav-container {
-            padding-top:10px;
-            padding-bottom:10px;
-            padding-left:10px;
-            padding-right:10px;
-            background-color:#00b4ef;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: #00b4ef;
             height: 35px;
             margin-top: 5px;
             margin-bottom: 5px;
 
         }
 
-        .nav-button a{
+        .nav-button a {
             padding-top: 10px;
             padding-left: 10px;
             padding-right: 10px;
@@ -509,28 +569,32 @@
             margin-left: 10px;
         }
 
-        .align-checkbox-input input{
+        .align-checkbox-input input {
             top: 10px;
-            color:red;
+            color: red;
         }
 
-        .align-checkbox-input label] {
-            color:red;
+        .align-checkbox-input label
+
+        ]
+        {
+            color: red
+        ;
         }
 
         .green_flag input {
             color: green;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
             outline: 2px solid green;
         }
 
-        .yellow_flag input{
+        .yellow_flag input {
             color: darkorange;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
             outline: 2px solid darkorange;
         }
 
@@ -538,7 +602,7 @@
             color: red;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
             outline: 2px solid red;
         }
 
@@ -546,26 +610,28 @@
             color: green;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
         }
 
         .flag_yellow {
             color: darkorange;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
         }
 
-        .flag_red  {
+        .flag_red {
             color: red;
             font-weight: bold;
             font-size: 15px;
-            padding-left:10px;
+            padding-left: 10px;
         }
+
         .comment_field {
             color: red;
         }
-        .flagRed  {
+
+        .flagRed {
             color: red;
             font-weight: bold;
             font-size: 15px;
@@ -613,139 +679,97 @@
                     <li><a href="#tabs-3">Page 3</a></li>
                     <li><a href="#tabs-4">Page 4</a></li>
                 </ul>
-                <div id="tabs-1">
-                    <label style="background:  #ff7100; padding: 5px; color: #fff;">Encounter Details</label>
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tbody>
-                        <tr>
-                            <td>
-                                Date:
-                                <encounterDate default="now" disallowMultipleEncountersOnDate="block"/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <label style="background:  #ff7100; padding: 5px; color: #fff;">Treatment supporter's Details</label>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td valign="top">
-                                Treatment supporter's name:
-                                <obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="supporter_name" />
-                            </td>
-                            <td valign="top">
-                                Treatment Supporter's Cell phone Number:
-                                <obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  id="supporter_phone_number" />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table>
-                        <tbody>
-                        <td>Visit Type:</td>
-                        <td>
-                            <obs conceptId="164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="163293AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160101AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Sick,Referred,Scheduled,Unscheduled" />
-                        </td>
-                        </tbody>
-                    </table>
-                    <label style="background:  #ff7100; padding: 5px; color: #fff;">Status of patient:</label>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td valign="top">
-                                <label>DM Diagnosis </label>
-                                <obs id="diabetes_status" conceptId="165086" answerConceptIds="165087,165088,1175" answerLabels="New DM patient,Known DM patient,NA" style="radio" class="align-radio-input"
-                                     answerSeparator="" />
-                            </td>
-                            <td valign="top">
-                                <label>Date of DM Diagnosis </label>
-                                <span id="dm_diagnosis_date">
-                           <obs conceptId="165089"/>
-                        </span>
-                            </td>
-                            <td colspan="2" valign="top">
-                                <label>Date of starting clinic</label>
-                                <span id="dm_treatment_start_date">
-                           <obs conceptId="fbf22987-bdf7-4721-81ce-6b71e1630c5d" />
-                        </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <label>Hypertension:</label>
-                                <obs conceptId="165091" answerConceptIds="165092,165093" answerLabels="New HTN patient,Known HTN patient" style="radio" class="align-radio-input"
-                                     answerSeparator="" id="htn_status"/>
-                            </td>
-                            <td valign="top">
-                                <label>Type of Hypertension:</label>
-                                <obs conceptId="d4678d10-c650-4a2b-87ad-6e3d3283c06d"
-                                     answerConceptIds="c447006f-9923-4840-8a56-6b7ad8cb55a1,51879821-770d-4ba1-8cfe-e358c9209dab,fa3b33e0-bbd6-4d1a-b74b-26d411a928da,c9614f94-cf50-4ed4-b0cd-58e06c6266d6"
-                                     answerLabels="Mild Hypertension,Moderate Hypertension,Severe Hypertension,Preeclampsia" style="radio" class="align-radio-input"
-                                     answerSeparator="" id="htn_type"/>
-                            </td>
-                            <td valign="top">
-                                <label>Date of HTN Diagnosis </label>
-                                <span id="htn_diagnosis_date">
-                           <obs conceptId="165090"/>
-                        </span>
-                            </td>
-                            <td valign="top">
-                                <label>Date of starting clinic</label>
-                                <span id="htn_treatment_start_date">
-                           <obs conceptId="504f853e-1f81-478d-a043-711ac528322d"  />
-                        </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <label>Active NHIF Cover:</label>
-                                <obs conceptId="1917" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
-                                     answerSeparator="" id="nhif"/>
-                            </td>
-                            <td colspan="3" id="enroll_to_nhif" valign="top">
-                                <span id="nhif-comment" class="value"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" colspan="2">
-                                <label>Type of Diabetes:</label>
-                                <obs conceptId="165094" answerConceptIds="142474,1449,142473,44a5bd2a-e0c9-43f5-b96b-de00fad98bf0"
-                                     answerLabels="Type 1,GDM,Type 2,Diabetes Secondary to other causes" style="radio" class="align-radio-input"
-                                     answerSeparator="" id="type_of_diabetes"/>
-                            </td>
-                            <td valign="top" colspan="2">
-                                <label>HIV status:</label>
-                                <obs conceptId="138405" answerConceptIds="664,138571,1067" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" class="align-radio-input"
-                                     answerSeparator="" id="hiv_status"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">
-                                <label>Screened for TB:</label>
-                                <obs id="screened_for_tb" conceptId="164800AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"     answerConceptIds="1065,1066,1175" answerLabels="Yes,No,NA" style="radio" answerSeparator="" class="align-radio-input"/>
-                            </td>
-                            <td valign="top">
-                                <label>TB Status:</label>
-                                <obs id="tb_status" conceptId="1659AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"     answerConceptIds="703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Positive,Negative,On treatment" style="radio" answerSeparator="" class="align-radio-input"/>
-                            </td>
-                            <td valign="top">
-                                <label>Treatment start date.</label>
-                                <span id="tb_treatment_start">
-                              <obs  conceptId="cda0abc2-bf7d-4959-b619-bbfd1eb21517" />
-                           </span>
-                            </td>
-                            <td colspan="2" valign="top">
-                                <label> Comment (details):</label>
-                                <span id="tb_comments">
-                              <obs  conceptId="b1d41c4d-d939-4818-9990-e2d9c5fefffe"/>
-                           </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
 
-    <div id="displayRequiredFields"></div>
-    <div class="ke-form-footer">
-        <submit/>
+
+                <div id="tabs-1">
+                    <div class="ke-form-content">
+                        <fieldset>
+                            <legend>Encounter Details</legend>
+
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Date:
+                                        <encounterDate default="now" disallowMultipleEncountersOnDate="block"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td valign="top">
+                                        Treatment supporter's name:
+                                        <obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="supporter_name"/>
+                                    </td>
+                                    <td valign="top">
+                                        Treatment Supporter's Cell phone Number:
+                                        <obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             id="supporter_phone_number"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                <td>Visit Type:</td>
+                                <td>
+                                    <obs conceptId="164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerSeparator=""
+                                         class="align-radio-input"
+                                         answerConceptIds="163293AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160101AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabels="Sick,Referred,Scheduled,Unscheduled"/>
+                                </td>
+                                </tbody>
+                            </table>
+
+                        </fieldset>
+
+                    <fieldset>
+                        <legend>Clinical Notes</legend>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td valign="top">
+                                        <label>Chief complaint/Reason for encounter </label>
+                                        <obs id="chief_complaint" conceptId="5219"
+                                             answerConceptIds="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabels="Shortness of breath on activity,
+                                                Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
+                                             answerSeparator=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Specify other complains</label>
+                                        <obs id="other_reasons_for_encounter" conceptId="5219" style="..."/>
+                                    </td>
+                                    <td>
+                                        <label>Clinical notes </label>
+                                        <obs conceptId="165106" answerConceptId="117460" answerLabel="High cholesterol"
+                                             style="checkbox" class="align-checkbox-input" showCommentField="true"
+                                             commentFieldLabel="&lt;/td&gt;&lt;td&gt;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+
+                        <fieldset>
+                            <legend>TB Screening</legend>
+
+
+                        </fieldset>
+                    </div>
+
+
+                    <div id="displayRequiredFields"></div>
+                    <div class="ke-form-footer">
+                        <submit/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </htmlform>
