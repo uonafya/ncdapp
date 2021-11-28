@@ -1,4 +1,4 @@
-
+var jq = jQuery
 var prescription = {};
     var prescriptionDialog = emr.setupConfirmationDialog({
     dialogOpts: {
@@ -23,10 +23,8 @@ var prescription = {};
 }
 }
 });
-
-    jq("#add-prescription").on("click", function(e) {
-    e.preventDefault();
-
-    jq('#prescriptionAlert').hide();
-    prescriptionDialog.show();
-});
+    jq("#add-prescription").on ("click", function (e){
+        e.preventDefault();
+        jq('#prescriptionAlert').hide();
+        prescriptionDialog.show();
+    })

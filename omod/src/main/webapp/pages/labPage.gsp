@@ -17,6 +17,28 @@
     ui.includeJavascript("uicommons", "navigator/exitHandlers.js")
 %>
 
+<script>
+    var jq = jQuery
+
+    jq("#investigation").autocomplete({
+        source: function(request, response) {
+            jq.getJSON('${ ui.actionLink("ncdapp", "Lab", "getInvestigations") }', {
+                q: request.term
+            }).success(function(data) {
+                var results = [];
+                for (var i in data) {
+                    var result = {
+                        label: data[i].name,
+                        value: data[i].conceptId
+                    };
+                    results.push(result);
+                }
+                response(results);
+            });
+        },
+        minLength: 3,
+    });
+</script>
 <style>
 .dialog textarea{
     resize: none;
