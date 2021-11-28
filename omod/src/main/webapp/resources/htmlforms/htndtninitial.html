@@ -54,12 +54,21 @@
                 <td>Patient NHIF Number: <patient field="identifier" identifierTypeId="38e3c640-5021-11ec-86a0-fb3bee471720" /></td>
             </tr>
             <tr>
-                <td>Patient Mobile Number:</td>
+                <td>Patient Mobile Number:<lookup expression="personAttributes.get('Telephone contact')"/></td>
                 <td>Treatment supporter name:<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
                 <td>Treatment supporter Contact:<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
             </tr>
+            <tr>
+                <td>County:<lookup expression="patient.personAddress.countyDistrict" /></td>
+                <td>Sub County:<lookup expression="patient.personAddress.stateProvince" /></td>
+                <td>Ward:<lookup expression="patient.personAddress.address4" /></td>
+            </tr>
+            <tr>
+                <td>Patient Village:<lookup expression="patient.personAddress.cityVillage" /></td>
+                <td colspan="2">Land Mark:<lookup expression="patient.personAddress.address2" /></td>
+            </tr>
         </table>
-        <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" showDate="true"/>
+        <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" />
     </div>
     <div class="ke-form-footer">
         <submit/>
