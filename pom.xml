@@ -115,6 +115,12 @@
 				<version>${ehrconfigsVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>hospitalcore-api</artifactId>
+				<version>${hospitalcoreVersion}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -159,5 +165,6 @@
 		<kenyaemrVersion>17.0.3</kenyaemrVersion>
 		<jodaTimeVersion>2.9.1</jodaTimeVersion>
 		<ehrconfigsVersion>1.0.10-SNAPSHOT</ehrconfigsVersion>
+		<hospitalcoreVersion>1.0.6-SNAPSHOT</hospitalcoreVersion>
 	</properties>
 </project>
