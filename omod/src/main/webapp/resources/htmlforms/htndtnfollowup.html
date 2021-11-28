@@ -639,11 +639,11 @@
                             </td>
                             <td valign="top">
                                 Treatment Supporter's alternative cell phone Number:
-                                <obs conceptId="3cd268ad-f27a-42de-a998-c836ec7dd430" id="supporter_alternative_phone_number" />
+                                <obs conceptId="159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="supporter_alternative_phone_number" />
                             </td>
                             <td valign="top">
                                 Treatment Supporter's other cell phone Number:
-                                <obs conceptId="732034aa-65a8-4a9a-82cb-d58f615c2ba3" id="supporter_other_phone_number" />
+                                <obs conceptId="159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="supporter_other_phone_number" />
                             </td>
                         </tr>
                         </tbody>
@@ -674,7 +674,7 @@
                             <td colspan="2" valign="top">
                                 <label>Date of starting clinic</label>
                                 <span id="dm_treatment_start_date">
-                           <obs conceptId="fbf22987-bdf7-4721-81ce-6b71e1630c5d" />
+                           <obs conceptId="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                         </span>
                             </td>
                         </tr>
@@ -686,7 +686,8 @@
                             </td>
                             <td valign="top">
                                 <label>Type of Hypertension:</label>
-                                <obs conceptId="d4678d10-c650-4a2b-87ad-6e3d3283c06d"
+                                <!--//TODO get correct uuid-->
+                                <obs conceptId="165091b-87ad-6e3d3283c06d"
                                      answerConceptIds="c447006f-9923-4840-8a56-6b7ad8cb55a1,51879821-770d-4ba1-8cfe-e358c9209dab,fa3b33e0-bbd6-4d1a-b74b-26d411a928da,c9614f94-cf50-4ed4-b0cd-58e06c6266d6"
                                      answerLabels="Mild Hypertension,Moderate Hypertension,Severe Hypertension,Preeclampsia" style="radio" class="align-radio-input"
                                      answerSeparator="" id="htn_type"/>
@@ -700,7 +701,7 @@
                             <td valign="top">
                                 <label>Date of starting clinic</label>
                                 <span id="htn_treatment_start_date">
-                           <obs conceptId="504f853e-1f81-478d-a043-711ac528322d"  />
+                           <obs conceptId="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
                         </span>
                             </td>
                         </tr>
@@ -739,13 +740,13 @@
                             <td valign="top">
                                 <label>Treatment start date.</label>
                                 <span id="tb_treatment_start">
-                              <obs  conceptId="cda0abc2-bf7d-4959-b619-bbfd1eb21517" />
+                              <obs  conceptId="163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                            </span>
                             </td>
                             <td colspan="2" valign="top">
                                 <label> Comment (details):</label>
                                 <span id="tb_comments">
-                              <obs  conceptId="b1d41c4d-d939-4818-9990-e2d9c5fefffe"/>
+                              <obs  conceptId="163323AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                            </span>
                             </td>
                         </tr>
@@ -795,64 +796,68 @@
                             <tr>
                                 <td> Past conditions:</td>
                                 <td colspan="2">
-                                    <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="118983" answerLabel="Peripheral neuropathy" style="checkbox" class="align-checkbox-input"   />
-                                    <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="123919" answerLabel="Ulcers" style="checkbox" class="align-checkbox-input" />
-                                    <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="165104" answerLabel="Amputation" style="checkbox" class="align-checkbox-input"   />
-                                    <obs conceptId="09569a18-ac73-47e1-b77f-a10544bf053e" answerConceptId="e5c2bf32-ecd4-4e52-a161-8327e9d74ad7" answerLabel="Acute joint" style="checkbox" class="align-checkbox-input" />
+                                    <obs conceptId="1633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="118983" answerLabel="Peripheral neuropathy" style="checkbox" class="align-checkbox-input"   />
+                                    <obs conceptId="1633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="123919" answerLabel="Ulcers" style="checkbox" class="align-checkbox-input" />
+                                    <obs conceptId="1633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="165104" answerLabel="Amputation" style="checkbox" class="align-checkbox-input"   />
+                                    <!-- TODO get correct UUID-->
+                                    <obs conceptId="1633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="136412" answerLabel="Acute joint" style="checkbox" class="align-checkbox-input" />
                                 </td>
                             </tr>
                             <tr>
                                 <td> Foot risk assessment</td>
                                 <td colspan="2">
-                                    <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="0d2aa75a-3903-45ed-a040-c948842479ba" answerLabel="Low current risk" style="radio" answerSeparator="" class="align-radio-input"   />
-                                    <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="a3758dd9-b172-40fb-b78a-8697aa9abe9a" answerLabel="At risk" style="radio" answerSeparator="" class="align-radio-input" />
-                                    <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="e39ac969-5f99-4674-9cfa-8e0439a5eea8" answerLabel="High risk" style="radio" answerSeparator="" class="align-radio-input"   />
-                                    <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="123919" answerLabel="Ulcerated foot" style="radio" answerSeparator="" class="align-radio-input" />
-                                    <obs conceptId="db47c759-d53e-4057-a2d7-e54d074276fd" answerConceptId="f8f1dae8-9674-4957-b93e-d842832d7416" answerLabel="Foot emergency" style="radio" answerSeparator="" class="align-radio-input" />
+                                    <!--TODO Foot Risk Concept Missing
+                                        TODO get risk factors-->
+                                    <obs conceptId="164387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="1407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Low current risk" style="radio" answerSeparator="" class="align-radio-input"   />
+                                    <obs conceptId="164387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="a3758dd9-b172-40fb-b78a-8697aa9abe9a" answerLabel="At risk" style="radio" answerSeparator="" class="align-radio-input" />
+                                    <obs conceptId="164387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="e39ac969-5f99-4674-9cfa-8e0439a5eea8" answerLabel="High risk" style="radio" answerSeparator="" class="align-radio-input"   />
+                                    <obs conceptId="164387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="123919" answerLabel="Ulcerated foot" style="radio" answerSeparator="" class="align-radio-input" />
+                                    <obs conceptId="164387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="f8f1dae8-9674-4957-b93e-d842832d7416" answerLabel="Foot emergency" style="radio" answerSeparator="" class="align-radio-input" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Pedal Pulse:</td>
                                 <td colspan="2">
-                                    <obs conceptId="385b1591-c80d-45c2-bb3b-0b71bc6c8300" style="radio" answerSeparator="" class="align-radio-input"
-                                         answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <!--<obs conceptId="385b1591-c80d-45c2-bb3b-0b71bc6c8300" style="radio" answerSeparator="" class="align-radio-input"
+                                         answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />-->
                                 </td>
                             </tr>
                             <tr>
                                 <td>Peripheral neuropathy:</td>
                                 <td colspan="2">
-                                    <obs conceptId="f99ef1c4-7d2b-445d-82f6-729c3de4b149"  style="radio" answerSeparator="" class="align-radio-input"
-                                         answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <!--<obs conceptId="f99ef1c4-7d2b-445d-82f6-729c3de4b149"  style="radio" answerSeparator="" class="align-radio-input"
+                                         answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />-->
                                 </td>
                             </tr>
                             <tr>
                                 <td>Deformity:</td>
                                 <td colspan="2">
-                                    <obs conceptId="da9de57f-0f8f-468b-afbb-06c1537c6f44" style="radio" answerSeparator="" class="align-radio-input"  answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <obs conceptId="155871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="radio" answerSeparator="" class="align-radio-input"  answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Foot Ulcer:</td>
                                 <td colspan="2">
-                                    <obs conceptId="1cb3fefb-e44a-4092-adbc-b33cf068a37a"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <obs conceptId="163411AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Amputation:</td>
                                 <td colspan="2">
-                                    <obs conceptId="99290a23-7b79-460d-b982-ea9f32486259"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <obs conceptId="161702AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
                                 </td>
                             </tr>
                             <tr>
+                                <!-- TODO get acute joint concept-->
                                 <td>Acute joint:</td>
                                 <td colspan="2">
-                                    <obs conceptId="be3b8237-1818-4adc-b2d4-eb9a727ca20b" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <obs conceptId="80AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Loss of sensation:</td>
                                 <td colspan="2">
-                                    <obs conceptId="fadecc5f-f848-4240-8bb7-0a617c088bfe" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
+                                    <obs conceptId="118872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="radio" answerSeparator="" class="align-radio-input" answerConceptIds="160749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,0766f882-4ca8-4c75-89ca-52e01a16b045,79121359-20e6-4431-9117-34beab9bd193" answerLabels="Under treatment,Resolved,Referral,Foot saved" />
                                 </td>
                             </tr>
                             <tr>
@@ -956,6 +961,7 @@
                         <tr>
                             <td><label>Indicator History of Contact</label>
                             </td>
+                            <!-- TODO concept -->
                             <td>
                                 <obs conceptId="9ad88b2e-3b70-487a-86d4-e2241112f8a3" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
                                      answerSeparator=""  />
@@ -994,6 +1000,7 @@
                         <tr>
                             <td>
                                 <label>Start anti-TB:</label>
+                                <!-- TODO -->
                                 <obs conceptId="2dbfd315-b5ac-479e-84b1-33f76a7990da" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
                                      answerSeparator="" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                             </td>
@@ -1287,9 +1294,10 @@
                             <td>
                                 <label> (i) Urea (mmol/l)</label>
                             </td>
-                            <td>
+                            <!-- TODO -->
+                            <!--<td>
                                 <obs id="urea" conceptId="53874292-7a10-4726-bf30-64513c9e774a" dateLabel="&lt;/td&gt;&lt;td&gt;" />
-                            </td>
+                            </td>-->
                         </tr>
                         <tr>
                             <td colspan="3" >
@@ -1300,6 +1308,7 @@
                             <td>
                                 <label>Sodium (mmol/l)</label>
                             </td>
+                            <!-- TODO -->
                             <td>
                                 <obs id="sodium" conceptId="b29c84d6-7625-4ff2-9d8f-646820a318bc" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                             </td>
@@ -1308,6 +1317,7 @@
                             <td>
                                 <label>Chloride (mmol/l)</label>
                             </td>
+                            <!-- TODO -->
                             <td>
                                 <obs id="chloride" conceptId="60c4617e-67ce-4824-b67d-f0b51fa742a2" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                             </td>
@@ -1316,6 +1326,7 @@
                             <td>
                                 <label>Potassium (mmol/l)</label>
                             </td>
+                            <!-- TODO -->
                             <td>
                                 <obs id="potassium" conceptId="2e6af16c-d013-4c81-9764-b1166e3e0e57" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                             </td>
@@ -1381,6 +1392,7 @@
                             <td>
                                 <label>Comment(Details)</label>
                             </td>
+                            <!-- TODO -->
                             <td colspan="2">
                                 <obs id="DepositsDescription" conceptId="5701af48-96be-4b96-a6ec-b4dd1bb8871e" rows="3" cols="50"/>
                             </td>
@@ -1407,7 +1419,7 @@
                                         <tr>
                                             <td colspan="3"> ACE inhibitor:</td>
                                         </tr>
-                                        <obsgroup groupingConceptId="fa31139a-8202-4f1f-b3a2-6c6b3ab7837c">
+                                        <obsgroup groupingConceptId="162298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
                                             <tr>
                                                 <td>
                                                     <obs  conceptId="1282" answerConceptId="72806AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="Captopril" answerLabel="Captopril" style="checkbox" class="align-checkbox-input"/>
@@ -1420,6 +1432,8 @@
                                                 </td>
                                             </tr>
                                         </obsgroup>
+
+                                        <!-- TODO -->
                                         <obsgroup groupingConceptId="53013650-18e0-4b35-be4c-e3f2485f0690">
                                             <tr>
                                                 <td>
@@ -1476,14 +1490,15 @@
                                             <td>
                                                 <label>Other ACE inhibitors</label>
                                             </td>
-                                            <td colspan="2">
+                                            <!-- TODO -->
+                                           <td colspan="2">
                                                 <obs conceptId="b77a9f38-ef4a-4638-849c-4227be4ec8ef" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">ARB:</td>
                                         </tr>
-                                        <obsgroup groupingConceptId="b5dbe25f-3823-4965-aafe-f328dfc34c11">
+                                        <obsgroup groupingConceptId="162299AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
                                             <tr>
                                                 <td>
                                                     <obs conceptId="1282" answerConceptId="72758AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="Candesartan" answerLabel="Candesartan" style="checkbox" class="align-checkbox-input"/>
@@ -1496,6 +1511,7 @@
                                                 </td>
                                             </tr>
                                         </obsgroup>
+                                        <!-- TODO ARB Groups -->
                                         <obsgroup groupingConceptId="bca6a7ff-3a7e-4e2e-8db9-9194da36a16f">
                                             <tr>
                                                 <td>
@@ -1560,11 +1576,12 @@
                                                     <obs conceptId="160855AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160862AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160858AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="OD,BD,TDS" style="dropdown" />
                                                 </td>
                                             </tr>
-                                        </obsgroup>
+                                        </obsgroup>-->
                                         <tr>
                                             <td>
                                                 <label>Other ARB</label>
                                             </td>
+                                            <!-- TODO other ARD Concept -->
                                             <td colspan="2">
                                                 <obs conceptId="03860e0e-9bc2-40c3-8e1e-c97602cd9a50" />
                                             </td>
@@ -1579,7 +1596,7 @@
                                         <tr>
                                             <td colspan="3">Beta blockers</td>
                                         </tr>
-                                        <obsgroup groupingConceptId="184ce173-a965-402e-8cd6-34412f6fb8b1">
+                                        <obsgroup groupingConceptId="163211AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
                                             <tr>
                                                 <td width="35%">
                                                     <obs conceptId="1282" answerConceptId="71652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="Atenolol" answerLabel="Atenolol" style="checkbox" class="align-checkbox-input"/>
@@ -1592,6 +1609,7 @@
                                                 </td>
                                             </tr>
                                         </obsgroup>
+                                        <!-- TODO Beta Blockers concepts -->
                                         <obsgroup groupingConceptId="e955e7e9-22a9-4455-8d02-66ae0f58ea63">
                                             <tr>
                                                 <td>
@@ -2078,6 +2096,7 @@
                         </tr>
                         <tr>
                             <td><label>Referral Note</label></td>
+                            <!-- TODO Referral note -->
                             <td>
                                 <obs conceptId="4f19e4bb-5d3f-41ee-9ae2-689305a27f64"/>
                             </td>
