@@ -1,4 +1,4 @@
-package org.openmrs.module.ncdapp.page.controller;
+package org.openmrs.module.ncdapp.fragment.controller;
 
 import org.openmrs.api.context.Context;
 import org.openmrs.module.hospitalcore.BillingService;
@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-public class LabPageController {
+public class laboratoryOrdersFragment {
+	
+	public void controller() {
+		
+	}
 	
 	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
 		BillingService investigations = Context.getService(BillingService.class);
