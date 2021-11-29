@@ -44,7 +44,9 @@
             </tr>
             <tr>
                 <td>Screening Setting:
-                    <obs conceptId="1542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123801AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="OPD,CCC,HTS,Other within health facility,Household,Church-based,Work place,Market,Roadside or Walkway,Baraza,Other setting"/>
+                    <obs conceptId="a69f18da-54ae-4a14-b040-bc9e03f835fc" answerConceptIds="160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,d85ff219-0f5a-408d-8df0-96bcc9be5071,411dcfe9-3188-4473-8dfd-9f6ea223a6e6
+,159818AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5b40ad5b-e7ef-4611-8ee5-aee1f782f806,20e9d9a0-c6a1-4c16-a063-dddf5ca694c3,39713023-f0df-4ec4-9f62-94e27194ac6a,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+" answerLabels="OPD,CCC,HTS,Other within health facility,Household,Church-based,Work place,Market,Roadside or Walkway,Baraza,Other setting"/>
                 </td>
             </tr>
         </table>
@@ -52,23 +54,22 @@
     <div class="ke-form-content">
         <table>
             <tr>
-                <td>Pregnant:<recentObs conceptId="1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></td>
+                <td>Pregnancy Status:<obs conceptId="5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" /></td>
             </tr>
             <tr>
-                <td>Past medical history:<obs conceptId="1633AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                <td>Past medical history:<obs conceptId="160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="20" rows="5"/></td>
             </tr>
-            <tr>
             <tr>
                 <td valign="top">
                     <label>Known hypertensive?</label>
-                    <obs conceptId="1917" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
+                    <obs conceptId="e08c9557-da37-49b9-832f-29b6d8a9dc45" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="known_hypertensive"/>
                 </td>
             </tr>
             <tr>
                 <td valign="top">
                     <label>Hypertensive on treatment in the preceding 1 week?</label>
-                    <obs conceptId="1917" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
+                    <obs conceptId="45d9f615-3f8c-493f-b471-f12aee7e2dcf" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="HTN_on_TX"/>
                 </td>
             </tr>
@@ -108,21 +109,21 @@
             <tr>
                 <td valign="top">
                     <label>Known diabetic?</label>
-                    <obs conceptId="1917" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
+                    <obs conceptId="3cd0edbb-f4ba-4fb5-ac60-7354efb078c5" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="known_DM"/>
                 </td>
             </tr>
             <tr>
                 <td valign="top">
                     <label>If diabetic, currently on treatment?</label>
-                    <obs conceptId="1917" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="align-radio-input"
+                    <obs conceptId="482c9f37-e7b3-41ef-91ea-ecc868ce4016" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="DM_on_TX"/>
                 </td>
             </tr>
             <tr>
                 <td><label>Random Blood Sugar (RBS) (mmols/L)</label></td>
                 <td>
-                    <obs conceptId="887" dateLabel="&lt;/td&gt;&lt;td&gt;" />
+                    <obs conceptId="887AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                 </td>
                 <td>
                            <span class="value">
@@ -134,7 +135,7 @@
             <tr>
                 <td><label>Fasting blood glucose measurement (mg/dL)</label></td>
                 <td>
-                    <obs conceptId="160912" dateLabel="&lt;/td&gt;&lt;td&gt;" />
+                    <obs conceptId="160912AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" dateLabel="&lt;/td&gt;&lt;td&gt;" />
                 </td>
                 <td>
                            <span class="value">
@@ -143,7 +144,6 @@
                 </td>
             </tr>
         </table>
-        <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" showDate="true"/>
     </div>
     <div class="ke-form-footer">
         <submit/>
