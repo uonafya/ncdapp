@@ -109,10 +109,17 @@
 				<version>${reportingVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>ehrconfigs-api</artifactId>
 				<version>${ehrconfigsVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>hospitalcore-api</artifactId>
+				<version>${hospitalcoreVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
@@ -143,21 +150,26 @@
 	</pluginRepositories>
 
 	<properties>
-		<openmrsPlatformVersion>1.12.0</openmrsPlatformVersion>
-		<appframeworkVersion>2.2.1</appframeworkVersion>
-		<calculationVersion>1.0</calculationVersion>
-		<htmlformentryVersion>2.3</htmlformentryVersion>
-		<htmlwidgetsVersion>1.6.6</htmlwidgetsVersion>
-		<idgenVersion>2.6</idgenVersion>
-		<metadatadeployVersion>1.2</metadatadeployVersion>
-		<metadatasharingVersion>1.1.8</metadatasharingVersion>
-		<reportingVersion>0.9.8.1</reportingVersion>
-		<serializationxstreamVersion>0.2.7</serializationxstreamVersion>
-		<uiframeworkVersion>3.3.1</uiframeworkVersion>
-		<kenyacoreVersion>2.4.1</kenyacoreVersion>
-		<kenyauiVersion>2.1.1</kenyauiVersion>
-		<kenyaemrVersion>17.0.3</kenyaemrVersion>
-		<jodaTimeVersion>2.9.1</jodaTimeVersion>
-		<ehrconfigsVersion>1.0.10-SNAPSHOT</ehrconfigsVersion>
+        <openMRSVersion>1.12.0</openMRSVersion>
+        <appframeworkVersion>2.9</appframeworkVersion>
+        <calculationVersion>1.0</calculationVersion>
+        <htmlformentryVersion>2.3</htmlformentryVersion>
+        <htmlwidgetsVersion>1.6.6</htmlwidgetsVersion>
+        <idgenVersion>2.6</idgenVersion>
+        <metadatadeployVersion>1.2</metadatadeployVersion>
+        <metadatasharingVersion>1.1.8</metadatasharingVersion>
+        <reportingVersion>0.9.8.1</reportingVersion>
+        <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
+        <uiframeworkVersion>3.8</uiframeworkVersion>
+        <kenyacoreVersion>2.4.1</kenyacoreVersion>
+        <kenyauiVersion>2.1.1</kenyauiVersion>
+        <kenyaemrVersion>17.0.3</kenyaemrVersion>
+        <jodaTimeVersion>2.9.1</jodaTimeVersion>
+        <webservices.restVersion>2.1</webservices.restVersion>
+        <logicVersion>0.5.2</logicVersion>
+        <uilibraryVersion>2.0.4</uilibraryVersion>
+        <ehrconfigsVersion>1.0.6-SNAPSHOT</ehrconfigsVersion>
+        <hospitalcoreVersion>1.0.5-SNAPSHOT</hospitalcoreVersion>
+
 	</properties>
 </project>
