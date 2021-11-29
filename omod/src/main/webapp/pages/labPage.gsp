@@ -18,26 +18,62 @@
 %>
 
 <script>
-    var jq = jQuery
+   var jq = jQuery
+   var  pData;
 
-    jq("#investigation").autocomplete({
-        source: function(request, response) {
-            jq.getJSON('${ ui.actionLink("ncdapp", "Lab", "getInvestigations") }', {
-                q: request.term
-            }).success(function(data) {
-                var results = [];
-                for (var i in data) {
-                    var result = {
-                        label: data[i].name,
-                        value: data[i].conceptId
-                    };
-                    results.push(result);
-                }
-                response(results);
-            });
-        },
-        minLength: 3,
-    });
+   jq(function (){
+       pData = getInvestigations();
+
+       jq("#investigation").autocomplete({
+           minLength: 3,
+           source: function (request, response) {
+               jq.getJSON('${ ui.actionLink("ncdapp", "laboratoryOrders", "getInvestigations") }',
+                   {
+                       name: request.term
+                   }
+               ).success(function (data) {
+
+                   var results = [];
+                   for (var i in data) {
+                       var result = {label: data[i].name, value: data[i]};
+                       results.push(result);
+                   }
+                   response(results);
+               });
+           },
+           select: function(event, ui) {
+               event.preventDefault();
+               jq(this).val(ui.item.label);
+               jq("#investigation-set").val("Investigation set");
+               (new Investigation({
+                   id: ui.item.value,
+                   label: ui.item.label
+               }));
+               jq('#investigation').val('');
+               jq('#task-investigation').show();
+           }
+
+       });
+   });//doc ready
+
+   function getInvestigations() {
+       var toReturn;
+       jQuery.ajax({
+           type: "GET",
+           url: "${ui.actionLink('ncdapp','laboratoryOrders','getInvestigations')}",
+           dataType: "json",
+           data: ({
+               name: "ray"
+           }),
+           global: false,
+           async: false,
+           success: function (data) {
+               toReturn = data;
+           }
+       });
+       return toReturn;
+   }
+
 </script>
 <style>
 .dialog textarea{
