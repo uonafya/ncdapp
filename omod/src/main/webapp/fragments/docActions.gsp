@@ -72,14 +72,14 @@
 <li class="float-left" style="margin-top: 7px">
     <a href="${ ui.pageLink("ncdapp", "prescriptionPage")}" class="float-left">
         <i class="fa fa-medkit fa-2x"></i>
-        Drug Orders
+        Prescribe Drugs
     </a>
 </li>
 
 <li class="float-left" style="margin-top: 7px">
     <a href="${ ui.pageLink("ncdapp", "labPage")}" class="float-left">
         <i class="fa fa-flask fa-2x"></i>
-        Lab Orders
+        Investigations Orders
     </a>
 </li>
 
