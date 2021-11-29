@@ -721,36 +721,36 @@
 
                         <fieldset>
                             <legend>Clinical Notes</legend>
-                            <table>
+                            <table width="50%">
                                 <tbody>
                                     <tr>
-                                        <td valign="top">
+                                        <td>
                                             <label>Chief complaint/Reason for encounter </label>
-                                            <obs id="chief_complaint" conceptId="5219"
+                                            <obs id="chief_complaint" conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                  answerConceptIds="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                 answerLabels="Shortness of breath on activity,
-                                                    Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
+                                                 answerLabels="Shortness of breath on activity,Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
                                                  answerSeparator=""/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label>Specify other complains</label>
-                                            <obs id="other_reasons_for_encounter" conceptId="5219"  rows="2" style="textarea"/>
+                                            <obs id="other_reasons_for_encounter" conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="3" style="textarea"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label>Clinical notes </label>
-                                            <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="8" style="textarea"/>
+                                            <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="5" style="textarea"/>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-
+                        </fieldset>
+                        <fieldset>
                             <legend>Existing complications </legend>
                                 <tr id="existing_complications">
-                                    <th colpan="2"><i>Tick as appropriate</i></th>
+                                    <th colpan="2">Tick as appropriate</th>
                                     <td>
                                         <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="159298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Visual Impairment" style="checkbox" /> <br />
                                         <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="139069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Heart Failure" style="checkbox" /> <br />
@@ -766,6 +766,7 @@
                                     </td>
                                 </tr>
                         </fieldset>
+
 
                     </div>
                 </div>
