@@ -41,7 +41,7 @@
         }
     </style>
     <div class="ke-form-header">
-        <table style="width: 75%">
+        <table style="width: 100%">
             <tr>
                 <td align="left">Date of enrollment:
                     <encounterDate id="encounter-date" showTime="true"/>
@@ -54,7 +54,7 @@
         </table>
     </div>
     <div class="ke-form-content">
-        <table border="0" cellspacing="0" cellpadding="5" width="75%" class="initial">
+        <table border="0" cellspacing="0" cellpadding="5" width="75%" class="initial" align="center">
             <tbody>
                 <tr>
                     <td>Occupation:
@@ -83,7 +83,7 @@
                 <tr>
                     <div id="transferInDetails">
                         <td>Facility transferred from:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                        <td>Current Treatment the patient is on:<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
+                        <td valign="top">Current Treatment the patient is on:<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
                     </div>
                 </tr>
 
@@ -108,10 +108,25 @@
             <div id="hypertensionPatients">
                 <tr>
                     <td>
-                    If hypertensive, indicate the classification:<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    If hypertensive, indicate the classification:<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" />
+                    </td>
+                        <td>HIV Status:<obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    </td>
+                    <td>
+                        Enrolled to care? <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                     </td>
                 </tr>
             </div>
+            <tr>
+                <td>Other existing comordities: <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" rows="5" /></td>
+                <td>Is patient a referral?:<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                <td>Specify referral from:<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    specify referring facility/community unit:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                </td>
+            </tr>
             </tbody>
         </table>
         <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" />
