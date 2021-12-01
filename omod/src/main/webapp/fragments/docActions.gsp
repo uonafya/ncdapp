@@ -65,7 +65,6 @@
 
 <div class="action-container">
     <div class="action-section">
-
         <ul class="float-left">
             <h3>Doctors Actions</h3>
 

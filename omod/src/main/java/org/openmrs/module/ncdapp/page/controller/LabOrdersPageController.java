@@ -6,7 +6,7 @@ import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.page.PageModel;
 
 @AppPage(NcdappConstants.APP_NCD_APP)
-public class PrescriptionOrdersPageController {
+public class LabOrdersPageController {
 	
 	public void controller(UiUtils ui, PageModel model) {
 		
