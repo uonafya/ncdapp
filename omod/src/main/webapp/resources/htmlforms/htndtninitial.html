@@ -27,10 +27,19 @@
                 jq('.if_diabetes').css('display', 'all');
             }
         }
-
-
-
     </script>
+    <style>
+        table.initial {
+            border-collapse: collapse;
+            background-color: #F3F9FF;
+        }
+        table.initial > tbody > tr > td, table.initial > tbody > tr > th {
+            border: 1px solid black;
+            vertical-align: baseline;
+            padding: 3.6px;
+            text-align: left;
+        }
+    </style>
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
@@ -45,39 +54,39 @@
         </table>
     </div>
     <div class="ke-form-content">
-        <table border="0" cellspacing="0" cellpadding="5" width="75%">
-            <tr>
-                <td>Occupation:
-                <obs conceptId="1542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123801AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Farmer,Trader,Casual worker,Salaried Empoyee,Retired,Non Employed,Other"/>
-                </td>
-                <td>Level of education: <recentObs conceptId="1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                <td><span id="nhifPatient">Patient covered by NHIF: <obs conceptId="6796075b-c55a-4306-8ed5-b60c8f10936d" /></span><br />
-                    <span id="nhifNumber">Patient NHIF Number: <patient field="identifier" identifierTypeId="38e3c640-5021-11ec-86a0-fb3bee471720" required="false" /> </span>
-                </td>
-            </tr>
-            <tr>
-                <td>Patient Mobile Number:<lookup expression="personAttributes.get('Telephone contact')"/></td>
-                <td>Treatment supporter name:<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                <td>Treatment supporter Contact:<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
-            </tr>
-            <tr>
-                <td>County:<lookup expression="patient.personAddress.countyDistrict" /></td>
-                <td>Sub County:<lookup expression="patient.personAddress.stateProvince" /></td>
-                <td>Ward:<lookup expression="patient.personAddress.address4" /></td>
-            </tr>
-            <tr>
-                <td>Patient Village:<lookup expression="patient.personAddress.cityVillage" /></td>
-                <td>Land Mark:<lookup expression="patient.personAddress.address2" /></td>
-                <td>Patient entry point:<obs conceptId="160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Patient,Transfer In" /></td>
-            </tr>
-            <tr>
-                <div id="transferInDetails">
-                    <td>Facility transferred from:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                    <td>Current Treatment the patient is on:<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
-                </div>
-            </tr>
-        </table>
-        <table border="0" cellspacing="0" cellpadding="5" width="75%">
+        <table border="0" cellspacing="0" cellpadding="5" width="75%" class="initial" align="center">
+            <tbody>
+                <tr>
+                    <td>Occupation:
+                    <obs conceptId="1542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123801AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Farmer,Trader,Casual worker,Salaried Empoyee,Retired,Non Employed,Other"/>
+                    </td>
+                    <td>Level of education: <recentObs conceptId="1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                    <td><span id="nhifPatient">Patient covered by NHIF: <obs conceptId="6796075b-c55a-4306-8ed5-b60c8f10936d" /></span><br />
+                        <span id="nhifNumber">Patient NHIF Number: <patient field="identifier" identifierTypeId="38e3c640-5021-11ec-86a0-fb3bee471720" required="false" /> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Patient Mobile Number:<lookup expression="personAttributes.get('Telephone contact')"/></td>
+                    <td>Treatment supporter name:<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                    <td>Treatment supporter Contact:<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
+                </tr>
+                <tr>
+                    <td>County:<lookup expression="patient.personAddress.countyDistrict" /></td>
+                    <td>Sub County:<lookup expression="patient.personAddress.stateProvince" /></td>
+                    <td>Ward:<lookup expression="patient.personAddress.address4" /></td>
+                </tr>
+                <tr>
+                    <td>Patient Village:<lookup expression="patient.personAddress.cityVillage" /></td>
+                    <td>Land Mark:<lookup expression="patient.personAddress.address2" /></td>
+                    <td>Patient entry point:<obs conceptId="160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Patient,Transfer In" /></td>
+                </tr>
+                <tr>
+                    <div id="transferInDetails">
+                        <td>Facility transferred from:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                        <td valign="top">Current Treatment the patient is on:<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
+                    </div>
+                </tr>
+
             <tr>
                 <td>
                     Disease type:<obs conceptId="74eb8e8d-d078-4fa3-8973-2d710d8f46df" id="diseaseType" />
@@ -92,15 +101,33 @@
             <div id="diabetesPatients">
                <tr>
                     <td>
-                        If diabetic, Diabetes Type:<obs cocneptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
+                        If diabetic, Diabetes Type:<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
                     </td>
                </tr>
             </div>
             <div id="hypertensionPatients">
                 <tr>
-                    If hypertensive, indicate the classification:<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    <td>
+                    If hypertensive, indicate the classification:<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" />
+                    </td>
+                        <td>HIV Status:<obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    </td>
+                    <td>
+                        Enrolled to care? <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    </td>
                 </tr>
             </div>
+            <tr>
+                <td>Other existing comordities: <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" rows="5" /></td>
+                <td>Is patient a referral?:<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                <td>Specify referral from:<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    specify referring facility/community unit:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                </td>
+            </tr>
+            </tbody>
         </table>
         <enrollInProgram programId="8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa" />
     </div>

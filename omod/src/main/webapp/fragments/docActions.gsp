@@ -62,15 +62,8 @@
 
 		<ul class="float-left">
 			<h3>Doctors Actions</h3>
-
-			<li class="float-left">
-				<a href="javascript:openPatientChart()"  class="float-left">
-					<i class="fa fa-list-alt fa-2x" style="margin-top: 7px"></i>
-					Patient Overview
-				</a>
-			</li>
 <li class="float-left" style="margin-top: 7px">
-    <a href="${ ui.pageLink("ncdapp", "prescriptionPage")}" class="float-left">
+    <a href="${ ui.pageLink("ncdapp", "prescriptionOrders")}" class="float-left">
         <i class="fa fa-medkit fa-2x"></i>
         Prescribe Drugs
     </a>

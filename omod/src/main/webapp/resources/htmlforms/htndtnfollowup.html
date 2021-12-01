@@ -35,13 +35,6 @@
             fn.latestObs(160855).valueCoded
             " />"
 
-            if (captopril_qsn_obs == captopril_obs_group) {
-
-                setValue('Captopril.value', captopril_qsn_obs_value);
-            }
-
-            setValue('captoprilDose.value', 90);
-            setValue('captroprilFrequency.value', "Yes");
         }
 
         jq(document).ready(function () {
@@ -674,10 +667,10 @@
         <div id="tab-wrap">
             <div id="tabs">
                 <ul>
-                    <li><a href="#tabs-1">Page 1</a></li>
-                    <li><a href="#tabs-2">Page 2</a></li>
-                    <li><a href="#tabs-3">Page 3</a></li>
-                    <li><a href="#tabs-4">Page 4</a></li>
+                    <li><a href="#tabs-1">Visit Info</a></li>
+                        <li><a href="#tabs-2">Screening</a></li>
+                    <li><a href="#tabs-3">Current lifestyle</a></li>
+                    <li><a href="#tabs-4">Medication</a></li>
                 </ul>
 
 
@@ -728,47 +721,72 @@
 
                         <fieldset>
                             <legend>Clinical Notes</legend>
-                            <table>
+                            <table width="50%">
                                 <tbody>
-                                <tr>
-                                    <td valign="top">
-                                        <label>Chief complaint/Reason for encounter </label>
-                                        <obs id="chief_complaint" conceptId="5219"
-                                             answerConceptIds="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                             answerLabels="Shortness of breath on activity,
-                                                Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
-                                             answerSeparator=""/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>Specify other complains</label>
-                                        <obs id="other_reasons_for_encounter" conceptId="5219" style="..."/>
-                                    </td>
-                                    <td>
-                                        <label>Clinical notes </label>
-                                        <obs conceptId="165106" answerConceptId="117460" answerLabel="High cholesterol"
-                                             style="checkbox" class="align-checkbox-input" showCommentField="true"
-                                             commentFieldLabel="&lt;/td&gt;&lt;td&gt;"/>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Chief complaint/Reason for encounter </label>
+                                            <obs id="chief_complaint" conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                 answerConceptIds="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                 answerLabels="Shortness of breath on activity,Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
+                                                 answerSeparator=""/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Specify other complains</label>
+                                            <obs id="other_reasons_for_encounter" conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="3" style="textarea"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Clinical notes </label>
+                                            <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="5" style="textarea"/>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </fieldset>
-
                         <fieldset>
-                            <legend>TB Screening</legend>
-
-
+                            <legend>Existing complications </legend>
+                                <tr id="existing_complications">
+                                    <th colpan="2">Tick as appropriate</th>
+                                    <td>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="159298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Visual Impairment" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="139069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Heart Failure" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="121849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Kidney Failure(CKD)" style="checkbox" /><br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="142451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Diabetic Foot Ulcer" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="118983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Peripheral neuropathy" style="checkbox"></obs>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="156162AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Erectile dysfunction" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="111103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Stroke" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="114212AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Peripheral vascular Disease" style="checkbox" /> <br />
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="161644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Hypertension urgency/emergency Other" style="checkbox" /> <br />
+                                    </td>
+                                </tr>
                         </fieldset>
+
+
                     </div>
+                </div>
+                <div id="tabs-2">
+                    <div class="ke-form-content">
+
+                            <fieldset>
+                                <legend>TB Screening</legend>
+
+                            </fieldset>
+                    </div>
+                </div>
 
 
-                    <div id="displayRequiredFields"></div>
+
+
+                <div id="displayRequiredFields"></div>
                     <div class="ke-form-footer">
                         <submit/>
                     </div>
-                </div>
             </div>
         </div>
     </div>
