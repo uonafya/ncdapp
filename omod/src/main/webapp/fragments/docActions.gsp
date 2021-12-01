@@ -77,7 +77,7 @@
 </li>
 
 <li class="float-left" style="margin-top: 7px">
-    <a href="${ ui.pageLink("ncdapp", "labPage")}" class="float-left">
+    <a href="${ ui.pageLink("ncdapp", "laboratoryOrdersPage")}" class="float-left">
         <i class="fa fa-flask fa-2x"></i>
         Investigations Orders
     </a>

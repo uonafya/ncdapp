@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-public class laboratoryOrdersFragment {
-	
-	public void controller() {
-		
-	}
+public class LaboratoryOrdersFragmentController {
 	
 	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
 		BillingService investigations = Context.getService(BillingService.class);
