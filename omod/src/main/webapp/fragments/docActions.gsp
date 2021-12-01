@@ -11,11 +11,13 @@
     width: 99.9%;
     margin: 0 1.04167%;
 }
+
 .action-section {
     margin-top: 2px;
     background: white;
     border: 1px solid #dddddd;
 }
+
 .float-left {
     float: left;
     clear: left;
@@ -24,7 +26,8 @@
 }
 
 .action-section a:link {
-    color: white;!important;
+    color: white;
+!important;
 }
 
 .action-section a:hover {
@@ -34,6 +37,7 @@
 .action-section a:visited {
     color: white;
 }
+
 .action-section h3 {
     margin: 0;
     color: white;
@@ -42,6 +46,7 @@
     font-size: 1.5em;
     margin-top: 5px;
 }
+
 .action-section ul {
     background: #7f7b72;
     color: white;
@@ -51,42 +56,35 @@
 .action-section li {
     font-size: 1.1em;
 }
+
 .action-section i {
     font-size: 1.1em;
     margin-left: 8px;
 }
 </style>
+
 <div class="action-container">
-	<div class="action-section">
+    <div class="action-section">
 
+        <ul class="float-left">
+            <h3>Doctors Actions</h3>
 
-		<ul class="float-left">
-			<h3>Doctors Actions</h3>
+            <li class="float-left" style="margin-top: 7px">
+                <a href="${ui.pageLink("ncdapp", "prescriptionOrdersPage")}" class="float-left">
+                    <i class="fa fa-medkit fa-2x"></i>
+                    Prescribe Drugs
+                </a>
+            </li>
 
-			<li class="float-left">
-				<a href="javascript:openPatientChart()"  class="float-left">
-					<i class="fa fa-list-alt fa-2x" style="margin-top: 7px"></i>
-					Patient Overview
-				</a>
-			</li>
-<li class="float-left" style="margin-top: 7px">
-    <a href="${ ui.pageLink("ncdapp", "prescriptionPage")}" class="float-left">
-        <i class="fa fa-medkit fa-2x"></i>
-        Prescribe Drugs
-    </a>
-</li>
+            <li class="float-left" style="margin-top: 7px">
+                <a href="${ui.pageLink("ncdapp", "laboratoryOrdersPage")}" class="float-left">
+                    <i class="fa fa-flask fa-2x"></i>
+                    Investigations Orders
+                </a>
+            </li>
 
-<li class="float-left" style="margin-top: 7px">
-    <a href="${ ui.pageLink("ncdapp", "laboratoryOrdersPage")}" class="float-left">
-        <i class="fa fa-flask fa-2x"></i>
-        Investigations Orders
-    </a>
-</li>
+        </ul>
 
-</ul>
-
-
-
-</div>
+    </div>
 
 </div>
