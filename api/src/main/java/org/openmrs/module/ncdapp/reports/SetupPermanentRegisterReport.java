@@ -60,7 +60,7 @@ public class SetupPermanentRegisterReport extends AbstractHybridReportBuilder {
 		PatientDataSetDefinition dsd = new PatientDataSetDefinition();
 		dsd.addParameter(new Parameter("startDate", "Start Date", Date.class));
 		dsd.addParameter(new Parameter("endDate", "End Date", Date.class));
-		dsd.setName("daily");
+		dsd.setName("permanent");
 		PatientIdentifierType upn = MetadataUtils.existing(PatientIdentifierType.class,
 		    CommonMetadata._PatientIdentifierType.OPENMRS_ID);
 		DataConverter identifierFormatter = new ObjectFormatter("{identifier}");

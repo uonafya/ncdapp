@@ -27,7 +27,7 @@
 
     <bean id="ncdapp.app.ncd" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
         <constructor-arg value="ncdapp.ncd" />
-        <constructor-arg value="NCD" />
+        <constructor-arg value="DTNHTN" />
         <constructor-arg value="ncdapp/ncdappHome.page" />
         <constructor-arg value="ncdapp:apps/ncds.png" />
         <constructor-arg value="2001000" />
@@ -132,7 +132,7 @@
         <property name="description" value="NCD Daily Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:daily.xls" />
-        <property name="repeatingSection" value="sheet:2,row:9,dataset:daily" />
+        <property name="repeatingSection" value="sheet:3,row:9,dataset:daily" />
     </bean>
 
     <bean id="ncdapp.ncd.report.permanent.Register" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
@@ -141,6 +141,6 @@
         <property name="description" value="NCD Permanent Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:permanent.xls" />
-        <property name="repeatingSection" value="sheet:2,row:7,dataset:permanent" />
+        <property name="repeatingSection" value="sheet:3,row:7,dataset:permanent" />
     </bean>
 </beans>
