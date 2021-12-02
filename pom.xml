@@ -122,6 +122,12 @@
 				<version>${hospitalcoreVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>patientdashboardapp-api</artifactId>
+                <version>${patientdashboardappVersion}</version>
+                <scope>provided</scope>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -170,6 +176,7 @@
         <uilibraryVersion>2.0.4</uilibraryVersion>
         <ehrconfigsVersion>1.0.6-SNAPSHOT</ehrconfigsVersion>
         <hospitalcoreVersion>1.0.5-SNAPSHOT</hospitalcoreVersion>
+        <patientdashboardappVersion>1.0.6-SNAPSHOT</patientdashboardappVersion>
 
 	</properties>
 </project>
