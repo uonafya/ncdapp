@@ -1,12 +1,21 @@
 <%
-    ui.decorateWith("appui", "standardEmrPage", [title: "Pharma"])
+    ui.decorateWith("appui", "standardEmrPage", [title: "Patient Treatment"])
+
+    ui.includeCss("ehrconfigs", "jquery.dataTables.min.css")
+    ui.includeCss("ehrconfigs", "onepcssgrid.css")
     ui.includeCss("ehrconfigs", "referenceapplication.css")
 
-    ui.includeCss("uicommons", "datetimepicker.css")
-    ui.includeCss("ehrconfigs", "onepcssgrid.css")
+    ui.includeCss("ehrinventoryapp", "main.css")
     ui.includeCss("ehrconfigs", "custom.css")
 
+    ui.includeJavascript("kenyaui", "pagebus/simple/pagebus.js")
+    ui.includeJavascript("kenyaui", "kenyaui-tabs.js")
+    ui.includeJavascript("kenyaui", "kenyaui-legacy.js")
+    ui.includeJavascript("ehrconfigs", "moment.js")
+    ui.includeJavascript("ehrconfigs", "jquery.dataTables.min.js")
+    ui.includeJavascript("ehrconfigs", "jq.browser.select.js")
 
+    ui.includeJavascript("ehrconfigs", "knockout-2.2.1.js")
     ui.includeJavascript("ehrconfigs", "emr.js")
     ui.includeJavascript("ehrconfigs", "jquery.simplemodal.1.4.4.min.js")
 
@@ -19,7 +28,7 @@
             var selectedInput = this;
             jq(this).autocomplete({
                 source: function (request, response) {
-                    jq.getJSON('${ ui.actionLink("ncdapp", "PharmaOrders", "getDrugs") }', {
+                    jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getDrugs") }', {
                         q: request.term
                     }).success(function (data) {
                         var results = [];
@@ -39,7 +48,7 @@
                     event.preventDefault();
                     jq(selectedInput).val(ui.item.label);
 
-                    jq.getJSON('${ ui.actionLink("ncdapp", "PharmaOrders", "getFormulationByDrugName") }', {
+                    jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getFormulationByDrugName") }', {
                         "drugName": ui.item.label
                     }).success(function (data) {
                         var formulations = jq.map(data, function (formulation) {
@@ -47,7 +56,7 @@
                         });
                     });
 
-                    jq.getJSON('${ui.actionLink("ncdapp","PharmaOrders","getDrugUnit")}').success(function (data) {
+                    jq.getJSON('${ui.actionLink("ncdapp","Orders","getDrugUnit")}').success(function (data) {
                         var drugUnit = jq.map(data, function (drugUnit) {
                             jq('#drugUnitSelect').append(jq('<option>').text(drugUnit.label).attr('value', drugUnit.id));
                         });

@@ -69,16 +69,9 @@
             <h3>Doctors Actions</h3>
 
             <li class="float-left" style="margin-top: 7px">
-                <a href="${ui.pageLink("ncdapp", "prescriptionOrders")}" class="float-left">
+                <a href="${ui.pageLink("ncdapp", "patientOrders")}" class="float-left">
                     <i class="fa fa-medkit fa-2x"></i>
-                    Prescribe Drugs
-                </a>
-            </li>
-
-            <li class="float-left" style="margin-top: 7px">
-                <a href="${ui.pageLink("ncdapp", "laboratoryOrders")}" class="float-left">
-                    <i class="fa fa-flask fa-2x"></i>
-                    Investigations Orders
+                    Patient Orders
                 </a>
             </li>
 
