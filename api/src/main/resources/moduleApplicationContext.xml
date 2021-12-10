@@ -28,7 +28,7 @@
     <bean id="ncdapp.app.ncd" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
         <constructor-arg value="ncdapp.ncd" />
         <constructor-arg value="DTNHTN" />
-        <constructor-arg value="ncdapp/ncdappHome.page" />
+        <constructor-arg value="ncdapp/ncdFacilitySummary.page" />
         <constructor-arg value="ncdapp:apps/ncds.png" />
         <constructor-arg value="2001000" />
     </bean>
