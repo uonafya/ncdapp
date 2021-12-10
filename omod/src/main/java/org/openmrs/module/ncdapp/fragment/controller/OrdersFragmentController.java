@@ -3,8 +3,10 @@ package org.openmrs.module.ncdapp.fragment.controller;
 import org.openmrs.Concept;
 import org.openmrs.ConceptSet;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.hospitalcore.BillingService;
 import org.openmrs.module.hospitalcore.InventoryCommonService;
 import org.openmrs.module.hospitalcore.PatientDashboardService;
+import org.openmrs.module.hospitalcore.model.BillableService;
 import org.openmrs.module.hospitalcore.model.InventoryDrug;
 import org.openmrs.module.hospitalcore.model.InventoryDrugFormulation;
 import org.openmrs.module.patientdashboardapp.model.Option;
@@ -16,7 +18,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class PharmaOrdersFragmentController {
+public class OrdersFragmentController {
+	
+	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
+		BillingService investigations = Context.getService(BillingService.class);
+		List<BillableService> investigation = investigations.searchService(name);
+		List<SimpleObject> investigationsList = SimpleObject.fromCollection(investigation, ui, "conceptId", "name");
+		return investigationsList;
+		
+	}
 	
 	public List<SimpleObject> getDrugs(@RequestParam(value = "q") String name, UiUtils ui) {
 		List<InventoryDrug> drugs = Context.getService(PatientDashboardService.class).findDrug(name);
