@@ -69,7 +69,7 @@
             <h3>Doctors Actions</h3>
 
             <li class="float-left" style="margin-top: 7px">
-                <a href="${ui.pageLink("ncdapp", "ncdClinicalActions")}" class="float-left">
+                <a href="${ui.pageLink("ncdapp", "ncdClinicalActions", [patientId: patient])}" class="float-left">
                     <i class="fa fa-medkit fa-2x"></i>
                     Patient Orders
                 </a>
