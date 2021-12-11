@@ -18,16 +18,32 @@ tr:nth-child(even) {background-color: #f2f2;}
         <table border="0">
             <tr>
                 <td>
-                    <div class="ke-panel-heading">Disease Case Load</div>>
+                    <div class="ke-panel-heading">Disease Case Load</div>
                     <table cellpadding="5" cellspacing="0" class="initial">
                         <tbody>
                         <tr>
+                            <th colspan="13">Diabetes/Hypertension</th>
+                        </tr>
+                        <tr>
                             <th></th>
-                            <th colspan="2">Diabetes</th>
-                            <th colspan="2">Hypertension</th>
+                            <th colspan="2">New DM Patients</th>
+                            <th colspan="2">Known DM Patients</th>
+                            <th colspan="2">New HTN Patients</th>
+                            <th colspan="2">Known HTN Patients</th>
+                            <th colspan="2">New Co-morbid Patients</th>
+                            <th colspan="2">Known Co-morbid Patients</th>
+
                         </tr>
                         <tr>
                             <th>Age Group</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Male</th>
+                            <th>Female</th>
                             <th>Male</th>
                             <th>Female</th>
                             <th>Male</th>
@@ -76,6 +92,36 @@ tr:nth-child(even) {background-color: #f2f2;}
                             <td>${hypertensionFemaleTotals}</td>
                         </tr>
                         </tbody>
+                    </table>
+                </td>
+                <td>
+                    <div class="ke-panel-heading">BMI Index Measures</div>
+                    <table cellpadding="5" cellspacing="0" class="initial">
+                        <tr>
+                            <th>BMI</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                        </tr>
+                        <tr>
+                            <td>&lt;=18</td>
+                            <td>${belowOrEqualTo18M}</td>
+                            <td>${belowOrEqualTo18F}</td>
+                        </tr>
+                        <tr>
+                            <td>18.5 - 24.9</td>
+                            <td>${over18Below25M}</td>
+                            <td>${over18Below25F}</td>
+                        </tr>
+                        <tr>
+                            <td>25 - 29.9</td>
+                            <td>${twenty5Below30M}</td>
+                            <td>${twenty5Below30F}</td>
+                        </tr>
+                        <tr>
+                            <td>&gt;= 30</td>
+                            <td>${over30M}</td>
+                            <td>${over30F}</td>
+                        </tr>
                     </table>
                 </td>
                 <td>
