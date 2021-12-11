@@ -443,8 +443,6 @@ fieldset select {
 
 <form class="zsimple-form-ui" id="ordersForm" method="post">
     <section>
-        <span class="title">Orders</span>
-
         <fieldset>
             <legend>Investigation/Procedures</legend>
             <input type="text" style="width:98.6%; margin-left:5px;" id="investigation" name="investigation"
