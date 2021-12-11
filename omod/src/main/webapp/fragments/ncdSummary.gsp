@@ -1,10 +1,23 @@
+<style>
+table.initial {
+    border-collapse: collapse;
+    background-color: #F3F9FF;
+}
+table.initial > tbody > tr > td, table.initial > tbody > tr > th {
+    border: 1px solid black;
+    vertical-align: baseline;
+    padding: 3.6px;
+    text-align: left;
+}
+</style>
 <div class="ke-panel-frame">
     <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
     <div class="ke-panel-content">
-        <table border="0">
+        <table border="0" class="initial">
             <tr>
                 <td>
                     <table>
+                        <tbody>
                         <tr>
                             <th></th>
                             <th colspan="2">Diabetes</th>
@@ -59,6 +72,7 @@
                             <td>${hypertensionMaleTotals}</td>
                             <td>${hypertensionFemaleTotals}</td>
                         </tr>
+                        </tbody>
                     </table>
                 </td>
                 <td>
