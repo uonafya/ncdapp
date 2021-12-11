@@ -3,6 +3,81 @@
 
     jq(function () {
         jq(function () {
+            jq("#procedure").autocomplete({
+                source: function( request, response ) {
+                    jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getProcedures") }',{
+                        q: request.term
+                    }).success(function(data) {
+                        procedureMatches = [];
+                        for (var i in data) {
+                            var result = { label: data[i].label, value: data[i].id, schedulable: data[i].schedulable };
+                            procedureMatches.push(result);
+                        }
+                        response(procedureMatches);
+                    });
+                },
+                minLength: 3,
+                select: function( event, ui ) {
+                    var selectedProcedure = document.createElement('option');
+                    selectedProcedure.value = ui.item.value;
+                    selectedProcedure.text = ui.item.label;
+                    selectedProcedure.id = ui.item.value;
+                    var selectedProcedureList = document.getElementById("selectedProcedureList");
+
+                    //adds the selected procedures to the div
+                    var selectedProcedureP = document.createElement("div");
+                    selectedProcedureP.className = "selectp";
+
+                    var selectedProcedureT = document.createTextNode(ui.item.label);
+                    selectedProcedureP.id = ui.item.value;
+                    selectedProcedureP.appendChild(selectedProcedureT);
+
+                    var btnselectedRemoveIcon = document.createElement("span");
+                    btnselectedRemoveIcon.className = "icon-remove selecticon";
+                    btnselectedRemoveIcon.id = "procedureRemoveIcon";
+
+                    selectedProcedureP.appendChild(btnselectedRemoveIcon);
+
+                    var selectedProcedureDiv = document.getElementById("selected-procedures");
+
+                    //check if the item already exist before appending
+                    var exists = false;
+                    for (var i = 0; i < selectedProcedureList.length; i++) {
+                        if(selectedProcedureList.options[i].value==ui.item.value)
+                        {
+                            exists = true;
+                        }
+                    }
+
+                    if(exists == false)
+                    {
+                        selectedProcedureList.appendChild(selectedProcedure);
+                        selectedProcedureDiv.appendChild(selectedProcedureP);
+                    }
+
+                    jq('#task-procedure').show();
+                    jq('#procedure-set').val('SET');
+                },
+                open: function() {
+                },
+                close: function() {
+                    jq(this).val('');
+                }
+            });
+            jq("#selected-procedures").on("click", "#procedureRemoveIcon",function(){
+                var procedureP = jq(this).parent("div");
+                var procedureId = procedureP.attr("id");
+
+                jq('#selectedProcedureList').find("#" + procedureId).remove();
+                procedureP.remove();
+
+                if (jq('#selectedProcedureList option').size() == 0){
+                    jq('#task-procedure').hide();
+                    jq('#procedure-set').val('');
+                }
+            });
+
+
             jq("#investigation").autocomplete({
                 source: function (request, response) {
                     jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getInvestigations") }',
@@ -179,6 +254,40 @@
             jq("#addDrugsButton").on("click", function (e) {
                 adddrugdialog.show();
             });
+        });
+        jq("#treatmentSubmit").click(function(event){
+            jq().toastmessage({
+                sticky: true
+            });
+            var savingMessage = jq().toastmessage('showSuccessToast', 'Please wait as Information is being Saved...');
+
+            var selectedInv = new Array;
+            jq("#selectedInvestigationList option").each  ( function() {
+                selectedInv.push ( jq(this).val() );
+            });
+
+            drugOrder = JSON.stringify(drugOrder);
+
+            var treatmentFormData = {
+                'patientId': jq('#treatmentPatientID').val(),
+                'selectedProcedureList': selectedProc,
+                'selectedInvestigationList': selectedInv,
+                'drugOrder':drugOrder
+            };
+
+            function successFn(successly_){
+                jq().toastmessage('removeToast', savingMessage);
+                jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
+            }
+            jq("#treatmentForm").submit(
+                jq.ajax({
+                    type: 'POST',
+                    url: '${ ui.actionLink("ncdapp", "Orders", "orders") }',
+                    data: treatmentFormData,
+                    success: successFn,
+                    dataType: "json"
+                })
+            );
         });
     });//end of doc ready
 </script>
@@ -444,7 +553,29 @@ fieldset select {
 <form class="zsimple-form-ui" id="ordersForm" method="post">
     <section>
         <fieldset>
-            <legend>Investigation/Procedures</legend>
+            <legend>Procedure</legend>
+            <input type="text" style="width:98.6%; margin-left:5px;" id="procedure" name="procedure" placeholder="Enter Procedure" />
+
+            <p style="display: none">
+                <input type="hidden" id="procedure-set" name="procedure-set" />
+            </p>
+
+            <div class="tasks" id="task-procedure" style="display: none;">
+                <header class="tasks-header">
+                    <span id="title-symptom" class="tasks-title">PROCEDURES APPLIED</span>
+                    <a class="tasks-lists"></a>
+                </header>
+
+                <div class="symptoms-qualifiers" data-bind="foreach: signs">
+                    <select style="display: none" id="selectedProcedureList"></select>
+                    <div class="symptom-container selectdiv" id="selected-procedures">
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Investigations</legend>
             <input type="text" style="width:98.6%; margin-left:5px;" id="investigation" name="investigation"
                    placeholder="Enter Investigations"/>
 
@@ -482,7 +613,6 @@ fieldset select {
             <table id="drugsTable">
                 <thead>
                 <th style="width: auto;">Drug Name</th>
-                <th>Dosage</th>
                 <th>Formulation</th>
                 <th>Frequency</th>
                 <th>Number of Days</th>

@@ -10,6 +10,7 @@ import org.openmrs.module.hospitalcore.*;
 import org.openmrs.module.hospitalcore.model.*;
 import org.openmrs.module.hospitalcore.util.PatientDashboardConstants;
 import org.openmrs.module.ncdapp.model.Prescription;
+import org.openmrs.module.ncdapp.model.Procedure;
 import org.openmrs.module.patientdashboardapp.model.Option;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
@@ -23,6 +24,18 @@ import java.util.Date;
 import java.util.List;
 
 public class OrdersFragmentController {
+	
+	public List<SimpleObject> getProcedures(@RequestParam(value = "q") String name, UiUtils ui) {
+		List<Concept> procedures = Context.getService(PatientDashboardService.class).searchProcedure(name);
+		List<Procedure> proceduresPriority = new ArrayList<Procedure>();
+		for (Concept myConcept : procedures) {
+			proceduresPriority.add(new Procedure(myConcept));
+		}
+		
+		List<SimpleObject> proceduresList = SimpleObject
+		        .fromCollection(proceduresPriority, ui, "id", "label", "schedulable");
+		return proceduresList;
+	}
 	
 	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
 		BillingService investigations = Context.getService(BillingService.class);
@@ -88,6 +101,7 @@ public class OrdersFragmentController {
 	        @RequestParam(value = "selectedInvestigationList[]", required = false) Integer[] selectedInvestigationList) {
 		
 		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
+		System.out.println(selectedInvestigationList + "investigations Strings");
 		
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
 		IpdService ipdService = Context.getService(IpdService.class);
@@ -199,10 +213,9 @@ public class OrdersFragmentController {
 				bill = billingService.savePatientServiceBill(bill);
 			}
 			
-			PatientServiceBill indoorPatientServiceBill = billingService.getPatientServiceBillById(bill
-			        .getPatientServiceBillId());
-			if (indoorPatientServiceBill != null) {
-				billingService.saveBillEncounterAndOrder(indoorPatientServiceBill);
+			PatientServiceBill patientServiceBill = billingService.getPatientServiceBillById(bill.getPatientServiceBillId());
+			if (patientServiceBill != null) {
+				billingService.saveBillEncounterAndOrder(patientServiceBill);
 			}
 		}
 		
@@ -219,7 +232,7 @@ public class OrdersFragmentController {
 				opdTestOrder.setValueCoded(Context.getConceptService().getConcept(iId));
 				opdTestOrder.setCreator(user);
 				opdTestOrder.setCreatedOn(date);
-				opdTestOrder.setBillingStatus(1);
+				opdTestOrder.setBillingStatus(0);
 				opdTestOrder.setBillableService(billableService);
 				opdTestOrder.setScheduleDate(date);
 				patientDashboardService.saveOrUpdateOpdOrder(opdTestOrder);
