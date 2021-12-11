@@ -9,14 +9,17 @@ table.initial > tbody > tr > td, table.initial > tbody > tr > th {
     padding: 3.6px;
     text-align: left;
 }
+tr:nth-child(even) {background-color: #f2f2;}
 </style>
 <div class="ke-panel-frame">
     <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
     <div class="ke-panel-content">
-        <table border="0" class="initial">
+        <br />
+        <table border="0">
             <tr>
                 <td>
-                    <table>
+                    <div class="ke-panel-heading">Disease Case Load</div>>
+                    <table cellpadding="5" cellspacing="0" class="initial">
                         <tbody>
                         <tr>
                             <th></th>
