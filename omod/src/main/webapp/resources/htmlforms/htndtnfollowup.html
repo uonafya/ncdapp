@@ -87,28 +87,28 @@
                 var nextTag = '';
                 if (i != totalSize) {
                     next = i + 2;
-                    nextTag = '<div class="nav-button"><a href="#"  class="next" rel="' + next + '">Next Page &#187;</a></div>';
+                    nextTag = '<div class="nav-button"><a href="#"  class="next" rel="' + next + '"></a></div>';
 
                     if (next == 2)
-                        nextTag = '<div class="nav-button"><a href="#"   class="next" rel="' + next + '">Next Page &#187;</a></div>';
+                        nextTag = '<div class="nav-button"><a href="#"   class="next" rel="' + next + '"></a></div>';
                 }
 
                 if (i != 0) {
                     prev = i;
-                    prevTag = '<div class="nav-button"><a href="#" class="previous" rel="' + prev + '">&#171; Prev Page</a></div>';
+                    prevTag = '<div class="nav-button"><a href="#" class="previous" rel="' + prev + '"></a></div>';
                 }
 
 
                 if (prevTag) {
-                    if (nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag + nextTag + '</div>');
+                    if (nextTag) jQuery(this).append('<div class="form-nav-container"></div>');
                 }
 
                 if (prevTag) {
-                    if (!nextTag) jQuery(this).append('<div class="form-nav-container">' + prevTag + '</div>');
+                    if (!nextTag) jQuery(this).append('<div class="form-nav-container"></div>');
                 }
 
                 if (nextTag) {
-                    if (!prevTag) jQuery(this).append('<div class="form-nav-container">' + nextTag + '</div>');
+                    if (!prevTag) jQuery(this).append('<div class="form-nav-container"></div>');
                 }
 
 
@@ -850,12 +850,11 @@
                         <fieldset>
                             <legend>Current Lifestyle</legend>
                             <tr>
-                                <th>Current practices that Predisposes the patients to NCD complications
-                                    (Tobacco,Alcohol use,Physical activity,Diet)
-                                </th>
                                 <td>
                                     <label>Tobacco use status</label>
-                                    <obs conceptId="163731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 159450AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Never,In the past,Currently" style="..."/>
+                                    <obs conceptId="163731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 159450AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabels="Never,In the past,Currently" style="..."/>
                                     <br/>
                                 </td>
 
@@ -866,28 +865,51 @@
                                          answerLabel="YES,NO"/>
                                 </td>
                             </tr>
+                            <br/>
+                            <br/>
                             <tr>
                                 <td>
                                     <label>Drinks Alcohol</label>
+                                    <obs conceptId="159449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="YES,NO, Stopped"/>
+                                    <br/>
                                     <label>If stopped alcohol, how long ago?</label>
                                 </td>
+                                <br/>
                                 <td>
+                                    <label>Alcohol cessation counseling done</label>
+                                    <obs conceptId="1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="YES,NO" style="radio"/>
                                 </td>
                             </tr>
+                            <br/>
+                            <br/>
                             <tr>
                                 <td>
                                     <label>Adequate Physical activity</label>
+                                    <obs conceptId="159364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="YES,NO" style="radio"/>
                                 </td>
+                                <br/>
                                 <td>
                                     <label>Counseled on physical activity and exercises</label>
                                 </td>
+                                <br/>
                             </tr>
+                            <br/>
                             <tr>
                                 <td>
                                     <label>Consumption of a Healthy Diet</label>
                                 </td>
+                                <br/>
                                 <td>
                                     <label>Nutrition Counseling done</label>
+                                    <obs conceptId="1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="YES,NO" style="radio"/>
                                 </td>
                             </tr>
 
@@ -1053,6 +1075,7 @@
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal"/>
                                             </tr>
+                                            <br/>
                                             <tr>
                                                 <label>Neurological exam (motor, sensory,automatic)</label>
                                                 <obs conceptId="148346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
