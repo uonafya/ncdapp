@@ -1,5 +1,5 @@
 <%
-    ui.decorateWith("kenyaemr", "standardPage", [ patient: currentPatient ])
+    ui.decorateWith("kenyaemr", "standardPage", [ patient: patient ])
 
     ui.includeCss("ehrconfigs", "jquery.dataTables.min.css")
     ui.includeCss("ehrconfigs", "onepcssgrid.css")
@@ -20,7 +20,7 @@
     ui.includeJavascript("ehrconfigs", "jquery.simplemodal.1.4.4.min.js")
 
     def menuItems = [
-            [ label: "Patient Summary", iconProvider: "kenyaui", icon: "buttons/back.png", label: "Patient Summary", href: ui.pageLink("ncdapp", "ncdappSummary") ]
+            [ label: "Patient Summary", iconProvider: "kenyaui", icon: "buttons/back.png", label: "Patient Summary", href: ui.pageLink("ncdapp", "ncdappSummary", [patientId: patient]) ]
     ]
 %>
 
