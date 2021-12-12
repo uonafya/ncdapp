@@ -6,6 +6,7 @@
     def otherDataPoints = []
     def currentMadication = []
     def complications = []
+    def labs = []
 
     if (calculations.diseaseType) {
         dataPoints << [ label: "Type", value: ui.format(calculations.diseaseType.value.valueCoded), extra: calculations.diseaseType.value.obsDatetime ]
@@ -55,15 +56,15 @@
     } else {
         currentMadication << [ label: "Current medications", value: "None" ]
     }
-    if (calculations.drugs) {
-        currentMadication << [ label: "Current medications", value: ui.format(calculations.drugs.value)]
-    } else {
-        currentMadication << [ label: "Current medications", value: "None" ]
-    }
     if (calculations.complications) {
         complications << [ label: "Current Complications", value: ui.format(calculations.complications.value)]
     } else {
         complications << [ label: "Current Complications", value: "None" ]
+    }
+    if (calculations.labs) {
+        labs << [ label: "Current Lab Orders", value: ui.format(calculations.labs.value)]
+    } else {
+        labs << [ label: "Current Lab Orders", value: "None" ]
     }
 
 %>
@@ -77,14 +78,22 @@
                 <% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
             </td>
         </tr>
+        <br />
         <tr id="medication">
             <td colspan="2">
                 <% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
             </td>
         </tr>
+        <br />
         <tr id="complications">
             <td colspan="2">
                 <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+            </td>
+        </tr>
+        <br />
+        <tr id="labs">
+            <td colspan="2">
+                <% labs.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
             </td>
         </tr>
     </table>
