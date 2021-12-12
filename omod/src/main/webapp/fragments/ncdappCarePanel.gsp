@@ -4,9 +4,11 @@
 
     def dataPoints = []
     def otherDataPoints = []
+    def currentMadication = []
+    def complications = []
 
     if (calculations.diseaseType) {
-        dataPoints << [ label: "Disease type", value: ui.format(calculations.diseaseType.value.valueCoded), extra: calculations.diseaseType.value.obsDatetime ]
+        dataPoints << [ label: "Type", value: ui.format(calculations.diseaseType.value.valueCoded), extra: calculations.diseaseType.value.obsDatetime ]
     } else {
         dataPoints << [ label: "Disease type", value: "None" ]
     }
@@ -43,15 +45,46 @@
         otherDataPoints << [ label: "HbA1c", value: "None" ]
     }
 
+    if (calculations.bmi) {
+        otherDataPoints << [ label: "BMI", value: ui.format(calculations.bmi.value)]
+    } else {
+        otherDataPoints << [ label: "BMI", value: "None" ]
+    }
+    if (calculations.drugs) {
+        currentMadication << [ label: "Current medications", value: ui.format(calculations.drugs.value)]
+    } else {
+        currentMadication << [ label: "Current medications", value: "None" ]
+    }
+    if (calculations.drugs) {
+        currentMadication << [ label: "Current medications", value: ui.format(calculations.drugs.value)]
+    } else {
+        currentMadication << [ label: "Current medications", value: "None" ]
+    }
+    if (calculations.complications) {
+        complications << [ label: "Current Complications", value: ui.format(calculations.complications.value)]
+    } else {
+        complications << [ label: "Current Complications", value: "None" ]
+    }
+
 %>
 <div class="ke-stack-item">
-    <table>
+    <table cellspacing="0" cellpadding="5">
         <tr>
             <td>
                 <% dataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
             </td>
             <td>
                 <% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+            </td>
+        </tr>
+        <tr id="medication">
+            <td colspan="2">
+                <% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+            </td>
+        </tr>
+        <tr id="complications">
+            <td colspan="2">
+                <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
             </td>
         </tr>
     </table>

@@ -3,6 +3,9 @@ package org.openmrs.module.ncdapp.fragment.controller;
 import org.openmrs.Patient;
 import org.openmrs.calculation.result.CalculationResult;
 import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
+import org.openmrs.module.kenyaemr.calculation.library.hiv.BMIAtLastVisitCalculation;
+import org.openmrs.module.ncdapp.calculation.CurrentDmHtnComplicationCalculation;
+import org.openmrs.module.ncdapp.calculation.CurrentDmHtnDrugsCalculation;
 import org.openmrs.module.ncdapp.calculation.DiastollicBpCalculation;
 import org.openmrs.module.ncdapp.calculation.DiseaseTypeCalculation;
 import org.openmrs.module.ncdapp.calculation.FastingBloodSugarCalculation;
@@ -34,6 +37,12 @@ public class NcdappCarePanelFragmentController {
 		calculationResults.put("fbs",
 		    EmrCalculationUtils.evaluateForPatient(FastingBloodSugarCalculation.class, null, patient));
 		calculationResults.put("hba1c", EmrCalculationUtils.evaluateForPatient(HBA1cCalculation.class, null, patient));
+		calculationResults
+		        .put("bmi", EmrCalculationUtils.evaluateForPatient(BMIAtLastVisitCalculation.class, null, patient));
+		calculationResults.put("durgs",
+		    EmrCalculationUtils.evaluateForPatient(CurrentDmHtnDrugsCalculation.class, null, patient));
+		calculationResults.put("complications",
+		    EmrCalculationUtils.evaluateForPatient(CurrentDmHtnComplicationCalculation.class, null, patient));
 		
 		model.addAttribute("calculations", calculationResults);
 		

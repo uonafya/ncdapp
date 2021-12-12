@@ -242,7 +242,7 @@ public class NcdSummaryFragmentController {
 			Obs wObs = EmrCalculationUtils.obsResultForPatient(weightMap, pId);
 			if (weightObs != null && heightObs != null && wObs != null) {
 				//calculate the BMI here
-				Double bmi = calculateBmi(weightObs, heightObs);
+				Double bmi = NcdappUtils.calculateBmi(weightObs, heightObs);
 				if (bmi >= minBmi && bmi <= maxBmi) {
 					allSet.add(pId);
 				}
@@ -250,18 +250,6 @@ public class NcdSummaryFragmentController {
 			
 		}
 		return allSet.size();
-	}
-	
-	private Double calculateBmi(Double w, Double h) {
-		Double bmi = 0.0;
-		
-		if (w != null && h != null) {
-			double convertedHeihgt = h / 100;
-			double productHeight = convertedHeihgt * convertedHeihgt;
-			bmi = w / productHeight;
-		}
-		
-		return bmi;
 	}
 	
 	private Integer getPressure(Concept q1, Concept q2, Set<Integer> cohort, PatientCalculationContext context,
