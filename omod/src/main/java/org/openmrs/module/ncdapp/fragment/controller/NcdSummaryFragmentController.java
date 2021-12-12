@@ -71,58 +71,129 @@ public class NcdSummaryFragmentController {
 		Concept diastollic = Dictionary.getConcept("5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		
 		//start formulating the values to be displayed on the viewer for diabetes
-		model.addAttribute("diabeticMaleZeroTo5",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 0, 5));
-		model.addAttribute("diabeticMale6To18",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 6, 18));
-		model.addAttribute("diabeticMale19To35",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 19, 35));
-		model.addAttribute("diabeticMale36To60",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 36, 60));
-		model.addAttribute("diabeticMale60To120",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 61, 200));
-		model.addAttribute("diabeticMaleTotals",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, male, context, 0, 200));
+		//DM new
+		model.addAttribute("diabeticNewMaleZeroTo5", getDiabeticPatients(diseaseType, newDiabetic, male, context, 0, 5));
+		model.addAttribute("diabeticNewFemaleZeroTo5", getDiabeticPatients(diseaseType, newDiabetic, female, context, 0, 5));
+		model.addAttribute("diabeticNewMale6To18", getDiabeticPatients(diseaseType, newDiabetic, male, context, 6, 18));
+		model.addAttribute("diabeticNewFemale6To18", getDiabeticPatients(diseaseType, newDiabetic, female, context, 6, 18));
+		model.addAttribute("diabeticNewMale19To35", getDiabeticPatients(diseaseType, newDiabetic, male, context, 19, 35));
+		model.addAttribute("diabeticNewFemale19To35", getDiabeticPatients(diseaseType, newDiabetic, female, context, 19, 35));
+		model.addAttribute("diabeticNewMale36To60", getDiabeticPatients(diseaseType, newDiabetic, male, context, 36, 60));
+		model.addAttribute("diabeticNewFemale36To60", getDiabeticPatients(diseaseType, newDiabetic, female, context, 36, 60));
+		model.addAttribute("diabeticNewMale60To120", getDiabeticPatients(diseaseType, newDiabetic, male, context, 61, 200));
+		model.addAttribute("diabeticNewFemale60To120",
+		    getDiabeticPatients(diseaseType, newDiabetic, female, context, 61, 200));
+		//DM known
+		model.addAttribute("diabeticKnownMaleZeroTo5", getDiabeticPatients(diseaseType, knownDiabetic, male, context, 0, 5));
+		model.addAttribute("diabeticKnownFemaleZeroTo5",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 0, 5));
+		model.addAttribute("diabeticKnownMale6To18", getDiabeticPatients(diseaseType, knownDiabetic, male, context, 6, 18));
+		model.addAttribute("diabeticKnownFemalee6To18",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 6, 18));
+		model.addAttribute("diabeticKnownMale19To35", getDiabeticPatients(diseaseType, knownDiabetic, male, context, 19, 35));
+		model.addAttribute("diabeticKnownFemale19To35",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 19, 35));
+		model.addAttribute("diabeticKnownMale36To60", getDiabeticPatients(diseaseType, knownDiabetic, male, context, 36, 60));
+		model.addAttribute("diabeticKnownFemale36To60",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 36, 60));
+		model.addAttribute("diabeticKnownMale60To120",
+		    getDiabeticPatients(diseaseType, knownDiabetic, male, context, 61, 200));
+		model.addAttribute("diabeticKnownFemale60To120",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 61, 200));
 		
-		model.addAttribute("diabeticFemaleZeroTo5",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 0, 5));
-		model.addAttribute("diabeticFemale6To18",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 6, 18));
-		model.addAttribute("diabeticFemale19To35",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 19, 35));
-		model.addAttribute("diabeticFemale36To60",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 36, 60));
-		model.addAttribute("diabeticFemale60To120",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 61, 200));
-		model.addAttribute("diabeticFemaleTotals",
-		    getDiabeticPatients(diseaseType, newDiabetic, knownDiabetic, female, context, 0, 200));
+		//hypertension new
+		model.addAttribute("hypertensionNewMaleZeroTo5",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 0, 5));
+		model.addAttribute("hypertensionNewFemaleZeroTo5",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 0, 5));
+		model.addAttribute("hypertensionNewMale6To18",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 6, 18));
+		model.addAttribute("hypertensionNewFemale6To18",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 6, 18));
+		model.addAttribute("hypertensionNewMale19To35",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 19, 35));
+		model.addAttribute("hypertensionNewFemale19To35",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 19, 35));
+		model.addAttribute("hypertensionNewMale36To60",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 36, 60));
+		model.addAttribute("hypertensionNewFemale36To60",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 36, 60));
+		model.addAttribute("hypertensionNewMale60To120",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 61, 200));
+		model.addAttribute("hypertensionNewFemale60To120",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 61, 200));
+		//Hypertension known
+		model.addAttribute("hypertensionKnownMaleZeroTo5",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 0, 5));
+		model.addAttribute("hypertensionKnownFemaleZeroTo5",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 0, 5));
+		model.addAttribute("hypertensionKnownMale6To18",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 6, 18));
+		model.addAttribute("hypertensionKnownFemale6To18",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 6, 18));
+		model.addAttribute("hypertensionKnownMale19To35",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 19, 35));
+		model.addAttribute("hypertensionKnownFemale19To35",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 19, 35));
+		model.addAttribute("hypertensionKnownMale36To60",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 36, 60));
+		model.addAttribute("hypertensionKnownFemale36To60",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 36, 60));
+		model.addAttribute("hypertensionKnownMale60To120",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 61, 200));
+		model.addAttribute("hypertensionKnownFemale60To120",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 61, 200));
 		
-		//hypertension
-		model.addAttribute("hypertensionMaleZeroTo5",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 0, 5));
-		model.addAttribute("hypertensionMale6To18",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 6, 18));
-		model.addAttribute("hypertensionMale19To35",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 19, 35));
-		model.addAttribute("hypertensionMale36To60",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 36, 60));
-		model.addAttribute("hypertensionMale60To120",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 61, 200));
-		model.addAttribute("hypertensionMaleTotals",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, male, context, 0, 200));
+		//comorbid new
+		model.addAttribute("newComorbidMaleZeroTo5", getDiabeticPatients(diseaseType, newComorbid, male, context, 0, 5));
+		model.addAttribute("newComorbidFemaleZeroTo5", getDiabeticPatients(diseaseType, newComorbid, female, context, 0, 5));
+		model.addAttribute("newComorbidMale6To18", getDiabeticPatients(diseaseType, newComorbid, male, context, 6, 18));
+		model.addAttribute("newComorbidFemale6To18", getDiabeticPatients(diseaseType, newComorbid, female, context, 6, 18));
+		model.addAttribute("newComorbidMale19To35", getDiabeticPatients(diseaseType, newComorbid, male, context, 19, 35));
+		model.addAttribute("newComorbidFemale19To35", getDiabeticPatients(diseaseType, newComorbid, female, context, 19, 35));
+		model.addAttribute("newComorbidMale36To60", getDiabeticPatients(diseaseType, newComorbid, male, context, 36, 60));
+		model.addAttribute("newComorbidFemale36To60", getDiabeticPatients(diseaseType, newComorbid, female, context, 36, 60));
+		model.addAttribute("newComorbidMale60To120", getDiabeticPatients(diseaseType, newComorbid, male, context, 61, 200));
+		model.addAttribute("newComorbidFemale60To120",
+		    getDiabeticPatients(diseaseType, newComorbid, female, context, 61, 200));
+		//comorbid known
+		model.addAttribute("knownComorbidMaleZeroTo5", getDiabeticPatients(diseaseType, knownComorbid, male, context, 0, 5));
+		model.addAttribute("knownComorbidFemaleZeroTo5",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 0, 5));
+		model.addAttribute("knownComorbidMale6To18", getDiabeticPatients(diseaseType, knownComorbid, male, context, 6, 18));
+		model.addAttribute("knownComorbidFemale6To18",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 6, 18));
+		model.addAttribute("knownComorbidMale19To35", getDiabeticPatients(diseaseType, knownComorbid, male, context, 19, 35));
+		model.addAttribute("knownComorbidFemale19To35",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 19, 35));
+		model.addAttribute("knownComorbidMale36To60", getDiabeticPatients(diseaseType, knownComorbid, male, context, 36, 60));
+		model.addAttribute("knownComorbidFemale36To60",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 36, 60));
 		
-		model.addAttribute("hypertensionFemaleZeroTo5",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 0, 5));
-		model.addAttribute("hypertensionFemale6To18",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 6, 18));
-		model.addAttribute("hypertensionFemale19To35",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 19, 35));
-		model.addAttribute("hypertensionFemale36To60",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 36, 60));
-		model.addAttribute("hypertensionFemale60To120",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 61, 200));
-		model.addAttribute("hypertensionFemaleTotals",
-		    getDiabeticPatients(diseaseType, newHypertension, knownHypertension, female, context, 0, 200));
+		model.addAttribute("knownComorbidMale60To120",
+		    getDiabeticPatients(diseaseType, knownComorbid, male, context, 61, 200));
+		model.addAttribute("knownComorbidFemale60To120",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 61, 200));
+		
+		//Totals
+		model.addAttribute("diabeticNewMaleTotals", getDiabeticPatients(diseaseType, newDiabetic, male, context, 0, 200));
+		model.addAttribute("diabeticNewFemaleTotals", getDiabeticPatients(diseaseType, newDiabetic, female, context, 0, 200));
+		model.addAttribute("diabeticKnownMaleTotals", getDiabeticPatients(diseaseType, knownDiabetic, male, context, 0, 200));
+		model.addAttribute("diabeticKnownFemaleTotals",
+		    getDiabeticPatients(diseaseType, knownDiabetic, female, context, 0, 200));
+		model.addAttribute("hypertensionNewMaleTotals",
+		    getDiabeticPatients(diseaseType, newHypertension, male, context, 0, 200));
+		model.addAttribute("hypertensionNewFemaleTotals",
+		    getDiabeticPatients(diseaseType, newHypertension, female, context, 0, 200));
+		model.addAttribute("hypertensionKnownMaleTotals",
+		    getDiabeticPatients(diseaseType, knownHypertension, male, context, 0, 200));
+		model.addAttribute("hypertensionKnownFemaleTotals",
+		    getDiabeticPatients(diseaseType, knownHypertension, female, context, 0, 200));
+		model.addAttribute("newComorbidMaleTotals", getDiabeticPatients(diseaseType, newComorbid, male, context, 0, 200));
+		model.addAttribute("newComorbidFemaleTotals", getDiabeticPatients(diseaseType, newComorbid, female, context, 0, 200));
+		model.addAttribute("knownComorbidMaleTotals", getDiabeticPatients(diseaseType, knownComorbid, male, context, 0, 200));
+		model.addAttribute("knownComorbidFemaleTotals",
+		    getDiabeticPatients(diseaseType, knownComorbid, female, context, 0, 200));
 		
 		////////////////////BMI parameters done here ////////////////////////////////////////////////////////////////////////////
 		model.addAttribute("belowOrEqualTo18M", getBmi(weight, height, male, context, 0.0, 18.0));
@@ -141,14 +212,14 @@ public class NcdSummaryFragmentController {
 		
 	}
 	
-	private Integer getDiabeticPatients(Concept q, Concept a1, Concept a2, Set<Integer> cohort,
-	        PatientCalculationContext context, int minAge, int maxAge) {
+	private Integer getDiabeticPatients(Concept q, Concept a1, Set<Integer> cohort, PatientCalculationContext context,
+	        int minAge, int maxAge) {
 		Set<Integer> allSet = new HashSet<Integer>();
 		CalculationResultMap diabeticMap = Calculations.lastObs(q, cohort, context);
 		
 		for (Integer pId : cohort) {
 			Obs obs = EmrCalculationUtils.obsResultForPatient(diabeticMap, pId);
-			if (obs != null && (obs.getValueCoded().equals(a1) || obs.getValueCoded().equals(a2))) {
+			if (obs != null && (obs.getValueCoded().equals(a1))) {
 				if (obs.getPerson().getAge() != null && obs.getPerson().getAge() >= minAge
 				        && obs.getPerson().getAge() <= maxAge) {
 					allSet.add(pId);
@@ -171,7 +242,7 @@ public class NcdSummaryFragmentController {
 			Obs wObs = EmrCalculationUtils.obsResultForPatient(weightMap, pId);
 			if (weightObs != null && heightObs != null && wObs != null) {
 				//calculate the BMI here
-				Double bmi = calculateBmi(weightObs, heightObs);
+				Double bmi = NcdappUtils.calculateBmi(weightObs, heightObs);
 				if (bmi >= minBmi && bmi <= maxBmi) {
 					allSet.add(pId);
 				}
@@ -179,18 +250,6 @@ public class NcdSummaryFragmentController {
 			
 		}
 		return allSet.size();
-	}
-	
-	private Double calculateBmi(Double w, Double h) {
-		Double bmi = 0.0;
-		
-		if (w != null && h != null) {
-			double convertedHeihgt = h / 100;
-			double productHeight = convertedHeihgt * convertedHeihgt;
-			bmi = w / productHeight;
-		}
-		
-		return bmi;
 	}
 	
 	private Integer getPressure(Concept q1, Concept q2, Set<Integer> cohort, PatientCalculationContext context,
