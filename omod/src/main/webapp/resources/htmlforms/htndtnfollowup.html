@@ -11,7 +11,7 @@
   ~
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
 -->
-<htmlform>
+<htmlform xmlns="http://www.w3.org/1999/html">
     <script type="text/javascript">
         function populateDrugFields() {
             var captopril_obs_group = "<lookup expression="
@@ -754,6 +754,7 @@
                             <legend>Existing complications</legend>
                             <tr id="existing_complications">
                                 <th colpan="2">Tick as appropriate</th>
+                                <br/>
                                 <td>
                                     <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerConceptId="159298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -847,250 +848,327 @@
 
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Current Lifestyle</legend>
-                            <tr>
-                                <td>
-                                    <label>Tobacco use status</label>
-                                    <obs conceptId="163731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 159450AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabels="Never,In the past,Currently" style="..."/>
-                                    <br/>
-                                </td>
-
-                                <td>
-                                    <label>Tobacco cessation counseling done?</label>
-                                    <obs conceptId="1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="YES,NO"/>
-                                </td>
-                            </tr>
-                            <br/>
-                            <br/>
-                            <tr>
-                                <td>
-                                    <label>Drinks Alcohol</label>
-                                    <obs conceptId="159449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="YES,NO, Stopped"/>
-                                    <br/>
-                                    <label>If stopped alcohol, how long ago?</label>
-                                </td>
-                                <br/>
-                                <td>
-                                    <label>Alcohol cessation counseling done</label>
-                                    <obs conceptId="1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="YES,NO" style="radio"/>
-                                </td>
-                            </tr>
-                            <br/>
-                            <br/>
-                            <tr>
-                                <td>
-                                    <label>Adequate Physical activity</label>
-                                    <obs conceptId="159364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="YES,NO" style="radio"/>
-                                </td>
-                                <br/>
-                                <td>
-                                    <label>Counseled on physical activity and exercises</label>
-                                </td>
-                                <br/>
-                            </tr>
-                            <br/>
-                            <tr>
-                                <td>
-                                    <label>Consumption of a Healthy Diet</label>
-                                </td>
-                                <br/>
-                                <td>
-                                    <label>Nutrition Counseling done</label>
-                                    <obs conceptId="1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="YES,NO" style="radio"/>
-                                </td>
-                            </tr>
-
-                        </fieldset>
 
                         <fieldset>
                             <legend>Physical Examination</legend>
-                            <table cellspacing="5">
-                                <tr>
-                                    <th></th>
-                                    <th>Current</th>
-                                    <th>Recent</th>
-                                </tr>
-                                <tr>
-                                    <td>Temp</td>
-                                    <td>
-                                        <obs conceptId="5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> &#176;C
-                                    </td>
-                                    <td>
-                                        <span class="value"><recentObs
-                                                conceptId="5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Pulse Rate</td>
-                                    <td>
-                                        <obs conceptId="5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                    </td>
-                                    <td><span class="value"><recentObs
-                                            conceptId="5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                </tr>
-                                <tr>
-                                    <td>BP</td>
-                                    <td>
-                                        <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                        /
-                                        <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                        mmHg
-                                    </td>
-                                    <td><span class="value"><recentObs
-                                            conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> / <recentObs
-                                            conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Respiratory Rate</td>
-                                    <td>
-                                        <obs conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                    </td>
-                                    <td><span class="value"><recentObs
-                                            conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Oxygen Saturation</td>
-                                    <td>
-                                        <obs conceptId="5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                    </td>
-                                    <td><span class="value"><recentObs
-                                            conceptId="5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                </tr>
-                            </table>
+                                <table cellspacing="5">
+                                    <tr>
+                                        <th></th>
+                                        <th>Current</th>
+                                        <th>Recent</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Temp</td>
+                                        <td>
+                                            <obs conceptId="5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> &#176;C
+                                        </td>
+                                        <td>
+                                            <span class="value"><recentObs
+                                                    conceptId="5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pulse Rate</td>
+                                        <td>
+                                            <obs conceptId="5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                        </td>
+                                        <td><span class="value"><recentObs
+                                                conceptId="5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>BP</td>
+                                        <td>
+                                            <obs conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                            /
+                                            <obs conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                            mmHg
+                                        </td>
+                                        <td><span class="value"><recentObs
+                                                conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> / <recentObs
+                                                conceptId="5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Respiratory Rate</td>
+                                        <td>
+                                            <obs conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                        </td>
+                                        <td><span class="value"><recentObs
+                                                conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oxygen Saturation</td>
+                                        <td>
+                                            <obs conceptId="5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                        </td>
+                                        <td><span class="value"><recentObs
+                                                conceptId="5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
 
-                        </fieldset>
-                        <fieldset>
-                            <legend>Other Recordings</legend>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <table cellspacing="10">
-                                            <tr>
-                                                <th></th>
-                                                <th>Current</th>
-                                                <th>Recent</th>
-                                            </tr>
-                                            <tr>
-                                                <td>Weight</td>
-                                                <td>
-                                                    <obs id="weight" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                                    kg
-                                                </td>
-                                                <td><span class="value"><recentObs
-                                                        conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Height</td>
-                                                <td>
-                                                    <obs id="height" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                                    cm
-                                                </td>
-                                                <td><span class="value"><recentObs
-                                                        conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>BMI</td>
-                                                <td><span id="calculated-bmi" class="value"></span></td>
-                                                <td><span id="recent-calculated-bmi" class="value"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>MUAC</td>
-                                                <td>
-                                                    <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-                                                </td>
-                                                <td><span class="value"><recentObs
-                                                        conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
-                                            </tr>
-                                            <includeIf velocityTest="$patient.gender == 'F' ">
+                            <fieldset>
+                                <legend>Other Recordings</legend>
+                                <table cellspacing="2">
+                                    <tr>
+                                        <td>
+                                            <table cellspacing="20">
                                                 <tr>
-                                                    <td>LMP</td>
+                                                    <th></th>
+                                                    <th>Current</th>
+                                                    <th>Recent</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Weight</td>
                                                     <td>
-                                                        <obs id="lmp-date"
-                                                             conceptId="1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                        <obs id="weight" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                        kg
                                                     </td>
                                                     <td><span class="value"><recentObs
-                                                            conceptId="1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span>
-                                                    </td>
+                                                            conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
                                                 </tr>
-                                            </includeIf>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <fieldset>
-                                                    <legend>General Examination</legend>
-                                                    <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptId="5245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabel="Pallor" style="checkbox"/>
-                                                    <br/>
-                                                    <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptId="136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabel="Jaundice" style="checkbox"/>
-                                                    <br/>
-                                                    <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptId="143050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabel="Cyanosis" style="checkbox"/>
-                                                    <br/>
-                                                    <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptId="460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabel="Edema" style="checkbox"/>
-                                                    <br/>
+                                                <tr>
+                                                    <td>Height</td>
+                                                    <td>
+                                                        <obs id="height" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                        cm
+                                                    </td>
+                                                    <td><span class="value"><recentObs
+                                                            conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>BMI</td>
+                                                    <td><span id="calculated-bmi" class="value"></span></td>
+                                                    <td><span id="recent-calculated-bmi" class="value"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Waist Circumference</td>
+                                                    <td>
+                                                        <obs conceptId="163080AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                        cm
+                                                    </td>
+                                                    <td><span class="value"><recentObs
+                                                            conceptId="163080AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MUAC</td>
+                                                    <td>
+                                                        <obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                    </td>
+                                                    <td><span class="value"><recentObs
+                                                            conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                                                </tr>
+                                                <includeIf velocityTest="$patient.gender == 'F' ">
+                                                    <tr>
+                                                        <td>LMP</td>
+                                                        <td>
+                                                            <obs id="lmp-date"
+                                                                 conceptId="1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                                                        </td>
+                                                        <td><span class="value"><recentObs
+                                                                conceptId="1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span>
+                                                        </td>
+                                                    </tr>
+                                                </includeIf>
+                                            </table>
+                                        </td>
+                                        <td>
 
-                                                </fieldset>
-                                            </tr>
-
-                                        </table>
-                                        <table>
-                                            <tr>
-                                                <label>Organomegally</label>
-                                                <obs conceptId="116688AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerLabels="Normal,Abnomal"/>
-                                            </tr>
-                                            <br/><br/>
-                                            <tr>
+                                            <fieldset>
+                                                <legend>General Examination</legend>
+                                                <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptId="5245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabel="Pallor" style="checkbox"/>
+                                                <br/>
+                                                <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptId="136443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabel="Jaundice" style="checkbox"/>
+                                                <br/><br/>
+                                                <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptId="143050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabel="Cyanosis" style="checkbox"/>
+                                                <br/>
+                                                <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptId="460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabel="Edema" style="checkbox"/>
+                                                <br/>
+                                                    <label>Organomegally</label>
+                                                    <obs conceptId="116688AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabels="Normal,Abnomal"/>
+                                                <br/><br/>
                                                 <label>Ascites</label>
                                                 <obs conceptId="148346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal"/>
-                                            </tr>
-                                            <br/><br/>
-                                            <tr>
-                                                <label>Neurological exam (motor, sensory,automatic)</label>
-                                                <obs conceptId="148346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerLabels="Normal,Abnomal"/>
-                                            </tr>
-                                            <br/>
-                                            <tr>
-                                                <label>Neurological exam (motor, sensory,automatic)</label>
-                                                <obs conceptId="148346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerLabels="Normal,Abnomal"/>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
 
-                        </fieldset>
+                                                <br/><br/>
+                                                <label>Neurological exam (motor, sensory,automatic)</label>
+                                                <obs conceptId="148346AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabels="Normal,Abnomal"/>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
                     </div>
                 </div>
 
+                <div id="tabs-3">
+                    <fieldset>
+                        <legend>Current Lifestyle</legend>
+                        <tr>
+                            <td>
+                                <label>Tobacco use status</label>
+                                <obs conceptId="163731AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 159450AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabels="Never,In the past,Currently" style="..."/>
+                                <br/>
+                            </td>
+
+                            <td>
+                                <label>Tobacco cessation counseling done?</label>
+                                <obs conceptId="1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO"/>
+                            </td>
+                        </tr>
+                        <br/>
+                        <br/>
+                        <tr>
+                            <td>
+                                <label>Drinks Alcohol</label>
+                                <obs conceptId="159449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO, Stopped"/>
+                                <br/>
+                                <label>If stopped alcohol, how long ago?</label>
+                            </td>
+                            <br/>
+                            <td>
+                                <label>Alcohol cessation counseling done</label>
+                                <obs conceptId="1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO" style="radio"/>
+                            </td>
+                        </tr>
+                        <br/><br/>
+                        <tr>
+                            <td>
+                                <label>Substance abuse</label>
+                                <obs conceptConceptIds="" answerConceptIds=""
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO"/>
+                            </td>
+                        </tr>
+                        <br/>
+                        <br/>
+                        <tr>
+                            <td>
+                                <label>Sleep disorder</label>
+                                <obs conceptConceptIds="" answerConceptIds=""
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO"/>
+                            </td>
+                        </tr>
+                        <br/>
+                        <br/>
+
+                        <tr>
+                            <td>
+                                <label>Adequate Physical activity</label>
+                                <obs conceptId="159364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO" style="radio"/>
+                            </td>
+                            <br/>
+                            <td>
+                                <label>Counseled on physical activity and exercises</label>
+                            </td>
+                            <br/>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td>
+                                <label>Consumption of a Healthy Diet</label>
+                            </td>
+                            <td>
+                                <label>Diet History</label>
+                                <input type="text">
+                            </td>
+                            <br/>
+                            <td>
+                                <label>Nutrition Counseling done</label>
+                                <obs conceptId="1380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerLabel="YES,NO" style="radio"/>
+                            </td>
+                            <br/>
+                            <td>
+                                <label>Meal planning</label>
+                                <input type="text">
+                            </td>
+                        </tr>
+
+                    </fieldset>
+                </div>
+                <div id="tabs-4">
+                    <fieldset>
+                        <legend>Systemic examinations</legend>
+                        <table>
+                            <tr>
+                                <td>Pulses</td>
+                                <td>
+                                    <obs  conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <tr>
+                                <td>Heart sounds</td>
+                                <td>
+                                    <obs  conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <tr>
+                                <td> JVP </td>
+                                <td>
+                                    <obs conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <tr>
+                                <td>Respiratory System (RR, air entry, abnormal sounds)</td>
+                                <td>
+                                    <obs id="respiratory" conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text" /></span></td>
+                            </tr>
+                            <tr>
+                                <td>Organomegally</td>
+                                <td>
+                                    <obs id="respiratory" conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <tr>
+                                <td>Ascities</td>
+                                <td>
+                                    <obs id="respiratory" conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <tr>
+                                <td>Oral status (cavity; presence of gum disease;oral Lesions)</td>
+                                <td>
+                                    <obs id="respiratory" conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                </td>
+                                <td><span class="value"><input type="text"/></span></td>
+                            </tr>
+                            <br/>
+                        </table>
+                    </fieldset>
+                </div>
                 <div id="displayRequiredFields"></div>
                 <div class="ke-form-footer">
                     <submit/>
