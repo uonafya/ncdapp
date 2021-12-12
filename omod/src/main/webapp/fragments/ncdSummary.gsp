@@ -2,7 +2,6 @@
 table.initial {
     border-collapse: collapse;
     background-color: #F3F9FF;
-    width: 100%;
 }
 table.initial > tbody > tr > td, table.initial > tbody > tr > th {
     border: 1px solid black;
@@ -16,7 +15,7 @@ tr:nth-child(even) {background-color: #f2f2;}
     <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
     <div class="ke-panel-content">
         <br />
-        <table border="0">
+        <table border="0" align="center" width="75%">
             <tr>
                 <td colspan="2" valign="top">
                     <div class="ke-panel-heading">Disease Case Load</div>
@@ -145,10 +144,13 @@ tr:nth-child(even) {background-color: #f2f2;}
                     </table>
                 </td>
             </tr>
-            <tr></tr>
+            <br />
+            <tr>
+                <td colspan="2">&nbsp;</td>
+            </tr>
             <tr>
                 <td valign="top">
-                    <table cellpadding="5" cellspacing="0" class="initial">
+                    <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
                         <tr>
                             <th colspan="3">BMI Index Measures</th>
                         </tr>
@@ -180,7 +182,7 @@ tr:nth-child(even) {background-color: #f2f2;}
                     </table>
                 </td>
                 <td valign="top">
-                    <table cellpadding="5" cellspacing="0" class="initial">
+                    <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
                         <tr>
                             <th colspan="3">Blood Pressure Metrics</th>
                         </tr>
