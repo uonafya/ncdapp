@@ -1,23 +1,29 @@
 <script>
     var drugOrder = [];
 
+    var getJSON = function (dataToParse) {
+        if (typeof dataToParse === "string") {
+            return JSON.parse(dataToParse);
+        }
+        return dataToParse;
+    }
+
     jq(function () {
-        jq(function () {
             jq("#procedure").autocomplete({
-                source: function( request, response ) {
-                    jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getProcedures") }',{
+                source: function (request, response) {
+                    jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getProcedures") }', {
                         q: request.term
-                    }).success(function(data) {
+                    }).success(function (data) {
                         procedureMatches = [];
                         for (var i in data) {
-                            var result = { label: data[i].label, value: data[i].id, schedulable: data[i].schedulable };
+                            var result = {label: data[i].label, value: data[i].id, schedulable: data[i].schedulable};
                             procedureMatches.push(result);
                         }
                         response(procedureMatches);
                     });
                 },
                 minLength: 3,
-                select: function( event, ui ) {
+                select: function (event, ui) {
                     var selectedProcedure = document.createElement('option');
                     selectedProcedure.value = ui.item.value;
                     selectedProcedure.text = ui.item.label;
@@ -43,14 +49,12 @@
                     //check if the item already exist before appending
                     var exists = false;
                     for (var i = 0; i < selectedProcedureList.length; i++) {
-                        if(selectedProcedureList.options[i].value==ui.item.value)
-                        {
+                        if (selectedProcedureList.options[i].value == ui.item.value) {
                             exists = true;
                         }
                     }
 
-                    if(exists == false)
-                    {
+                    if (exists == false) {
                         selectedProcedureList.appendChild(selectedProcedure);
                         selectedProcedureDiv.appendChild(selectedProcedureP);
                     }
@@ -58,20 +62,20 @@
                     jq('#task-procedure').show();
                     jq('#procedure-set').val('SET');
                 },
-                open: function() {
+                open: function () {
                 },
-                close: function() {
+                close: function () {
                     jq(this).val('');
                 }
             });
-            jq("#selected-procedures").on("click", "#procedureRemoveIcon",function(){
+            jq("#selected-procedures").on("click", "#procedureRemoveIcon", function () {
                 var procedureP = jq(this).parent("div");
                 var procedureId = procedureP.attr("id");
 
                 jq('#selectedProcedureList').find("#" + procedureId).remove();
                 procedureP.remove();
 
-                if (jq('#selectedProcedureList option').size() == 0){
+                if (jq('#selectedProcedureList option').size() == 0) {
                     jq('#task-procedure').hide();
                     jq('#procedure-set').val('');
                 }
@@ -187,8 +191,8 @@
                             });
                         });
 
-                        jq.getJSON('${ui.actionLink("patientdashboardapp","clinicalNotes","getDrugUnit")}').success(function(data) {
-                            var drugUnit = jq.map(data, function(drugUnit) {
+                        jq.getJSON('${ui.actionLink("patientdashboardapp","clinicalNotes","getDrugUnit")}').success(function (data) {
+                            var drugUnit = jq.map(data, function (drugUnit) {
                                 jq('#drugUnitSelect').append(jq('<option>').text(drugUnit.label).attr('value', drugUnit.id));
                             });
                         });
@@ -254,16 +258,21 @@
             jq("#addDrugsButton").on("click", function (e) {
                 adddrugdialog.show();
             });
-        });
-        jq("#treatmentSubmit").click(function(event){
+
+        jq("#treatmentSubmit").click(function (event) {
             jq().toastmessage({
                 sticky: true
             });
             var savingMessage = jq().toastmessage('showSuccessToast', 'Please wait as Information is being Saved...');
 
+            var selectedProc = new Array;
+            jq("selectedProcedureList option").each(function () {
+                selectedProc.push(jq(this).val());
+            });
+
             var selectedInv = new Array;
-            jq("#selectedInvestigationList option").each  ( function() {
-                selectedInv.push ( jq(this).val() );
+            jq("#selectedInvestigationList option").each(function () {
+                selectedInv.push(jq(this).val());
             });
 
             drugOrder = JSON.stringify(drugOrder);
@@ -272,13 +281,14 @@
                 'patientId': jq('#treatmentPatientID').val(),
                 'selectedProcedureList': selectedProc,
                 'selectedInvestigationList': selectedInv,
-                'drugOrder':drugOrder
+                'drugOrder': drugOrder
             };
 
-            function successFn(successly_){
+            function successFn(successly_) {
                 jq().toastmessage('removeToast', savingMessage);
                 jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
             }
+
             jq("#treatmentForm").submit(
                 jq.ajax({
                     type: 'POST',
@@ -296,26 +306,33 @@
 .toast-item {
     background-color: #222;
 }
+
 #breadcrumbs a, #breadcrumbs a:link, #breadcrumbs a:visited {
     text-decoration: none;
 }
+
 .name {
     color: #f26522;
 }
+
 .new-patient-header .demographics .gender-age {
     font-size: 14px;
     margin-left: -55px;
     margin-top: 12px;
 }
+
 .new-patient-header .demographics .gender-age span {
     border-bottom: 1px none #ddd;
 }
+
 .new-patient-header .identifiers {
     margin-top: 5px;
 }
+
 .tag {
     padding: 2px 10px;
 }
+
 .tad {
     background: #666 none repeat scroll 0 0;
     border-radius: 1px;
@@ -324,13 +341,16 @@
     font-size: 0.8em;
     padding: 2px 10px;
 }
+
 .status-container {
     padding: 5px 10px 5px 5px;
 }
+
 .catg {
     color: #363463;
     margin: 25px 10px 0 0;
 }
+
 form input:focus, form select:focus, form textarea:focus, form ul.select:focus, .form input:focus, .form select:focus, .form textarea:focus, .form ul.select:focus,
 .simple-form-ui section fieldset select:focus, .simple-form-ui section fieldset input:focus, .simple-form-ui section #confirmationQuestion select:focus, .simple-form-ui section #confirmationQuestion input:focus,
 .simple-form-ui #confirmation fieldset select:focus, .simple-form-ui #confirmation fieldset input:focus, .simple-form-ui #confirmation #confirmationQuestion select:focus,
@@ -340,10 +360,12 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     outline: 0px none #007fff;
     box-shadow: 0 0 0 0 #888;
 }
-#formBreadcrumb{
+
+#formBreadcrumb {
     background: #fff;
 }
-#ordersForm{
+
+#ordersForm {
     background: #f9f9f9 none repeat scroll 0 0;
     margin-top: 3px;
     display: flex;
@@ -351,27 +373,31 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     justify-content: space-around;
     align-items: center;
 }
-#charges-info{
+
+#charges-info {
     display: flex;
     flex-direction: column;
     max-width: 1024px;
     width: 100%;
 }
+
 #confirmation {
     min-height: 250px;
     width: 100%;
     max-width: 1024px;
 }
+
 .tasks {
     background: white none repeat scroll 0 0;
     border: 1px solid #cdd3d7;
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     color: #404040;
-    font: 14px/20px "Lucida Grande",Verdana,sans-serif;
+    font: 14px/20px "Lucida Grande", Verdana, sans-serif;
     margin: 10px 0 0 4px;
     width: 98.6%;
 }
+
 .tasks-header {
     background: #f0f1f2 linear-gradient(to bottom, #f5f7fd, #e6eaec) repeat scroll 0 0;
     border-bottom: 1px solid #d1d1d1;
@@ -383,12 +409,14 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     position: relative;
     text-shadow: 0 1px rgba(255, 255, 255, 0.7);
 }
+
 .tasks-title {
     color: inherit;
     font-size: 14px;
     font-weight: bold;
     line-height: inherit;
 }
+
 .tasks-lists {
     color: transparent;
     font: 0px/0 serif;
@@ -401,6 +429,7 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     top: 50%;
     width: 19px;
 }
+
 .tasks-lists::before {
     background: #8c959d none repeat scroll 0 0;
     border-radius: 1px;
@@ -409,9 +438,11 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     display: block;
     height: 3px;
 }
+
 .tasks-list {
-    font: 13px/20px "Lucida Grande",Verdana,sans-serif;
+    font: 13px/20px "Lucida Grande", Verdana, sans-serif;
 }
+
 .tasks-list-item {
     -moz-user-select: none;
     border-bottom: 1px solid #aaa;
@@ -422,9 +453,11 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     padding: 5px;
     width: 150px;
 }
+
 .tasks-list-cb {
     display: none;
 }
+
 .tasks-list-mark {
     border: 2px solid #c4cbd2;
     border-radius: 12px;
@@ -435,6 +468,7 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     vertical-align: top;
     width: 20px;
 }
+
 .tasks-list-mark::before {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -454,30 +488,37 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     transform: rotate(-45deg);
     width: 8px;
 }
+
 .tasks-list-cb:checked ~ .tasks-list-mark {
     border-color: #39ca74;
 }
+
 .tasks-list-cb:checked ~ .tasks-list-mark::before {
     display: block;
 }
+
 .tasks-list-desc {
     color: #555;
     font-weight: bold;
 }
+
 .tasks-list-cb:checked ~ .tasks-list-desc {
     color: #34bf6e;
 }
+
 .tasks-list input[type="radio"] {
     left: -9999px !important;
     position: absolute !important;
     top: -9999px !important;
 }
-.selectp{
+
+.selectp {
     border-bottom: 1px solid darkgrey;
     margin: 7px 10px;
     padding-bottom: 3px;
     padding-left: 5px;
 }
+
 #investigationRemoveIcon,
 #procedureRemoveIcon {
     float: right;
@@ -485,52 +526,65 @@ form input:focus, form select:focus, form textarea:focus, form ul.select:focus, 
     cursor: pointer;
     margin: 2px 5px 0 0;
 }
+
 fieldset input[type="text"],
 fieldset select {
     height: 45px
 }
+
 .title-label {
     color: #f26522;
     cursor: pointer;
-    font-family: "OpenSansBold",Arial,sans-serif;
+    font-family: "OpenSansBold", Arial, sans-serif;
     font-size: 1.3em;
     padding-left: 5px;
 }
-.dialog-content ul li span{
+
+.dialog-content ul li span {
     display: inline-block;
     width: 130px;
 }
-.dialog-content ul li input{
+
+.dialog-content ul li input {
     width: 255px;
     padding: 5px 10px;
 }
+
 .dialog textarea {
     width: 255px;
 }
+
 .dialog select {
     display: inline-block;
     width: 255px;
 }
+
 .dialog select option {
     font-size: 1em;
 }
+
 .dialog .dialog-content li {
     margin-bottom: 3px;
 }
+
 .dialog select {
     margin: 0;
     padding: 5px;
 }
+
 #modal-overlay {
     background: #000 none repeat scroll 0 0;
     opacity: 0.4 !important;
 }
+
 #summaryTable tr:nth-child(2n), #summaryTable tr:nth-child(2n+1) {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 }
+
 #summaryTable {
     margin: -5px 0 -6px;
 }
+
 #summaryTable tr, #summaryTable th, #summaryTable td {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -541,10 +595,12 @@ fieldset select {
     border-style: none none solid;
     border-width: 1px;
 }
+
 #summaryTable td:first-child {
     vertical-align: top;
     width: 180px;
 }
+
 .icon-remove {
     cursor: pointer !important;
 }
@@ -554,10 +610,11 @@ fieldset select {
     <section>
         <fieldset>
             <legend>Procedure</legend>
-            <input type="text" style="width:98.6%; margin-left:5px;" id="procedure" name="procedure" placeholder="Enter Procedure" />
+            <input type="text" style="width:98.6%; margin-left:5px;" id="procedure" name="procedure"
+                   placeholder="Enter Procedure"/>
 
             <p style="display: none">
-                <input type="hidden" id="procedure-set" name="procedure-set" />
+                <input type="hidden" id="procedure-set" name="procedure-set"/>
             </p>
 
             <div class="tasks" id="task-procedure" style="display: none;">
@@ -568,6 +625,7 @@ fieldset select {
 
                 <div class="symptoms-qualifiers" data-bind="foreach: signs">
                     <select style="display: none" id="selectedProcedureList"></select>
+
                     <div class="symptom-container selectdiv" id="selected-procedures">
 
                     </div>
@@ -676,9 +734,9 @@ fieldset select {
                 <span style="display: block; margin-top: 9px">Frequency</span>
                 <select style="width: 100%;" id="drugFrequency">
                     <option>Select Frequency</option>
-                    <% if (drugFrequencyList!=null &&drugFrequencyList!=""){ %>
+                    <% if (drugFrequencyList != null && drugFrequencyList != "") { %>
                     <% drugFrequencyList.each { dfl -> %>
-                    <option  value="${dfl.conceptId}">
+                    <option value="${dfl.conceptId}">
                         ${dfl.name}
                     </option>
                     <% } %>

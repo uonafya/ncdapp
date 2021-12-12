@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 import org.openmrs.*;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.hospitalcore.*;
 import org.openmrs.module.hospitalcore.model.*;
@@ -101,18 +102,15 @@ public class OrdersFragmentController {
 	        @RequestParam(value = "selectedInvestigationList[]", required = false) Integer[] selectedInvestigationList) {
 		
 		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
-		System.out.println(selectedInvestigationList + "investigations Strings");
-		
+
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
 		IpdService ipdService = Context.getService(IpdService.class);
 		IpdPatientAdmitted admitted = ipdService.getAdmittedByPatientId(patientId);
 		Patient patient = Context.getPatientService().getPatient(patientId);
 		BillingService billingService = Context.getService(BillingService.class);
 		AdministrationService administrationService = Context.getAdministrationService();
-		GlobalProperty procedure = administrationService
-		        .getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_POST_FOR_PROCEDURE);
-		GlobalProperty investigationn = administrationService
-		        .getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_FOR_INVESTIGATION);
+		ConceptService investigationn = Context.getConceptService();
+		ConceptService procedure = Context.getConceptService();
 		User user = Context.getAuthenticatedUser();
 		Date date = new Date();
 		PatientDashboardService patientDashboardService = Context.getService(PatientDashboardService.class);
@@ -123,7 +121,7 @@ public class OrdersFragmentController {
 		encounter = admitted.getPatientAdmissionLog().getIpdEncounter();
 		
 		if (!ArrayUtils.isEmpty(selectedProcedureList)) {
-			Concept cProcedure = Context.getConceptService().getConceptByName(procedure.getPropertyValue());
+			Concept cProcedure = Context.getConceptService().getConceptByName(String.valueOf(procedure));
 			
 			for (Integer pId : selectedProcedureList) {
 				Obs oProcedure = new Obs();
@@ -140,7 +138,7 @@ public class OrdersFragmentController {
 		}
 		
 		if (!ArrayUtils.isEmpty(selectedInvestigationList)) {
-			Concept coninvt = Context.getConceptService().getConceptByName(investigationn.getPropertyValue());
+			Concept coninvt = Context.getConceptService().getConceptByName(String.valueOf(investigationn));
 			
 			for (Integer pId : selectedInvestigationList) {
 				Obs obsInvestigation = new Obs();
@@ -220,7 +218,7 @@ public class OrdersFragmentController {
 		}
 		
 		if (!ArrayUtils.isEmpty(selectedInvestigationList)) {
-			Concept coninvt = Context.getConceptService().getConceptByName(investigationn.getPropertyValue());
+			Concept coninvt = Context.getConceptService().getConceptByName(String.valueOf(investigationn));
 			
 			for (Integer iId : selectedInvestigationList) {
 				BillableService billableService = billingService.getServiceByConceptId(iId);
