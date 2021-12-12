@@ -17,7 +17,7 @@ tr:nth-child(even) {background-color: #f2f2;}
         <br />
         <table border="0">
             <tr>
-                <td>
+                <td colspan="2">
                     <div class="ke-panel-heading">Disease Case Load</div>
                     <table cellpadding="5" cellspacing="0" class="initial">
                         <tbody>
@@ -51,49 +51,100 @@ tr:nth-child(even) {background-color: #f2f2;}
                         </tr>
                         <tr>
                             <td>0 to 5</td>
-                            <td>${diabeticMaleZeroTo5}</td>
-                            <td>${diabeticFemaleZeroTo5}</td>
-                            <td>${hypertensionMaleZeroTo5}</td>
-                            <td>${hypertensionFemaleZeroTo5}</td>
+                            <td>${diabeticNewMaleZeroTo5}</td>
+                            <td>${diabeticNewFemaleZeroTo5}</td>
+                            <td>${diabeticKnownMaleZeroTo5}</td>
+                            <td>${diabeticKnownFemaleZeroTo5}</td>
+                            <td>${hypertensionNewMaleZeroTo5}</td>
+                            <td>${hypertensionNewFemaleZeroTo5}</td>
+                            <td>${hypertensionKnownMaleZeroTo5}</td>
+                            <td>${hypertensionKnownFemaleZeroTo5}</td>
+                            <td>${newComorbidMaleZeroTo5}</td>
+                            <td>${newComorbidFemaleZeroTo5}</td>
+                            <td>${knownComorbidMaleZeroTo5}</td>
+                            <td>${knownComorbidFemaleZeroTo5}</td>
+
                         </tr>
                         <tr>
                             <td>6 to 18</td>
-                            <td>${diabeticMale6To18}</td>
-                            <td>${diabeticFemale6To18}</td>
-                            <td>${hypertensionMale6To18}</td>
-                            <td>${hypertensionFemale6To18}</td>
+                            <td>${diabeticNewMale6To18}</td>
+                            <td>${diabeticNewFemale6To18}</td>
+                            <td>${diabeticKnownMale6To18}</td>
+                            <td>${diabeticKnownFemalee6To18}</td>
+                            <td>${hypertensionNewMale6To18}</td>
+                            <td>${hypertensionNewFemale6To18}</td>
+                            <td>${hypertensionKnownMale6To18}</td>
+                            <td>${hypertensionKnownFemale6To18}</td>
+                            <td>${newComorbidMale6To18}</td>
+                            <td>${newComorbidFemale6To18}</td>
+                            <td>${knownComorbidMale6To18}</td>
+                            <td>${knownComorbidFemale6To18}</td>
                         </tr>
                         <tr>
                             <td>19 to 35</td>
-                            <td>${diabeticMale19To35}</td>
-                            <td>${diabeticFemale19To35}</td>
-                            <td>${hypertensionMale19To35}</td>
-                            <td>${hypertensionFemale19To35}</td>
+                            <td>${diabeticNewMale19To35}</td>
+                            <td>${diabeticNewFemale19To35}</td>
+                            <td>${diabeticKnownMale19To35}</td>
+                            <td>${diabeticKnownFemale19To35}</td>
+                            <td>${hypertensionNewMale19To35}</td>
+                            <td>${hypertensionNewFemale19To35}</td>
+                            <td>${hypertensionKnownMale19To35}</td>
+                            <td>${hypertensionKnownFemale19To35}</td>
+                            <td>${newComorbidMale19To35}</td>
+                            <td>${newComorbidFemale19To35}</td>
+                            <td>${knownComorbidMale19To35}</td>
+                            <td>${knownComorbidFemale19To35}</td>
                         </tr>
                         <tr>
                             <td>36 to 60</td>
-                            <td>${diabeticMale36To60}</td>
-                            <td>${diabeticFemale36To60}</td>
-                            <td>${hypertensionMale36To60}</td>
-                            <td>${hypertensionFemale36To60}</td>
+                            <td>${diabeticNewMale36To60}</td>
+                            <td>${diabeticNewFemale36To60}</td>
+                            <td>${diabeticKnownMale36To60}</td>
+                            <td>${diabeticKnownFemale36To60}</td>
+                            <td>${hypertensionNewMale36To60}</td>
+                            <td>${hypertensionNewFemale36To60}</td>
+                            <td>${hypertensionKnownMale36To60}</td>
+                            <td>${hypertensionKnownFemale36To60}</td>
+                            <td>${newComorbidMale36To60}</td>
+                            <td>${newComorbidFemale36To60}</td>
+                            <td>${knownComorbidMale36To60}</td>
+                            <td>${knownComorbidFemale36To60}</td>
                         </tr>
                         <tr>
                             <td>&gt;60</td>
-                            <td>${diabeticMale60To120}</td>
-                            <td>${diabeticFemale60To120}</td>
-                            <td>${hypertensionMale60To120}</td>
-                            <td>${hypertensionFemale60To120}</td>
+                            <td>${diabeticNewMale60To120}</td>
+                            <td>${diabeticNewFemale60To120}</td>
+                            <td>${diabeticKnownMale60To120}</td>
+                            <td>${diabeticKnownFemale60To120}</td>
+                            <td>${hypertensionNewMale60To120}</td>
+                            <td>${hypertensionNewFemale60To120}</td>
+                            <td>${hypertensionKnownMale60To120}</td>
+                            <td>${hypertensionKnownFemale60To120}</td>
+                            <td>${newComorbidMale60To120}</td>
+                            <td>${newComorbidFemale60To120}</td>
+                            <td>${knownComorbidMale60To120}</td>
+                            <td>${knownComorbidFemale60To120}</td>
                         </tr>
                         <tr>
                             <td>Totals</td>
-                            <td>${diabeticMaleTotals}</td>
-                            <td>${diabeticFemaleTotals}</td>
-                            <td>${hypertensionMaleTotals}</td>
-                            <td>${hypertensionFemaleTotals}</td>
+                            <td>${diabeticNewMaleTotals}</td>
+                            <td>${diabeticNewFemaleTotals}</td>
+                            <td>${diabeticKnownMaleTotals}</td>
+                            <td>${diabeticKnownFemaleTotals}</td>
+                            <td>${hypertensionNewMaleTotals}</td>
+                            <td>${hypertensionNewFemaleTotals}</td>
+                            <td>${hypertensionKnownMaleTotals}</td>
+                            <td>${hypertensionKnownFemaleTotals}</td>
+                            <td>${newComorbidMaleTotals}</td>
+                            <td>${newComorbidFemaleTotals}</td>
+                            <td>${knownComorbidMaleTotals}</td>
+                            <td>${knownComorbidFemaleTotals}</td>
                         </tr>
                         </tbody>
                     </table>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <div class="ke-panel-heading">BMI Index Measures</div>
                     <table cellpadding="5" cellspacing="0" class="initial">
@@ -125,7 +176,19 @@ tr:nth-child(even) {background-color: #f2f2;}
                     </table>
                 </td>
                 <td>
-
+                    <div class="ke-panel-heading">Blood Pressure Metrics</div>
+                    <table cellpadding="5" cellspacing="0" class="initial">
+                        <tr>
+                            <th>BP</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                        </tr>
+                        <tr>
+                            <td>Bp&gt;140/90</td>
+                            <td>${above14090M}</td>
+                            <td>${above14090F}</td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
