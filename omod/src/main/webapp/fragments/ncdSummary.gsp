@@ -18,7 +18,7 @@ tr:nth-child(even) {background-color: #f2f2;}
         <br />
         <table border="0">
             <tr>
-                <td colspan="2">
+                <td colspan="2" valign="top">
                     <div class="ke-panel-heading">Disease Case Load</div>
                     <table cellpadding="5" cellspacing="0" class="initial">
                         <tbody>
@@ -147,7 +147,7 @@ tr:nth-child(even) {background-color: #f2f2;}
             </tr>
             <tr></tr>
             <tr>
-                <td>
+                <td valign="top">
                     <table cellpadding="5" cellspacing="0" class="initial">
                         <tr>
                             <th colspan="3">BMI Index Measures</th>
@@ -179,7 +179,7 @@ tr:nth-child(even) {background-color: #f2f2;}
                         </tr>
                     </table>
                 </td>
-                <td>
+                <td valign="top">
                     <table cellpadding="5" cellspacing="0" class="initial">
                         <tr>
                             <th colspan="3">Blood Pressure Metrics</th>

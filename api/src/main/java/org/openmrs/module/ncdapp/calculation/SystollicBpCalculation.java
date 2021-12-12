@@ -9,16 +9,16 @@ import org.openmrs.module.kenyaemr.Dictionary;
 import java.util.Collection;
 import java.util.Map;
 
-public class PointOfEntryCalculation extends AbstractPatientCalculation {
+public class SystollicBpCalculation extends AbstractPatientCalculation {
 	
 	@Override
 	public CalculationResultMap evaluate(Collection<Integer> collection, Map<String, Object> map,
 	        PatientCalculationContext patientCalculationContext) {
 		CalculationResultMap ret = new CalculationResultMap();
 		
-		CalculationResultMap getPointOfEntry = Calculations.lastObs(
-		    Dictionary.getConcept("160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), collection, patientCalculationContext);
-		ret.putAll(getPointOfEntry);
+		CalculationResultMap systollic = Calculations.lastObs(Dictionary.getConcept("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"),
+		    collection, patientCalculationContext);
+		ret.putAll(systollic);
 		return ret;
 	}
 }
