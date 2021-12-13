@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -219,9 +220,28 @@ public class OrdersFragmentController {
 			}
 		}
 		
+		if (!ArrayUtils.isEmpty(selectedProcedureList)) {
+			Concept conpro = Context.getConceptService().getConceptByName(procedure.getPropertyValue());
+			for (Integer pId : selectedProcedureList) {
+				BillableService billableService = billingService.getServiceByConceptId(pId);
+				OpdTestOrder opdTestOrder = new OpdTestOrder();
+				opdTestOrder.setPatient(patient);
+				opdTestOrder.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+				opdTestOrder.setConcept(conpro);
+				opdTestOrder.setTypeConcept(DepartmentConcept.TYPES[1]);
+				opdTestOrder.setValueCoded(Context.getConceptService().getConcept(pId));
+				opdTestOrder.setCreator(user);
+				opdTestOrder.setCreatedOn(date);
+				opdTestOrder.setBillingStatus(0);
+				opdTestOrder.setBillableService(billableService);
+				opdTestOrder.setFromDept("DM/HTN");
+				patientDashboardService.saveOrUpdateOpdOrder(opdTestOrder);
+			}
+			
+		}
+		
 		if (!ArrayUtils.isEmpty(selectedInvestigationList)) {
 			Concept coninvt = Context.getConceptService().getConceptByName(investigationn.getPropertyValue());
-			
 			for (Integer iId : selectedInvestigationList) {
 				BillableService billableService = billingService.getServiceByConceptId(iId);
 				OpdTestOrder opdTestOrder = new OpdTestOrder();
@@ -235,6 +255,7 @@ public class OrdersFragmentController {
 				opdTestOrder.setBillingStatus(0);
 				opdTestOrder.setBillableService(billableService);
 				opdTestOrder.setScheduleDate(date);
+				opdTestOrder.setFromDept("DM/HTN");
 				patientDashboardService.saveOrUpdateOpdOrder(opdTestOrder);
 			}
 		}
