@@ -15,11 +15,10 @@ tr:nth-child(even) {background-color: #f2f2;}
     <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
     <div class="ke-panel-content">
         <br />
-        <table border="0" align="center" width="75%">
+        <table border="0" align="center" width="100%">
             <tr>
                 <td colspan="2" valign="top">
-                    <div class="ke-panel-heading">Disease Case Load</div>
-                    <table cellpadding="5" cellspacing="0" class="initial">
+                    <table cellpadding="5" cellspacing="0" class="initial" width="100%">
                         <tbody>
                         <tr>
                             <th colspan="13">Diabetes/Hypertension</th>

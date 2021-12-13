@@ -6,6 +6,7 @@
     def otherDataPoints = []
     def currentMadication = []
     def complications = []
+    def labs = []
 
     if (calculations.diseaseType) {
         dataPoints << [ label: "Type", value: ui.format(calculations.diseaseType.value.valueCoded), extra: calculations.diseaseType.value.obsDatetime ]
@@ -55,39 +56,31 @@
     } else {
         currentMadication << [ label: "Current medications", value: "None" ]
     }
-    if (calculations.drugs) {
-        currentMadication << [ label: "Current medications", value: ui.format(calculations.drugs.value)]
-    } else {
-        currentMadication << [ label: "Current medications", value: "None" ]
-    }
     if (calculations.complications) {
         complications << [ label: "Current Complications", value: ui.format(calculations.complications.value)]
     } else {
         complications << [ label: "Current Complications", value: "None" ]
     }
+    if (calculations.labs) {
+        labs << [ label: "Current Lab Orders", value: ui.format(calculations.labs.value)]
+    } else {
+        labs << [ label: "Current Lab Orders", value: "None" ]
+    }
 
 %>
 <div class="ke-stack-item">
-    <table cellspacing="0" cellpadding="5">
-        <tr>
-            <td>
-                <% dataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-            <td>
-                <% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-        <tr id="medication">
-            <td colspan="2">
-                <% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-        <tr id="complications">
-            <td colspan="2">
-                <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-    </table>
-
+    <% dataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+<% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+<% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+    <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+    <% labs.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
 </div>
 

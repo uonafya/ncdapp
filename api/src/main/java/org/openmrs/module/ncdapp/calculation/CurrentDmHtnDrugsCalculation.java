@@ -32,10 +32,29 @@ public class CurrentDmHtnDrugsCalculation extends AbstractPatientCalculation {
 			
 			List<OpdDrugOrder> opdDrugs = Context.getService(PatientDashboardService.class)
 			        .getOpdDrugOrder(lastOpdEncounter);
+			
+			String drugName = "";
+			String inventoryFormulation = "";
+			String dosage = "";
+			String frequency = "";
+			
 			for (OpdDrugOrder opdDrugOrder : opdDrugs) {
-				drugs.append(opdDrugOrder.getInventoryDrug().getName() + " "
-				        + opdDrugOrder.getInventoryDrugFormulation().getName() + " " + opdDrugOrder.getDosage() + " "
-				        + opdDrugOrder.getFrequency().getName().getName() + "\n");
+				if (opdDrugOrder != null) {
+					if (opdDrugOrder.getInventoryDrug() != null) {
+						drugName = opdDrugOrder.getInventoryDrug().getName();
+					}
+					if (opdDrugOrder.getInventoryDrugFormulation() != null) {
+						inventoryFormulation = opdDrugOrder.getInventoryDrugFormulation().getName();
+					}
+					if (opdDrugOrder.getDosage() != null) {
+						dosage = opdDrugOrder.getDosage();
+					}
+					if (opdDrugOrder.getFrequency() != null && opdDrugOrder.getFrequency().getName() != null) {
+						frequency = opdDrugOrder.getFrequency().getName().getName();
+					}
+				}
+				drugs.append(drugName).append(" ").append(inventoryFormulation).append(" ").append(dosage).append(" ")
+				        .append(frequency).append("\n");
 			}
 			ret.put(pId, new SimpleResult(drugs, this));
 		}

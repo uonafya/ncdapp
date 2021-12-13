@@ -14,6 +14,7 @@ import org.openmrs.module.ncdapp.NcdappUtils;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,8 +32,10 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 			StringBuilder labResults = new StringBuilder();
 			
 			Encounter lastLabEncounterDetails = EmrCalculationUtils.encounterResultForPatient(lastLabEncounter, pId);
-			
-			Set<Obs> Obs = lastLabEncounterDetails.getObs();
+			Set<Obs> Obs = new HashSet<Obs>();
+			if (lastLabEncounterDetails != null && lastLabEncounterDetails.getObs() != null) {
+				Obs = lastLabEncounterDetails.getObs();
+			}
 			String valueCoded = "";
 			String valueText = "";
 			String valueNumeric = "";
