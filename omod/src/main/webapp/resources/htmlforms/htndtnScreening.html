@@ -14,18 +14,12 @@
 <htmlform>
     <script type="text/javascript">
         jq(document ).ready(function() {
-            jq('.if_diabetes').css('display','none');
-            jq('.if_hypertension').css('display','none');
+            disableControls();
         });
 
 
-        function diabetes(){
-            var val= getValue('diabetes.value');
-            jq('.if_diabetes :input').prop('disabled', true);
-            if(val == 165087){
-                jq('.if_diabetes :input').prop('disabled', false);
-                jq('.if_diabetes').css('display', 'all');
-            }
+        function disableControls(){
+            jq('#nhifNumber *').prop('disabled', true);
         }
 
     </script>
@@ -44,12 +38,12 @@
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
-                <td align="left">Screening Date:
-                    <encounterDate id="encounter-date" showTime="true"/>
+                <td align="left">Screening Date
+                    <encounterDate id="encounter-date" showTime="true" />
                 </td>
                 <td>Screening by: <encounterProvider default="currentUser" /></td>
-                <td align="right">Screening Venue:
-                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                <td align="right">Screening Venue
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete" />
                 </td>
             </tr>
         </table>
@@ -58,15 +52,19 @@
         <table border="0" cellspacing="0" cellpadding="5" width="75%" class="initial" align="center">
             <tbody>
             <tr>
-                <td>Screening Setting:
+                <td>Screening Setting
                     <obs conceptId="a69f18da-54ae-4a14-b040-bc9e03f835fc" answerConceptIds="160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,d85ff219-0f5a-408d-8df0-96bcc9be5071,411dcfe9-3188-4473-8dfd-9f6ea223a6e6
 ,159818AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5b40ad5b-e7ef-4611-8ee5-aee1f782f806,20e9d9a0-c6a1-4c16-a063-dddf5ca694c3,39713023-f0df-4ec4-9f62-94e27194ac6a,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 " answerLabels="OPD,CCC,HTS,Other within health facility,Household,Church-based,Work place,Market,Roadside or Walkway,Baraza,Other setting"/>
                 </td>
-                <td>Pregnancy Status:<obs conceptId="5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" /></td>
+                <td>
+                    <includeIf velocityTest="$patient.gender == 'F' ">
+                        Pregnancy Status<obs conceptId="5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No"  style="radio" />
+                    </includeIf>
+                </td>
             </tr>
             <tr>
-                <td valign="top">Past medical history:<obs conceptId="160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="20" rows="5"/></td>
+                <td valign="top">Past medical history<obs conceptId="160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="50" rows="5"/></td>
                 <td valign="top">
                     <label>Known hypertensive?</label>
                     <obs conceptId="e08c9557-da37-49b9-832f-29b6d8a9dc45" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
