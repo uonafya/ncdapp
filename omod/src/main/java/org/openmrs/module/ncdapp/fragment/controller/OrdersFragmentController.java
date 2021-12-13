@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 import org.openmrs.*;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.hospitalcore.*;
 import org.openmrs.module.hospitalcore.model.*;
@@ -14,6 +15,7 @@ import org.openmrs.module.ncdapp.model.Procedure;
 import org.openmrs.module.patientdashboardapp.model.Option;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
@@ -38,9 +40,8 @@ public class OrdersFragmentController {
 	}
 	
 	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
-		BillingService investigations = Context.getService(BillingService.class);
-		List<BillableService> investigation = investigations.searchService(name);
-		List<SimpleObject> investigationsList = SimpleObject.fromCollection(investigation, ui, "conceptId", "name");
+		List<Concept> investigations = Context.getService(PatientDashboardService.class).searchInvestigation(name);
+		List<SimpleObject> investigationsList = SimpleObject.fromCollection(investigations, ui, "id", "name");
 		return investigationsList;
 		
 	}
@@ -100,8 +101,7 @@ public class OrdersFragmentController {
 	        @RequestParam(value = "selectedProcedureList[]", required = false) Integer[] selectedProcedureList,
 	        @RequestParam(value = "selectedInvestigationList[]", required = false) Integer[] selectedInvestigationList) {
 		
-		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
-		System.out.println(selectedInvestigationList + "investigations Strings");
+		//List<Prescription> prescriptionList = getPrescriptions(drugOrder);
 		
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
 		IpdService ipdService = Context.getService(IpdService.class);
@@ -120,7 +120,7 @@ public class OrdersFragmentController {
 		Obs obsGroup = null;
 		obsGroup = hcs.getObsGroupCurrentDate(patient.getPersonId());
 		Encounter encounter = new Encounter();
-		encounter = admitted.getPatientAdmissionLog().getIpdEncounter();
+		encounter = Context.getEncounterService().getEncounter(patientId);
 		
 		if (!ArrayUtils.isEmpty(selectedProcedureList)) {
 			Concept cProcedure = Context.getConceptService().getConceptByName(procedure.getPropertyValue());
@@ -208,7 +208,7 @@ public class OrdersFragmentController {
 			}
 			bill.setAmount(amount);
 			bill.setActualAmount(amount);
-			bill.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+			bill.setEncounter(encounter);
 			if (serviceAvailable == true) {
 				bill = billingService.savePatientServiceBill(bill);
 			}
@@ -226,7 +226,7 @@ public class OrdersFragmentController {
 				BillableService billableService = billingService.getServiceByConceptId(iId);
 				OpdTestOrder opdTestOrder = new OpdTestOrder();
 				opdTestOrder.setPatient(patient);
-				opdTestOrder.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+				opdTestOrder.setEncounter(encounter);
 				opdTestOrder.setConcept(coninvt);
 				opdTestOrder.setTypeConcept(DepartmentConcept.TYPES[2]);
 				opdTestOrder.setValueCoded(Context.getConceptService().getConcept(iId));
@@ -239,7 +239,7 @@ public class OrdersFragmentController {
 			}
 		}
 		
-		for (Prescription p : prescriptionList) {
+		/*for (Prescription p : prescriptionList) {
 			
 			InventoryCommonService inventoryCommonService = Context.getService(InventoryCommonService.class);
 			InventoryDrug inventoryDrug = inventoryCommonService.getDrugByName(p.getName());
@@ -261,6 +261,6 @@ public class OrdersFragmentController {
 			opdDrugOrder.setCreator(user);
 			opdDrugOrder.setCreatedOn(date);
 			patientDashboardService.saveOrUpdateOpdDrugOrder(opdDrugOrder);
-		}
+		}*/
 	}
 }
