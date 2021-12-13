@@ -14,18 +14,17 @@
 <htmlform>
     <script type="text/javascript">
         jq(document ).ready(function() {
-            jq('.if_diabetes').css('display','none');
-            jq('.if_hypertension').css('display','none');
+            disableDivTagsWhenFormLoads();
         });
 
 
-        function diabetes(){
-            var val= getValue('diabetes.value');
-            jq('.if_diabetes :input').prop('disabled', true);
-            if(val == 165087){
-                jq('.if_diabetes :input').prop('disabled', false);
-                jq('.if_diabetes').css('display', 'all');
-            }
+        function disableDivTagsWhenFormLoads(){
+            jq('#nhifNumber *').prop('disabled', true);
+            jq('#transferInDetails *').prop('disabled', true);
+            jq('#diabetesPatients *').prop('disabled', true);
+            jq('#hypertensionPatients *').prop('disabled', true);
+            jq('#referralUnit *').prop('disabled', true);
+            jq('#referralUnitName *').prop('disabled', true);
         }
     </script>
     <style>
@@ -43,11 +42,11 @@
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
-                <td align="left">Date of enrollment:
+                <td align="left">Date of enrollment
                     <encounterDate id="encounter-date" showTime="true"/>
                 </td>
-                <td>Enrolled by: <encounterProvider default="currentUser" /></td>
-                <td align="right">Enrolled at:
+                <td>Enrolled by <encounterProvider default="currentUser" /></td>
+                <td align="right">Enrolled at
                     <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
                 </td>
             </tr>
@@ -57,67 +56,67 @@
         <table border="0" cellspacing="0" cellpadding="5" width="75%" class="initial" align="center">
             <tbody>
                 <tr>
-                    <td>Occupation:
+                    <td>Occupation
                     <obs conceptId="1542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123801AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Farmer,Trader,Casual worker,Salaried Empoyee,Retired,Non Employed,Other"/>
                     </td>
-                    <td>Level of education: <recentObs conceptId="1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                    <td><span id="nhifPatient">Patient covered by NHIF: <obs conceptId="6796075b-c55a-4306-8ed5-b60c8f10936d" /></span><br />
-                        <span id="nhifNumber">Patient NHIF Number: <patient field="identifier" identifierTypeId="38e3c640-5021-11ec-86a0-fb3bee471720" required="false" /> </span>
+                    <td>Level of education <recentObs conceptId="1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                    <td><span id="nhifPatient">Patient covered by NHIF <obs conceptId="6796075b-c55a-4306-8ed5-b60c8f10936d" style="radio" /></span><br />
+                        <span id="nhifNumber">Patient NHIF Number <patient field="identifier" identifierTypeId="38e3c640-5021-11ec-86a0-fb3bee471720" required="false" /> </span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Patient Mobile Number:<lookup expression="personAttributes.get('Telephone contact')"/></td>
-                    <td>Treatment supporter name:<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                    <td>Treatment supporter Contact:<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
+                    <td>Patient Mobile Number<lookup expression="personAttributes.get('Telephone contact')"/></td>
+                    <td>Treatment supporter name<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                    <td>Treatment supporter Contact<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
                 </tr>
                 <tr>
-                    <td>County:<lookup expression="patient.personAddress.countyDistrict" /></td>
-                    <td>Sub County:<lookup expression="patient.personAddress.stateProvince" /></td>
-                    <td>Ward:<lookup expression="patient.personAddress.address4" /></td>
+                    <td>County<lookup expression="patient.personAddress.countyDistrict" /></td>
+                    <td>Sub County<lookup expression="patient.personAddress.stateProvince" /></td>
+                    <td>Ward<lookup expression="patient.personAddress.address4" /></td>
                 </tr>
                 <tr>
-                    <td>Patient Village:<lookup expression="patient.personAddress.cityVillage" /></td>
-                    <td>Land Mark:<lookup expression="patient.personAddress.address2" /></td>
-                    <td>Patient entry point:<obs conceptId="160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Patient,Transfer In" /></td>
+                    <td>Patient Village<lookup expression="patient.personAddress.cityVillage" /></td>
+                    <td>Land Mark<lookup expression="patient.personAddress.address2" /></td>
+                    <td>Patient entry point<obs conceptId="160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Patient,Transfer In" style="radio" /></td>
                 </tr>
                 <tr>
-                    <div id="transferInDetails">
-                        <td>Facility transferred from:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                        <td valign="top" colspan="2">Current Treatment the patient is on:<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
+                    <div>
+                        <td id="transferInDetails">Facility transferred from<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                        <td valign="top" colspan="2">Current Treatment the patient is on<obs conceptId="42644193-8f92-4e25-aefd-28028adbf987" cols="20" rows="3" /></td>
                     </div>
                 </tr>
 
             <tr>
                 <td>
-                    Disease type:<obs conceptId="74eb8e8d-d078-4fa3-8973-2d710d8f46df" id="diseaseType" />
+                    Disease type<obs conceptId="74eb8e8d-d078-4fa3-8973-2d710d8f46df" id="diseaseType" />
                 </td>
                 <td>
-                    Year of Diagnosis:<obs conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    Year of Diagnosis<obs conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
                 <td>
-                    Treatment start date:<obs conceptId="163526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    Treatment start date<obs conceptId="163526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
             </tr>
            <tr>
                 <td id="diabetesPatients">
-                    If diabetic, Diabetes Type:<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  />
+                    If diabetic, Diabetes Type<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptIds="142474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Diabetes Type 1,Diabetes Type 2,Gestational Diabetes Mellitus,Diabetes due to other causes" />
                 </td>
                <td id="hypertensionPatients">
-                   If hypertensive, indicate the classification:<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" />
+                   If hypertensive, indicate the classification<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" style="radio" />
                </td>
-               <td>HIV Status:<obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+               <td>HIV Status<obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" /></td>
            </tr>
             <tr>
                 <td>
-                    Enrolled to care? <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                    Enrolled to care? <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
                 </td>
-                <td colspan="2">Other existing comordities: <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" rows="3" /></td>
+                <td colspan="2">Other existing comordities <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" rows="3" /></td>
             </tr>
             <tr>
-                <td>Is patient a referral?:<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
-                <td>Specify referral from:<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
-                <td>
-                    specify referring facility/community unit:<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                <td>Is patient a referral?<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" /></td>
+                <td id="referralUnit">Specify referral from<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
+                <td id="referralUnitName">
+                    specify referring facility/community unit<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
             </tr>
             </tbody>

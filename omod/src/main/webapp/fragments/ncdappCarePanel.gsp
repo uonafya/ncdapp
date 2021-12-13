@@ -69,34 +69,18 @@
 
 %>
 <div class="ke-stack-item">
-    <table cellspacing="0" cellpadding="5">
-        <tr>
-            <td>
-                <% dataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-            <td>
-                <% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-        <br />
-        <tr id="medication">
-            <td colspan="2">
-                <% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-        <br />
-        <tr id="complications">
-            <td colspan="2">
-                <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-        <br />
-        <tr id="labs">
-            <td colspan="2">
-                <% labs.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
-            </td>
-        </tr>
-    </table>
-
+    <% dataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+<% otherDataPoints.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+<% currentMadication.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+    <% complications.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
+</div>
+<div class="ke-stack-item">
+    <% labs.each { print ui.includeFragment("kenyaui", "widget/dataPoint", it) } %>
 </div>
 
