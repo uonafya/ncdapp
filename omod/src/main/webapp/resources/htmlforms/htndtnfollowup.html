@@ -98,20 +98,6 @@
                     prevTag = '<div class="nav-button"><a href="#" class="previous" rel="' + prev + '"></a></div>';
                 }
 
-
-                if (prevTag) {
-                    if (nextTag) jQuery(this).append('<div class="form-nav-container"></div>');
-                }
-
-                if (prevTag) {
-                    if (!nextTag) jQuery(this).append('<div class="form-nav-container"></div>');
-                }
-
-                if (nextTag) {
-                    if (!prevTag) jQuery(this).append('<div class="form-nav-container"></div>');
-                }
-
-
             });
 
             jQuery('.next, .previous').click(function () {
@@ -491,6 +477,15 @@
                 flagInputByRange('urea', 2.70, 8.0);
             });
 
+            jq('#hasdiebeticfoot').challenge(function () {
+                var diebeticfoot=getValue("hasdiebeticfoot.value")
+                if (diebeticfoot="1065"){
+                    jq('#footAssesment').show();
+                }else {
+                    jq('#footAssesment').hide();
+                }
+            })
+
 
         });
     </script>
@@ -657,6 +652,7 @@
                 <td align="left">Date:
                     <encounterDate id="encounter-date" showTime="true"/>
                 </td>
+                <td>Screening by: <encounterProvider default="currentUser" /></td>
                 <td align="right">Location:
                     <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
                 </td>
@@ -881,9 +877,7 @@
                                      answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                      answerLabel="YES,NO, Stopped" style="radio" />
                                 <br/>
-                                <label>If stopped alcohol, how long ago?</label>
                             </td>
-                            <br/>
                             <td>
                                 <label>Alcohol cessation counseling done</label>
                                 <obs conceptId="1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1105,7 +1099,7 @@
 
                             <table>
                                 <tr>
-                                <td>
+                                <td valign="top">
                                     <table>
                                         <th>Cardiovascular</th>
                                         <tr>
@@ -1159,7 +1153,6 @@
                                             </td>
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
-                                        <br/>
 
                                     </table>
                                 </td>
@@ -1167,26 +1160,74 @@
                                 <td valign="top">
                                     <table>
                                         <td>
-                                        <th>Neurological Exam</th>
+                                            <th>Neurological Exam</th>
+                                            <tr>
+                                                <td>Motor</td>
+                                                <td>
+                                                    <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                </td>
+                                                <td><span class="value"><input type="text"/></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sensory</td>
+                                                <td>
+                                                    <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                </td>
+                                                <td><span class="value"><input type="text"/></span></td>
+                                            </tr>
+                                        </td>
                                         <tr>
-                                            <td>Motor</td>
-                                            <td>
-                                                <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                            <td><br/>
+                                                <label><strong>Has diabetic Foot?</strong></label>
+                                                <obs id="hasdiebeticfoot" conceptId="142452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabel="YES,NO" style="radio"/>
                                             </td>
-                                            <td><span class="value"><input type="text"/></span></td>
                                         </tr>
-                                        <tr>
-                                            <td>Sensory</td>
-                                            <td>
-                                                <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
-                                            </td>
-                                            <td><span class="value"><input type="text"/></span></td>
-                                        </tr>
+                                        <td id="footAssesment">
+                                            <th>Foot Risk Assesment</th>
+                                            <div>
+                                                <tr>
+                                                    <td>Low sensation</td>
+                                                    <td>
+                                                        <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                    </td>
+                                                    <td><span class="value"><input type="text"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Absent pulses</td>
+                                                    <td>
+                                                        <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                    </td>
+                                                    <td><span class="value"><input type="text"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Prior amputation</td>
+                                                    <td>
+                                                        <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                    </td>
+                                                    <td><span class="value"><input type="text"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Foot deformity</td>
+                                                    <td>
+                                                        <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                    </td>
+                                                    <td><span class="value"><input type="text"/></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>History of ulcer</td>
+                                                    <td>
+                                                        <obs  conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Normal,Abnomal" style="radio" />
+                                                    </td>
+                                                    <td><span class="value"><input type="text"/></span></td>
+                                                </tr>
+
+                                            </div>
                                         </td>
                                     </table>
                                 </td>
                                 </tr>
-
                             </table>
                         </fieldset>
                 </div>
