@@ -15,6 +15,7 @@ import org.openmrs.module.ncdapp.model.Procedure;
 import org.openmrs.module.patientdashboardapp.model.Option;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
@@ -39,9 +40,8 @@ public class OrdersFragmentController {
 	}
 	
 	public List<SimpleObject> getInvestigations(@RequestParam(value = "q") String name, UiUtils ui) {
-		BillingService investigations = Context.getService(BillingService.class);
-		List<BillableService> investigation = investigations.searchService(name);
-		List<SimpleObject> investigationsList = SimpleObject.fromCollection(investigation, ui, "conceptId", "name");
+		List<Concept> investigations = Context.getService(PatientDashboardService.class).searchInvestigation(name);
+		List<SimpleObject> investigationsList = SimpleObject.fromCollection(investigations, ui, "id", "name");
 		return investigationsList;
 		
 	}
@@ -101,16 +101,18 @@ public class OrdersFragmentController {
 	        @RequestParam(value = "selectedProcedureList[]", required = false) Integer[] selectedProcedureList,
 	        @RequestParam(value = "selectedInvestigationList[]", required = false) Integer[] selectedInvestigationList) {
 		
-		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
-
+		//List<Prescription> prescriptionList = getPrescriptions(drugOrder);
+		
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
 		IpdService ipdService = Context.getService(IpdService.class);
 		IpdPatientAdmitted admitted = ipdService.getAdmittedByPatientId(patientId);
 		Patient patient = Context.getPatientService().getPatient(patientId);
 		BillingService billingService = Context.getService(BillingService.class);
 		AdministrationService administrationService = Context.getAdministrationService();
-		ConceptService investigationn = Context.getConceptService();
-		ConceptService procedure = Context.getConceptService();
+		GlobalProperty procedure = administrationService
+		        .getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_POST_FOR_PROCEDURE);
+		GlobalProperty investigationn = administrationService
+		        .getGlobalPropertyObject(PatientDashboardConstants.PROPERTY_FOR_INVESTIGATION);
 		User user = Context.getAuthenticatedUser();
 		Date date = new Date();
 		PatientDashboardService patientDashboardService = Context.getService(PatientDashboardService.class);
@@ -118,10 +120,10 @@ public class OrdersFragmentController {
 		Obs obsGroup = null;
 		obsGroup = hcs.getObsGroupCurrentDate(patient.getPersonId());
 		Encounter encounter = new Encounter();
-		encounter = admitted.getPatientAdmissionLog().getIpdEncounter();
+		encounter = Context.getEncounterService().getEncounter(patientId);
 		
 		if (!ArrayUtils.isEmpty(selectedProcedureList)) {
-			Concept cProcedure = Context.getConceptService().getConceptByName(String.valueOf(procedure));
+			Concept cProcedure = Context.getConceptService().getConceptByName(procedure.getPropertyValue());
 			
 			for (Integer pId : selectedProcedureList) {
 				Obs oProcedure = new Obs();
@@ -138,7 +140,7 @@ public class OrdersFragmentController {
 		}
 		
 		if (!ArrayUtils.isEmpty(selectedInvestigationList)) {
-			Concept coninvt = Context.getConceptService().getConceptByName(String.valueOf(investigationn));
+			Concept coninvt = Context.getConceptService().getConceptByName(investigationn.getPropertyValue());
 			
 			for (Integer pId : selectedInvestigationList) {
 				Obs obsInvestigation = new Obs();
@@ -206,7 +208,7 @@ public class OrdersFragmentController {
 			}
 			bill.setAmount(amount);
 			bill.setActualAmount(amount);
-			bill.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+			bill.setEncounter(encounter);
 			if (serviceAvailable == true) {
 				bill = billingService.savePatientServiceBill(bill);
 			}
@@ -218,13 +220,13 @@ public class OrdersFragmentController {
 		}
 		
 		if (!ArrayUtils.isEmpty(selectedInvestigationList)) {
-			Concept coninvt = Context.getConceptService().getConceptByName(String.valueOf(investigationn));
+			Concept coninvt = Context.getConceptService().getConceptByName(investigationn.getPropertyValue());
 			
 			for (Integer iId : selectedInvestigationList) {
 				BillableService billableService = billingService.getServiceByConceptId(iId);
 				OpdTestOrder opdTestOrder = new OpdTestOrder();
 				opdTestOrder.setPatient(patient);
-				opdTestOrder.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+				opdTestOrder.setEncounter(encounter);
 				opdTestOrder.setConcept(coninvt);
 				opdTestOrder.setTypeConcept(DepartmentConcept.TYPES[2]);
 				opdTestOrder.setValueCoded(Context.getConceptService().getConcept(iId));
@@ -237,7 +239,7 @@ public class OrdersFragmentController {
 			}
 		}
 		
-		for (Prescription p : prescriptionList) {
+		/*for (Prescription p : prescriptionList) {
 			
 			InventoryCommonService inventoryCommonService = Context.getService(InventoryCommonService.class);
 			InventoryDrug inventoryDrug = inventoryCommonService.getDrugByName(p.getName());
@@ -259,6 +261,6 @@ public class OrdersFragmentController {
 			opdDrugOrder.setCreator(user);
 			opdDrugOrder.setCreatedOn(date);
 			patientDashboardService.saveOrUpdateOpdDrugOrder(opdDrugOrder);
-		}
+		}*/
 	}
 }

@@ -274,14 +274,14 @@
             jq("#selectedInvestigationList option").each(function () {
                 selectedInv.push(jq(this).val());
             });
+            console.log(JSON.stringify(selectedInv) + "heere")
 
             drugOrder = JSON.stringify(drugOrder);
 
             var treatmentFormData = {
-                'patientId': jq('#treatmentPatientID').val(),
+                'patientId': ${patient.patientId},
                 'selectedProcedureList': selectedProc,
-                'selectedInvestigationList': selectedInv,
-                'drugOrder': drugOrder
+                'selectedInvestigationList': selectedInv
             };
 
             function successFn(successly_) {
