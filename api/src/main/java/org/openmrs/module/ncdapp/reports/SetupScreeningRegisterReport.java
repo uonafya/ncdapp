@@ -1,10 +1,13 @@
 package org.openmrs.module.ncdapp.reports;
 
+import org.openmrs.EncounterType;
 import org.openmrs.module.kenyacore.report.HybridReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportUtils;
 import org.openmrs.module.kenyacore.report.builder.AbstractHybridReportBuilder;
 import org.openmrs.module.kenyacore.report.builder.Builds;
+import org.openmrs.module.metadatadeploy.MetadataUtils;
+import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.common.SortCriteria;
 import org.openmrs.module.reporting.data.DataDefinition;
@@ -44,7 +47,9 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 	
 	@Override
 	protected List<Mapped<DataSetDefinition>> buildDataSets(ReportDescriptor descriptor, ReportDefinition report) {
-		
+		EncounterType screeningEncounter = MetadataUtils.existing(EncounterType.class,
+		    "af5dbd36-18f9-11eb-ae6b-7f4c0920f004");
+		report.setBaseCohortDefinition(NcdappUtils.allDmHtnForScreeningPatientCohort(screeningEncounter.getEncounterTypeId()));
 		return Arrays.asList(ReportUtils.map(datasetColumns(), "startDate=${startDate},endDate=${endDate}"));
 	}
 	

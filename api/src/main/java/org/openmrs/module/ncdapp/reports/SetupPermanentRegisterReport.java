@@ -1,6 +1,7 @@
 package org.openmrs.module.ncdapp.reports;
 
 import org.openmrs.PatientIdentifierType;
+import org.openmrs.Program;
 import org.openmrs.module.kenyacore.report.HybridReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportUtils;
@@ -8,6 +9,7 @@ import org.openmrs.module.kenyacore.report.builder.AbstractHybridReportBuilder;
 import org.openmrs.module.kenyacore.report.builder.Builds;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
+import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.data.DataDefinition;
 import org.openmrs.module.reporting.data.converter.BirthdateConverter;
@@ -46,6 +48,8 @@ public class SetupPermanentRegisterReport extends AbstractHybridReportBuilder {
 	
 	@Override
 	protected List<Mapped<DataSetDefinition>> buildDataSets(ReportDescriptor descriptor, ReportDefinition report) {
+		Program program = MetadataUtils.existing(Program.class, "8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa");
+		report.setBaseCohortDefinition(NcdappUtils.allDmHtnForScreeningPatientCohort(program.getProgramId()));
 		
 		return Arrays.asList(ReportUtils.map(dailyRegister(), "startDate=${startDate},endDate=${endDate}"));
 	}

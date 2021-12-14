@@ -1,8 +1,11 @@
 package org.openmrs.module.ncdapp.reports;
 
+import org.openmrs.Program;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.builder.AbstractReportBuilder;
 import org.openmrs.module.kenyacore.report.builder.Builds;
+import org.openmrs.module.metadatadeploy.MetadataUtils;
+import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.module.ncdapp.reporting.dataset.Moh740DatasetDefinition;
 import org.openmrs.module.reporting.dataset.definition.DataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
@@ -37,6 +40,8 @@ public class SetupMoh740Report extends AbstractReportBuilder {
 	@Override
 	protected List<Mapped<DataSetDefinition>> buildDataSets(ReportDescriptor reportDescriptor,
 	        ReportDefinition reportDefinition) {
+		Program program = MetadataUtils.existing(Program.class, "8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa");
+		reportDefinition.setBaseCohortDefinition(NcdappUtils.allDmHtnForScreeningPatientCohort(program.getProgramId()));
 		return Arrays.asList(map(moh740DatasetDefinition.getMoh740Data(), "startDate=${startDate},endDate=${endDate}"));
 	}
 }
