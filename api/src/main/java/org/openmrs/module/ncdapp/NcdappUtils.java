@@ -8,6 +8,7 @@ import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.cohort.definition.SqlCohortDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
 import org.openmrs.module.reporting.evaluation.parameter.Parameter;
+import org.openmrs.module.reporting.query.encounter.definition.EncounterQuery;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -40,19 +41,22 @@ public class NcdappUtils {
 		return formatter.format(date);
 	}
 	
-	public static Mapped<CohortDefinition> allDmHtnForScreeningPatientCohort(int enc1) {
+	public static CohortDefinition allDmHtnForScreeningPatientCohort(int enc1) {
 		SqlCohortDefinition cd = new SqlCohortDefinition();
 		cd.setName("Active Patients in the DM and HTN screening encounter type");
-		cd.setQuery("SELECT p.patient_id FROM patient p INNER JOIN encounter e ON p.patient_id=e.patient_id WHERE e.encounter_id IN("
+		cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
+		cd.addParameter(new Parameter("endDate", "End Date", Date.class));
+		
+		cd.setQuery("SELECT p.patient_id FROM patient p INNER JOIN encounter e ON p.patient_id=e.patient_id WHERE e.encounter_datetime BETWEEN :startDate AND :endDate AND  e.encounter_type IN("
 		        + enc1 + ")");
-		return ReportUtils.map((CohortDefinition) cd, "");
+		return cd;
 	}
 	
-	public static Mapped<CohortDefinition> allDmHtnProgramPatientCohort(int program) {
+	public static CohortDefinition allDmHtnProgramPatientCohort(int program) {
 		SqlCohortDefinition cd = new SqlCohortDefinition();
 		cd.setName("Active Patients in the DM and HTN Program");
-		cd.setQuery("SELECT p.patient_id FROM patient p INNER JOIN patient_program pg ON p.patient_id=pg.patient_id INNER JOIN program p ON p.program_id=pg.program_id WHERE p.program_id="
+		cd.setQuery("SELECT p.patient_id FROM patient p INNER JOIN patient_program pg ON p.patient_id=pg.patient_id INNER JOIN program prg ON prg.program_id=pg.program_id WHERE prg.program_id="
 		        + program);
-		return ReportUtils.map((CohortDefinition) cd, "");
+		return cd;
 	}
 }

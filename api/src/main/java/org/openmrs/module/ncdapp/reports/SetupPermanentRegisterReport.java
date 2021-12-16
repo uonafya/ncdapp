@@ -26,12 +26,10 @@ import org.openmrs.module.reporting.data.person.definition.PreferredNameDataDefi
 import org.openmrs.module.reporting.dataset.definition.DataSetDefinition;
 import org.openmrs.module.reporting.dataset.definition.PatientDataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
-import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.openmrs.module.kenyaui.KenyaUiConstants.DATE_FORMAT;
@@ -49,21 +47,13 @@ public class SetupPermanentRegisterReport extends AbstractHybridReportBuilder {
 	@Override
 	protected List<Mapped<DataSetDefinition>> buildDataSets(ReportDescriptor descriptor, ReportDefinition report) {
 		Program program = MetadataUtils.existing(Program.class, "8b4f6a38-4f5e-11ec-a4c2-a75a2e13cdaa");
-		report.setBaseCohortDefinition(NcdappUtils.allDmHtnForScreeningPatientCohort(program.getProgramId()));
+		report.setBaseCohortDefinition(ReportUtils.map(NcdappUtils.allDmHtnProgramPatientCohort(program.getProgramId())));
 		
-		return Arrays.asList(ReportUtils.map(dailyRegister(), "startDate=${startDate},endDate=${endDate}"));
+		return Arrays.asList(ReportUtils.map(permanentRegister(), ""));
 	}
 	
-	@Override
-	protected List<Parameter> getParameters(ReportDescriptor reportDescriptor) {
-		return Arrays.asList(new Parameter("startDate", "Start Date", Date.class), new Parameter("endDate", "End Date",
-		        Date.class), new Parameter("dateBasedReporting", "", String.class));
-	}
-	
-	private DataSetDefinition dailyRegister() {
+	private DataSetDefinition permanentRegister() {
 		PatientDataSetDefinition dsd = new PatientDataSetDefinition();
-		dsd.addParameter(new Parameter("startDate", "Start Date", Date.class));
-		dsd.addParameter(new Parameter("endDate", "End Date", Date.class));
 		dsd.setName("permanent");
 		PatientIdentifierType upn = MetadataUtils.existing(PatientIdentifierType.class,
 		    CommonMetadata._PatientIdentifierType.OPENMRS_ID);
