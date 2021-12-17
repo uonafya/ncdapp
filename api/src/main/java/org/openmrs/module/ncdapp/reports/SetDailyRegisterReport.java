@@ -94,7 +94,7 @@ public class SetDailyRegisterReport extends AbstractHybridReportBuilder {
 		dsd.addColumn("Sex", new GenderDataDefinition(), "", null);
 		dsd.addColumn("DOB", new BirthdateDataDefinition(), "", new BirthdateConverter(DATE_FORMAT));
 		dsd.addColumn("Age", new AgeDataDefinition(), "", null);
-		dsd.addColumn("Encounter Date", new EncounterDatetimeDataDefinition(), "", new DateConverter(DATE_FORMAT));
+		dsd.addColumn("EncounterDate", new EncounterDatetimeDataDefinition(), "", new DateConverter(DATE_FORMAT));
 		
 		return dsd;
 	}

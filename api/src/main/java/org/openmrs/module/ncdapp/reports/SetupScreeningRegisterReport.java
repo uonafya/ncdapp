@@ -178,6 +178,9 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		dsd.addColumn("facility",
 		    getObservation(Context.getConceptService().getConceptByUuid("161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")),
 		    "onOrAfter=${startDate},onOrBefore=${endDate+23h+59m}", new ObsValueConverter());
+		dsd.addColumn("vnumber",
+		    getObservation(Context.getConceptService().getConceptByUuid("68bb4b1c-dc92-44bd-966e-832edc1f6033")),
+		    "onOrAfter=${startDate},onOrBefore=${endDate+23h+59m}", new ObsValueConverter());
 		
 		return dsd;
 	}
@@ -187,7 +190,7 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
 		cd.addParameter(new Parameter("endDate", "End Date", Date.class));
 		cd.setName("Active screened for DM and HTN Patients");
-		cd.setQuery("SELECT e.encounter_id FROM encounter e WHERE e.encounter_datetime BETWEEN :startDate AND :endDate+23h+59m AND e.encounter_id IN("
+		cd.setQuery("SELECT e.encounter_id FROM encounter e WHERE e.encounter_datetime BETWEEN :startDate AND :endDate AND e.encounter_type IN("
 		        + enc1 + ")");
 		return cd;
 	}
