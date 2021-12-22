@@ -17,6 +17,7 @@ import org.openmrs.module.kenyaemr.reporting.data.converter.CalculationResultCon
 import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.module.ncdapp.calculation.VillageCalculation;
+import org.openmrs.module.ncdapp.reporting.data.converter.ObjectCounterConverter;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.common.SortCriteria;
 import org.openmrs.module.reporting.common.TimeQualifier;
@@ -35,6 +36,7 @@ import org.openmrs.module.reporting.data.person.definition.ConvertedPersonDataDe
 import org.openmrs.module.reporting.data.person.definition.GenderDataDefinition;
 import org.openmrs.module.reporting.data.person.definition.ObsForPersonDataDefinition;
 import org.openmrs.module.reporting.data.person.definition.PersonAttributeDataDefinition;
+import org.openmrs.module.reporting.data.person.definition.PersonIdDataDefinition;
 import org.openmrs.module.reporting.data.person.definition.PreferredNameDataDefinition;
 import org.openmrs.module.reporting.dataset.definition.DataSetDefinition;
 import org.openmrs.module.reporting.dataset.definition.EncounterDataSetDefinition;
@@ -82,7 +84,7 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		EncounterDataSetDefinition dsd = new EncounterDataSetDefinition();
 		EncounterType screeningEncounter = MetadataUtils.existing(EncounterType.class,
 		    "af5dbd36-18f9-11eb-ae6b-7f4c0920f004");
-		String paramMapping = "startDate=${startDate},endDate=${endDate+23h+59m}";
+		String paramMapping = "startDate=${startDate},endDate=${endDate+1d}";
 		dsd.setName("screening");
 		dsd.setDescription("Visit Screening information");
 		dsd.addSortCriteria("Screening Date", SortCriteria.SortDirection.ASC);
@@ -93,8 +95,6 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		//Identifiers
 		PatientIdentifierType nationalIdType = MetadataUtils.existing(PatientIdentifierType.class,
 		    CommonMetadata._PatientIdentifierType.NATIONAL_ID);
-		PatientIdentifierType opdNumberType = MetadataUtils.existing(PatientIdentifierType.class,
-		    CommonMetadata._PatientIdentifierType.PATIENT_CLINIC_NUMBER);
 		
 		DataConverter identifierFormatter = new ObjectFormatter("{identifier}");
 		DataDefinition nationalId = new ConvertedPatientDataDefinition("nationalId", new PatientIdentifierDataDefinition(
@@ -108,6 +108,7 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		DataConverter nameFormatter = new ObjectFormatter("{familyName}, {givenName} {middleName}");
 		DataDefinition nameDef = new ConvertedPersonDataDefinition("name", new PreferredNameDataDefinition(), nameFormatter);
 		
+		dsd.addColumn("counnt", new PersonIdDataDefinition(), "", new ObjectCounterConverter());
 		dsd.addColumn("id", new PatientIdDataDefinition(), "");
 		dsd.addColumn("Name", nameDef, "");
 		dsd.addColumn("NationalId", nationalId, "");

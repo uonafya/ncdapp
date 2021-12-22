@@ -21,6 +21,7 @@ import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.module.ncdapp.calculation.DmHtnEncounterDateCalculation;
 import org.openmrs.module.ncdapp.calculation.VillageCalculation;
+import org.openmrs.module.ncdapp.reporting.data.converter.ObjectCounterConverter;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.common.TimeQualifier;
 import org.openmrs.module.reporting.data.DataDefinition;
@@ -83,6 +84,7 @@ public class SetupPermanentRegisterReport extends AbstractHybridReportBuilder {
 		
 		DataConverter formatter = new ObjectFormatter("{familyName}, {givenName} {middleName}");
 		DataDefinition nameDef = new ConvertedPersonDataDefinition("name", new PreferredNameDataDefinition(), formatter);
+		dsd.addColumn("counnt", new PersonIdDataDefinition(), "", new ObjectCounterConverter());
 		dsd.addColumn("id", new PersonIdDataDefinition(), "");
 		dsd.addColumn("Name", nameDef, "");
 		dsd.addColumn("Identifier", identifierDef, "");

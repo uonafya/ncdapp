@@ -11,6 +11,7 @@ import org.openmrs.module.kenyacore.report.builder.Builds;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.ncdapp.NcdappUtils;
+import org.openmrs.module.ncdapp.reporting.data.converter.ObjectCounterConverter;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.data.DataDefinition;
 import org.openmrs.module.reporting.data.converter.BirthdateConverter;
@@ -88,6 +89,7 @@ public class SetDailyRegisterReport extends AbstractHybridReportBuilder {
 		
 		DataConverter formatter = new ObjectFormatter("{familyName}, {givenName}");
 		DataDefinition nameDef = new ConvertedPersonDataDefinition("name", new PreferredNameDataDefinition(), formatter);
+		dsd.addColumn("counnt", new PersonIdDataDefinition(), "", new ObjectCounterConverter());
 		dsd.addColumn("id", new PersonIdDataDefinition(), "");
 		dsd.addColumn("Name", nameDef, "");
 		dsd.addColumn("Identifier", identifierDef, "");
