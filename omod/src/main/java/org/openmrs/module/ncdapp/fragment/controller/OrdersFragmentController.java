@@ -102,7 +102,7 @@ public class OrdersFragmentController {
 	        @RequestParam(value = "selectedProcedureList[]", required = false) Integer[] selectedProcedureList,
 	        @RequestParam(value = "selectedInvestigationList[]", required = false) Integer[] selectedInvestigationList) {
 		
-		//List<Prescription> prescriptionList = getPrescriptions(drugOrder);
+		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
 		
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
 		IpdService ipdService = Context.getService(IpdService.class);
@@ -260,7 +260,7 @@ public class OrdersFragmentController {
 			}
 		}
 		
-		/*for (Prescription p : prescriptionList) {
+		for (Prescription p : prescriptionList) {
 			
 			InventoryCommonService inventoryCommonService = Context.getService(InventoryCommonService.class);
 			InventoryDrug inventoryDrug = inventoryCommonService.getDrugByName(p.getName());
@@ -282,6 +282,6 @@ public class OrdersFragmentController {
 			opdDrugOrder.setCreator(user);
 			opdDrugOrder.setCreatedOn(date);
 			patientDashboardService.saveOrUpdateOpdDrugOrder(opdDrugOrder);
-		}*/
+		}
 	}
 }
