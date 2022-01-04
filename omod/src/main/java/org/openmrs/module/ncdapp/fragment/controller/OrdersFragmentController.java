@@ -274,6 +274,7 @@ public class OrdersFragmentController {
 			opdDrugOrder.setComments(p.getComment());
 			opdDrugOrder.setCreator(user);
 			opdDrugOrder.setCreatedOn(date);
+			opdDrugOrder.setReferralWardName("DM/HTN");
 			patientDashboardService.saveOrUpdateOpdDrugOrder(opdDrugOrder);
 		}
 	}
