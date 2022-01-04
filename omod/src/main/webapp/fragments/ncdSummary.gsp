@@ -11,13 +11,9 @@ table.initial > tbody > tr > td, table.initial > tbody > tr > th {
 }
 tr:nth-child(even) {background-color: #f2f2;}
 </style>
-<div class="ke-panel-frame">
-    <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
-    <div class="ke-panel-content">
-        <br />
         <table border="0" align="center" width="100%">
             <tr>
-                <td colspan="2" valign="top">
+                <td valign="top" width="50%">
                     <table cellpadding="5" cellspacing="0" class="initial" width="100%">
                         <tbody>
                         <tr>
@@ -142,13 +138,7 @@ tr:nth-child(even) {background-color: #f2f2;}
                         </tbody>
                     </table>
                 </td>
-            </tr>
-            <br />
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td valign="top">
+                <td width="30%">
                     <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
                         <tr>
                             <th colspan="3">BMI Index Measures</th>
@@ -180,7 +170,7 @@ tr:nth-child(even) {background-color: #f2f2;}
                         </tr>
                     </table>
                 </td>
-                <td valign="top">
+                <td valign="top" width="20%">
                     <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
                         <tr>
                             <th colspan="3">Blood Pressure Metrics</th>
@@ -199,5 +189,3 @@ tr:nth-child(even) {background-color: #f2f2;}
                 </td>
             </tr>
         </table>
-    </div>
-</div>

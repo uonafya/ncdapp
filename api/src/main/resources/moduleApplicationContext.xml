@@ -150,6 +150,6 @@
         <property name="description" value="DM/HTN Screening Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
         <property name="template" value="ncdapp:screening.xls" />
-        <property name="repeatingSection" value="sheet:1,row:3,dataset:screening" />
+        <property name="repeatingSection" value="sheet:1,row:5,dataset:screening" />
     </bean>
 </beans>

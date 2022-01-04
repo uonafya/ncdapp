@@ -30,37 +30,44 @@
             jq('#hypertensionPatients *').prop('disabled', true);
             jq('#referralUnit *').prop('disabled', true);
             jq('#referralUnitName *').prop('disabled', true);
+            jq('#voucherNumber *').prop('disabled', true);
         }
         function nhifResponse() {
-            var nhifQuestionResponses = getValue('nhifPatient.value');
-            if (nhifQuestionResponses === 1065){
-                jq('#nhifNumber *').prop('disabled', false);
-            }
-            else {
-                jq('#nhifNumber *').prop('disabled', true);
-            }
+            jQuery('#nhifPatient *').click(function() {
+                if (jq(this).val() == 1065){
+                    jq('#nhifNumber *').prop('disabled', false);
+                }
+                else {
+                    jq('#nhifNumber *').prop('disabled', true);
+                }
+            });
         }
         function entryPointResponses() {
-        var entrypointResponses = getValue('entryPoint.value');
-            if (entrypointResponses === 160563){
-                jq('#transferInDetails *').prop('disabled', false);
-            }
-            else {
-                jq('#transferInDetails *').prop('disabled', true);
-            }
+            jQuery('#entryPoint *').click(function() {
+                alert(jq(this).val());
+                if (jq(this).val() === 160563){
+                    jq('#transferInDetails *').prop('disabled', false);
+                }
+                else {
+                    jq('#transferInDetails *').prop('disabled', true);
+                }
+            });
         }
         function diseaseType() {
             var diseaseTypeResponses = getValue('diseaseType.value');
-            if (diseaseTypeResponses === 1000488 || diseaseTypeResponses === 1000489){
-                jq('#diabetesPatients *').prop('disabled', false);
-            }
-            else if(diseaseTypeResponses === 1000490 || diseaseTypeResponses === 1000491){
-                jq('#hypertensionPatients *').prop('disabled', false);
-            }
-            else {
-                jq('#diabetesPatients *').prop('disabled', true);
-                jq('#hypertensionPatients *').prop('disabled', true);
-            }
+            jQuery('#diseaseType *').click(function() {
+                alert(jq(this).val());
+                if (jq(this).val() === 1000488 || jq(this).val() === 1000489){
+                    jq('#diabetesPatients *').prop('disabled', false);
+                }
+                else if(jq(this).val() === 1000490 || jq(this).val() === 1000491){
+                    jq('#hypertensionPatients *').prop('disabled', false);
+                }
+                else {
+                    jq('#diabetesPatients *').prop('disabled', true);
+                    jq('#hypertensionPatients *').prop('disabled', true);
+                }
+            });
 
         }
         function referralInformation() {
@@ -147,23 +154,26 @@
                 </td>
             </tr>
            <tr>
-                <td id="diabetesPatients">
-                    If diabetic, Diabetes Type<obs conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptIds="142474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Diabetes Type 1,Diabetes Type 2,Gestational Diabetes Mellitus,Diabetes due to other causes" />
+                <td>
+                    If diabetic, Diabetes Type<obs id="diabetesPatients" conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptIds="142474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Diabetes Type 1,Diabetes Type 2,Gestational Diabetes Mellitus,Diabetes due to other causes" />
                 </td>
-               <td id="hypertensionPatients">
+               <td>
                    If hypertensive, indicate the classification<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" style="radio" />
                </td>
-               <td>HIV Status<obs conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" /></td>
+               <td>HIV Status<obs id="hypertensionPatients" conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" /></td>
            </tr>
             <tr>
                 <td valign="top">
                     Enrolled to care? <obs conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
                 </td>
                 <td colspan="2" valign="top">Other existing comordities <br />
-                    <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" cols="2" /></td>
+                    <obs conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" cols="20" rows="2" /></td>
             </tr>
             <tr>
-                <td>Is patient a referral?<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" /></td>
+                <td>
+                    Is patient a referral?<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+                    Referral voucher number<obs conceptId="68bb4b1c-dc92-44bd-966e-832edc1f6033" id="voucherNumber" />
+                </td>
                 <td id="referralUnit">Specify referral from<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
                 <td id="referralUnitName">
                     specify referring facility/community unit<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
