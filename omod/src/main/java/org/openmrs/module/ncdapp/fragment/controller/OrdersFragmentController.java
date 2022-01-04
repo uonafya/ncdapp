@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class OrdersFragmentController {
 	
@@ -87,9 +84,7 @@ public class OrdersFragmentController {
 		ObjectMapper mapper = new ObjectMapper();
 		List<Prescription> list = null;
 		try {
-			list = mapper.readValue(json,
-			    TypeFactory.defaultInstance().constructCollectionType(List.class, Prescription.class));
-			
+			list = Arrays.asList(mapper.readValue(json, Prescription[].class));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -105,8 +100,6 @@ public class OrdersFragmentController {
 		List<Prescription> prescriptionList = getPrescriptions(drugOrder);
 		
 		HospitalCoreService hcs = (HospitalCoreService) Context.getService(HospitalCoreService.class);
-		IpdService ipdService = Context.getService(IpdService.class);
-		IpdPatientAdmitted admitted = ipdService.getAdmittedByPatientId(patientId);
 		Patient patient = Context.getPatientService().getPatient(patientId);
 		BillingService billingService = Context.getService(BillingService.class);
 		AdministrationService administrationService = Context.getAdministrationService();
@@ -226,7 +219,7 @@ public class OrdersFragmentController {
 				BillableService billableService = billingService.getServiceByConceptId(pId);
 				OpdTestOrder opdTestOrder = new OpdTestOrder();
 				opdTestOrder.setPatient(patient);
-				opdTestOrder.setEncounter(admitted.getPatientAdmissionLog().getIpdEncounter());
+				opdTestOrder.setEncounter(encounter);
 				opdTestOrder.setConcept(conpro);
 				opdTestOrder.setTypeConcept(DepartmentConcept.TYPES[1]);
 				opdTestOrder.setValueCoded(Context.getConceptService().getConcept(pId));
