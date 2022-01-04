@@ -33,20 +33,11 @@ public class NcdSummaryFragmentController {
 		
 		KenyaEmrService kenyaEmrService = Context.getService(KenyaEmrService.class);
 		
-		EncounterType screeningForm = Context.getEncounterService().getEncounterTypeByUuid(
-		    "af5dbd36-18f9-11eb-ae6b-7f4c0920f004");
-		EncounterType initialForm = Context.getEncounterService().getEncounterTypeByUuid(
-		    "cb5f27f0-18f8-11eb-88d7-fb1a7178f8ea");
-		EncounterType followupForm = Context.getEncounterService().getEncounterTypeByUuid(
-		    "f1573d1c-18f8-11eb-a453-63d51e56f5cb");
-		
 		List<Integer> cohort = new ArrayList<Integer>();
-		List<Encounter> allEncounters = Context.getEncounterService().getEncounters(null,
-		    kenyaEmrService.getDefaultLocation(), null, null, null, Arrays.asList(screeningForm, initialForm, followupForm),
-		    null, null, null, false);
+		
 		//loop through all and get their patient ids
-		if (allEncounters.size() > 0) {
-			for (Encounter encounter : allEncounters) {
+		if (NcdappUtils.getBasePatientsToWorkWith(kenyaEmrService.getDefaultLocation()).size() > 0) {
+			for (Encounter encounter : NcdappUtils.getBasePatientsToWorkWith(kenyaEmrService.getDefaultLocation())) {
 				cohort.add(encounter.getPatient().getPatientId());
 			}
 		}
