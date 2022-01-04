@@ -40,6 +40,7 @@
         jq(document).ready(function () {
             populateDrugFields();
             jq('.hfe-seconds').css('display', 'none');
+            jq('#test-history :input[type=radio]').change(everTested);
         });
 
         function glucose() {
@@ -448,6 +449,23 @@
             }
         }
 
+        var everTested = function (){
+            var val = jq(this).val();
+            var testResults = jq('#ever-tested');
+            var testDate = jq('#duration_months');
+            var eligibleForTesting = jq('#eligible-test');
+
+            if (val == 1066 ){
+                clearHiddenSections(testDate);
+                clearHiddenSections(testResults);
+                jq('#test-result').hide();
+            }
+            if (val == 1065){
+                clearHiddenSections(eligibleForTesting);
+                jq('#test-result').show();
+            }
+        }
+
 
         jQuery(function () {
             displayTabs();
@@ -489,7 +507,6 @@
                     jq('#footAssesment').hide();
                 }
             })
-
 
         });
     </script>
@@ -839,6 +856,38 @@
 
                             </tr>
 
+                        </fieldset>
+                        <fieldset>
+                            <legend>History of HIV Testing</legend>
+                            <div>
+                                Tested for HIV before :
+                                <obs conceptId="164401"
+                                     id="test-history"
+                                     answerConceptIds="1065,1066"
+                                     answerLabels="Yes,No"
+                                     style="radio" />
+                            </div>
+                        </fieldset>
+
+                        <fieldset id="test-result">
+                            <legend>Test Result</legend>
+                            <table id="testResult">
+                                <tr>
+                                    <td>
+                                        Test Result :
+                                        <obs id="ever-tested" conceptId="159427"
+                                             answerConceptIds="703,664"
+                                             answerLabel="Positive,Negative"
+                                             style="radio" />
+                                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    </td>
+                                    <td> Date Tested:
+                                        <obs id="duration_months" conceptId="164400"
+                                        />
+                                        &#160;&#160;&#160;
+                                    </td>
+                                </tr>
+                            </table>
                         </fieldset>
                     </div>
                 </div>
