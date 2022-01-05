@@ -234,7 +234,7 @@
 
                         var tbody = jq('#drugsTable').children('tbody');
                         var table = tbody.length ? tbody : jq('#drugsTable');
-                        table.append('<tr><td>' + jq("#drugName").val() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td></tr>');
+                        table.append('<tr><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td></tr>');
                         drugOrder.push(
                             {
                                 name: jq("#drugName").val(),
@@ -277,11 +277,13 @@
             console.log(JSON.stringify(selectedInv) + "heere")
 
             drugOrder = JSON.stringify(drugOrder);
+            console.log(drugOrder + "here");
 
             var treatmentFormData = {
                 'patientId': ${patient.patientId},
                 'selectedProcedureList': selectedProc,
-                'selectedInvestigationList': selectedInv
+                'selectedInvestigationList': selectedInv,
+                'drugOrder':drugOrder
             };
 
             function successFn(successly_) {
@@ -671,6 +673,7 @@ fieldset select {
             <table id="drugsTable">
                 <thead>
                 <th style="width: auto;">Drug Name</th>
+                <th>Dosage</th>
                 <th>Formulation</th>
                 <th>Frequency</th>
                 <th>Number of Days</th>
