@@ -4,7 +4,7 @@
     </tr>
     <tr>
         <td>Males with WC > 102cm</td>
-        <td><${over102}/td>
+        <td>${over102}</td>
     </tr>
     <tr>
         <td>Females with WC > 88cm</td>

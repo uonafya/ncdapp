@@ -10,12 +10,12 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td>Ischemic <br />heart Disease</td>
+        <td>Ischemic heart Disease</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td>Peripheral <br />Vascular disease</td>
+        <td>Peripheral Vascular disease</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
@@ -27,9 +27,8 @@
     <tr>
         <td>Neuropathy</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>&nbsp</td>
     </tr>
-    <tr>
     <tr>
         <td>Retinopathy</td>
         <td>&nbsp;</td>

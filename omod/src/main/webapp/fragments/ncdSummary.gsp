@@ -1,7 +1,7 @@
 
 <table border="0" align="center" width="100%">
     <tr>
-        <td valign="top" width="70%">
+        <td valign="top" colspan="2">
             <table cellpadding="5" cellspacing="0" class="initial" width="100%">
                 <tbody>
                 <tr>
@@ -126,7 +126,7 @@
                 </tbody>
             </table>
         </td>
-        <td width="30%" valign="top">
+        <td valign="top">
             <table>
                 <tr>
                     <td>
@@ -167,7 +167,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <table cellpadding="10" cellspacing="0" class="initial" align="center" width="100%">
+                        <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
                             <tr>
                                 <th colspan="3">Blood Pressure Metrics</th>
                             </tr>
