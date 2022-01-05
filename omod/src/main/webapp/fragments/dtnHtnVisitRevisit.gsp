@@ -1,7 +1,7 @@
 <table border="0" cellspacing="0" class="initial" width="100%">
     <thead>
         <tr>
-            <th></th>
+            <th>&nbsp;</th>
             <th>Male</th>
             <th>Female</th>
         </tr>
@@ -13,7 +13,7 @@
             <td>${vF}</td>
         </tr>
         <tr>
-            <td>revisits</td>
+            <td>Revisits</td>
             <td>${rvM}</td>
             <td>${rvF}</td>
         </tr>

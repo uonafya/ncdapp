@@ -3,15 +3,11 @@
         <th colspan="2">Waist Circumference</th>
     </tr>
     <tr>
-        <td>Males with</td>
-        <td>Increased risks</td>
+        <td>Males with WC > 102cm</td>
+        <td>Females with WC > 88cm</td>
     </tr>
     <tr>
-        <td>WC &gt;102 cm</td>
         <td>${over102}</td>
-    </tr>
-    <tr>
-        <td>WC &gt;88 cm</td>
         <td>${over88}</td>
     </tr>
 </table>

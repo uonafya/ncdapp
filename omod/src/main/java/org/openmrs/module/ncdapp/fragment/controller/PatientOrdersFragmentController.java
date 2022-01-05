@@ -2,7 +2,6 @@ package org.openmrs.module.ncdapp.fragment.controller;
 
 import org.openmrs.Concept;
 import org.openmrs.Patient;
-import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.hospitalcore.InventoryCommonService;
 import org.openmrs.ui.framework.page.PageModel;

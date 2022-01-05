@@ -43,11 +43,12 @@ public class DtnHtnWaistCircumferenceFragmentController {
 		//exclude dead patients
 		Set<Integer> alivePatients = Filters.alive(cohort, context);
 		Set<Integer> male = NcdappUtils.male(alivePatients, context);
+		Set<Integer> female = Filters.female(alivePatients, context);
 		//declare concepts
 		Concept waist_circumference = Dictionary.getConcept("163080AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		
 		model.addAttribute("over102", getWC(waist_circumference, male, context, 102.0));
-		model.addAttribute("over88", getWC(waist_circumference, male, context, 88.0));
+		model.addAttribute("over88", getWC(waist_circumference, female, context, 88.0));
 	}
 	
 	private Integer getWC(Concept q1, Set<Integer> cohort, PatientCalculationContext context, double minValue) {

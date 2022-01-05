@@ -2,7 +2,6 @@ package org.openmrs.module.ncdapp.fragment.controller;
 
 import org.openmrs.Encounter;
 import org.openmrs.EncounterType;
-import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
 import org.openmrs.calculation.patient.PatientCalculationService;
@@ -12,7 +11,6 @@ import org.openmrs.module.kenyacore.calculation.Filters;
 import org.openmrs.module.kenyaemr.api.KenyaEmrService;
 import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
 import org.openmrs.module.ncdapp.NcdappUtils;
-import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
 import java.util.ArrayList;
@@ -23,9 +21,7 @@ import java.util.Set;
 
 public class DtnHtnVisitRevisitFragmentController {
 	
-	public void controller(FragmentModel model,
-	        @FragmentParam(value = "requiredLocations", required = false) List<Integer> overral_location,
-	        @FragmentParam(value = "allPatients", required = false) List<Patient> allPatients) {
+	public void controller(FragmentModel model) {
 		
 		PatientCalculationService patientCalculationService = Context.getService(PatientCalculationService.class);
 		PatientCalculationContext context = patientCalculationService.createCalculationContext();

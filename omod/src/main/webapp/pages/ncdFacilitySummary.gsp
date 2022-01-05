@@ -21,9 +21,7 @@ tr:nth-child(even) {background-color: #f2f2;}
     ${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Tasks", items: menuItems ]) }
 </div>
 <div class="ke-page-content">
-    <div class="ke-panel-frame">
-        <div class="ke-panel-heading">Diabetes and Hypertension Facility Dashboard</div>
-        <table>
+        <table border="1">
             <tr>
                 <td colspan="3" width="100%">
                     ${ ui.includeFragment("ncdapp", "ncdSummary") }
@@ -57,7 +55,4 @@ tr:nth-child(even) {background-color: #f2f2;}
                 ${ ui.includeFragment("ncdapp", "treatment") }
             </td>
         </table>
-
-
-    </div>
 </div>
