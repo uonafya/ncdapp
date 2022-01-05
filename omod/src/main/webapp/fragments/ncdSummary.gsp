@@ -163,8 +163,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" width="20%">
-                        <table cellpadding="5" cellspacing="0" class="initial" align="center" width="100%">
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="10" cellspacing="0" class="initial" align="center" width="100%">
                             <tr>
                                 <th colspan="3">Blood Pressure Metrics</th>
                             </tr>

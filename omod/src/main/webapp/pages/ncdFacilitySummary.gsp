@@ -21,11 +21,14 @@ tr:nth-child(even) {background-color: #f2f2;}
     ${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Tasks", items: menuItems ]) }
 </div>
 <div class="ke-page-content">
-        <table border="1">
+        <table width="80%" cellpadding="5" border="0" cellspacing="0">
             <tr>
                 <td colspan="3" width="100%">
                     ${ ui.includeFragment("ncdapp", "ncdSummary") }
                 </td>
+            </tr>
+            <tr>
+                <td colspan="3">&nbsp;</td>
             </tr>
             <tr>
                 <td width="34%">
@@ -39,6 +42,9 @@ tr:nth-child(even) {background-color: #f2f2;}
                 </td>
             </tr>
             <tr>
+                <td colspan="3">&nbsp;</td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     ${ ui.includeFragment("ncdapp", "newlyDiagnosed") }
                 </td>
@@ -46,13 +52,16 @@ tr:nth-child(even) {background-color: #f2f2;}
                     ${ ui.includeFragment("ncdapp", "diabeticfoot") }
                 </td>
             </tr>
-        </table>
-        <table>
-            <td width="50%">
-                ${ ui.includeFragment("ncdapp", "complications") }
-            </td>
-            <td width="50%">
-                ${ ui.includeFragment("ncdapp", "treatment") }
-            </td>
+            <tr>
+                <td colspan="3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    ${ ui.includeFragment("ncdapp", "complications") }
+                </td>
+                <td>
+                    ${ ui.includeFragment("ncdapp", "treatment") }
+                </td>
+            </tr>
         </table>
 </div>

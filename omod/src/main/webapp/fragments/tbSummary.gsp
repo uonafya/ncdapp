@@ -1,4 +1,4 @@
-<table border="0" cellspacing="0" class="initial" width="100%">
+<table border="0" cellspacing="0" class="initial" width="100%" cellpadding="5">
     <tr>
         <th>TB</th>
         <th>Male</th>
