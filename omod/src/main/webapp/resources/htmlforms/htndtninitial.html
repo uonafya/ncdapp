@@ -27,10 +27,10 @@
             jq('#nhifNumber *').prop('disabled', true);
             jq('#transferInDetails *').prop('disabled', true);
             jq('#diabetesPatients *').prop('disabled', true);
-            jq('#hypertensionPatients *').prop('disabled', true);
             jq('#referralUnit *').prop('disabled', true);
             jq('#referralUnitName *').prop('disabled', true);
             jq('#voucherNumber *').prop('disabled', true);
+            jq('#hypertensive *').prop('disabled', true);
         }
         function nhifResponse() {
             jQuery('#nhifPatient *').click(function() {
@@ -44,8 +44,7 @@
         }
         function entryPointResponses() {
             jQuery('#entryPoint *').click(function() {
-                alert(jq(this).val());
-                if (jq(this).val() === 160563){
+                if (jq(this).val() == 160563){
                     jq('#transferInDetails *').prop('disabled', false);
                 }
                 else {
@@ -54,14 +53,12 @@
             });
         }
         function diseaseType() {
-            var diseaseTypeResponses = getValue('diseaseType.value');
             jQuery('#diseaseType *').click(function() {
-                alert(jq(this).val());
-                if (jq(this).val() === 1000488 || jq(this).val() === 1000489){
+                if (jq(this).val() == 1000488 || jq(this).val() == 1000489){
                     jq('#diabetesPatients *').prop('disabled', false);
                 }
-                else if(jq(this).val() === 1000490 || jq(this).val() === 1000491){
-                    jq('#hypertensionPatients *').prop('disabled', false);
+                else if(jq(this).val() == 1000490 || jq(this).val() == 1000491){
+                    jq('#hypertensive *').prop('disabled', false);
                 }
                 else {
                     jq('#diabetesPatients *').prop('disabled', true);
@@ -71,15 +68,15 @@
 
         }
         function referralInformation() {
-            var referralResponses = getValue('diseaseType.value');
-            if (referralResponses === 1065){
-                jq('#referralUnit *').prop('disabled', false);
-                jq('#referralUnitName *').prop('disabled', false);
-            }
-            else {
-                jq('#referralUnit *').prop('disabled', true);
-                jq('#referralUnitName *').prop('disabled', true);
-            }
+            jQuery('#referral *').click(function() {
+                if (jq(this).val() == 1065) {
+                    jq('#referralUnit *').prop('disabled', false);
+                    jq('#referralUnitName *').prop('disabled', false);
+                } else {
+                    jq('#referralUnit *').prop('disabled', true);
+                    jq('#referralUnitName *').prop('disabled', true);
+                }
+            });
         }
     </script>
     <style>
@@ -120,18 +117,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Patient Mobile Number<lookup expression="personAttributes.get('Telephone contact')"/></td>
+                    <td>Patient Mobile Number:<b><lookup expression="personAttributes.get('Telephone contact')"/></b></td>
                     <td>Treatment supporter name<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
                     <td>Treatment supporter Contact<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="ts-telephone"/></td>
                 </tr>
                 <tr>
-                    <td>County<lookup expression="patient.personAddress.countyDistrict" /></td>
-                    <td>Sub County<lookup expression="patient.personAddress.stateProvince" /></td>
-                    <td>Ward<lookup expression="patient.personAddress.address4" /></td>
+                    <td>County:<b><lookup expression="patient.personAddress.countyDistrict" /></b></td>
+                    <td>Sub County:<b><lookup expression="patient.personAddress.stateProvince" /></b></td>
+                    <td>Ward:<b><lookup expression="patient.personAddress.address4" /></b></td>
                 </tr>
                 <tr>
-                    <td>Patient Village<lookup expression="patient.personAddress.cityVillage" /></td>
-                    <td>Land Mark<lookup expression="patient.personAddress.address2" /></td>
+                    <td>Patient Village:<b><lookup expression="patient.personAddress.cityVillage" /></b></td>
+                    <td>Land Mark:<b><lookup expression="patient.personAddress.address2" /></b></td>
                     <td id="entryPoint">Patient entry point<obs conceptId="160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="New Patient,Transfer In" style="radio" /></td>
                 </tr>
                 <tr>
@@ -158,9 +155,9 @@
                     If diabetic, Diabetes Type<obs id="diabetesPatients" conceptId="119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptIds="142474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Diabetes Type 1,Diabetes Type 2,Gestational Diabetes Mellitus,Diabetes due to other causes" />
                 </td>
                <td>
-                   If hypertensive, indicate the classification<obs conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" style="radio" />
+                   If hypertensive, indicate the classification<obs id="hypertensive" conceptId="136aa254-169c-4784-80d0-c49592ed895e" answerConceptIds="159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Primary(Essential),Secondary" style="radio" />
                </td>
-               <td>HIV Status<obs id="hypertensionPatients" conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" /></td>
+               <td>HIV Status<obs id="hivstatus" conceptId="1169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="HIV -ve,HIV +ve,Unknown" style="radio" /></td>
            </tr>
             <tr>
                 <td valign="top">
@@ -171,12 +168,12 @@
             </tr>
             <tr>
                 <td>
-                    Is patient a referral?<obs conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
-                    Referral voucher number<obs conceptId="68bb4b1c-dc92-44bd-966e-832edc1f6033" id="voucherNumber" />
+                    Is patient a referral?<obs id="referral" conceptId="1788AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+                    Referral voucher number<br /><obs conceptId="68bb4b1c-dc92-44bd-966e-832edc1f6033" id="voucherNumber" />
                 </td>
-                <td id="referralUnit">Specify referral from<obs conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
-                <td id="referralUnitName">
-                    specify referring facility/community unit<obs conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+                <td>Specify referral from<obs id="referralUnit" conceptId="160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="160551AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,4fcf003e-71cf-47a5-a967-47d24aa61092,160480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Self refferal,Community Unit,Government-run health clinic/facility,Private health care clinic/facility" /></td>
+                <td>
+                    specify referring facility/community unit<obs id="referralUnitName" conceptId="161550AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
             </tr>
             </tbody>
