@@ -57,6 +57,8 @@
 ,159818AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5b40ad5b-e7ef-4611-8ee5-aee1f782f806,20e9d9a0-c6a1-4c16-a063-dddf5ca694c3,39713023-f0df-4ec4-9f62-94e27194ac6a,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 " answerLabels="OPD,CCC,HTS,Other within health facility,Household,Church-based,Work place,Market,Roadside or Walkway,Baraza,Other setting"/>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <includeIf velocityTest="$patient.gender == 'F' ">
                         Pregnancy Status<obs conceptId="5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No"  style="radio" />
@@ -64,7 +66,9 @@
                 </td>
             </tr>
             <tr>
-                <td valign="top">Past medical history<obs conceptId="160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="50" rows="5"/></td>
+                <td valign="top">Past medical history<br /><obs conceptId="160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="50" rows="5"/></td>
+            </tr>
+            <tr>
                 <td valign="top">
                     <label>Known hypertensive?</label>
                     <obs conceptId="e08c9557-da37-49b9-832f-29b6d8a9dc45" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
@@ -72,7 +76,7 @@
                 </td>
             </tr>
             <tr>
-                <td valign="top" colspan="2">
+                <td valign="top">
                     <label>Hypertensive on treatment in the preceding 1 week?</label>
                     <obs conceptId="45d9f615-3f8c-493f-b471-f12aee7e2dcf" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="HTN_on_TX"/>
@@ -80,8 +84,8 @@
             </tr>
 
             <tr>
-                <td><label>Blood pressure Reading 1 (mmHg)</label></td>
-                <td>
+                <td><label>Blood pressure Reading 1 (mmHg)</label>
+
                         <span id="bp_reading1">
                            <label>Systolic</label>
                            <obs id="systolic" conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
@@ -90,9 +94,9 @@
                         </span>
                 </td>
             </tr>
+            <tr>
+            <td><label>Blood pressure Reading 2 (mmHg)</label>
 
-            <td><label>Blood pressure Reading 2 (mmHg)</label></td>
-            <td>
                         <span id="bp_reading2">
                            <label>Systolic</label>
                            <obs id="systolic" conceptId="e411bc5a-3a31-43c7-a4ad-eb7ee432042d" />
@@ -100,9 +104,10 @@
                            <obs id="diastolic" conceptId="3fd45f27-cbc3-4f5c-8305-780b381a00d2" />
                         </span>
             </td>
+            </tr>
             <tr>
-                <td><label>Blood pressure Reading 3 (mmHg)</label></td>
-                <td>
+                <td><label>Blood pressure Reading 3 (mmHg)</label>
+
                         <span id="bp_reading3">
                            <label>Systolic</label>
                            <obs id="systolic" conceptId="278936cd-6909-46e7-bcab-fbb9bf5b17c9" />
@@ -117,6 +122,8 @@
                     <obs conceptId="3cd0edbb-f4ba-4fb5-ac60-7354efb078c5" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
                          answerSeparator="" id="known_DM"/>
                 </td>
+            </tr>
+            <tr>
                 <td valign="top">
                     <label>If diabetic, currently on treatment?</label>
                     <obs conceptId="482c9f37-e7b3-41ef-91ea-ecc868ce4016" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" class="align-radio-input"
@@ -124,16 +131,15 @@
                 </td>
             </tr>
             <tr>
-                <td><label>Random Blood Sugar (RBS) (mmols/L)</label></td>
-                <td>
+                <td><label>Random Blood Sugar (RBS) (mmols/L)</label>
                     <obs conceptId="887AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" dateLabel="Date of Test" />
                     <recentObs conceptId="887AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
             </tr>
 
             <tr>
-                <td><label>Fasting blood glucose measurement (mg/dL)</label></td>
-                <td>
+                <td><label>Fasting blood glucose measurement (mg/dL)</label>
+
                     <obs conceptId="160912AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" dateLabel="Date of Test" />
                     <recentObs conceptId="160912AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                 </td>
