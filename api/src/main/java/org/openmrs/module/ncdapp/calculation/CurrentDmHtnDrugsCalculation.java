@@ -1,5 +1,6 @@
 package org.openmrs.module.ncdapp.calculation;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Encounter;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
@@ -11,6 +12,7 @@ import org.openmrs.module.kenyacore.calculation.AbstractPatientCalculation;
 import org.openmrs.module.kenyacore.calculation.Calculations;
 import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,7 @@ public class CurrentDmHtnDrugsCalculation extends AbstractPatientCalculation {
 		        .getEncounterTypeByUuid("ba45c278-f290-11ea-9666-1b3e6e848887"), cohort, context);
 		for (Integer pId : cohort) {
 			StringBuilder drugs = new StringBuilder();
+			List<String> allDrugs = new ArrayList<String>();
 			
 			Encounter lastOpdEncounter = EmrCalculationUtils.encounterResultForPatient(lastEncounter, pId);
 			
@@ -54,9 +57,10 @@ public class CurrentDmHtnDrugsCalculation extends AbstractPatientCalculation {
 					}
 				}
 				drugs.append(drugName).append(" ").append(inventoryFormulation).append(" ").append(dosage).append(" ")
-				        .append(frequency).append("\n");
+				        .append(frequency);
+				allDrugs.add(drugs.toString());
 			}
-			ret.put(pId, new SimpleResult(drugs, this));
+			ret.put(pId, new SimpleResult(StringUtils.join(allDrugs, ","), this));
 		}
 		
 		return ret;

@@ -1,6 +1,6 @@
 package org.openmrs.module.ncdapp.calculation;
 
-import org.openmrs.Concept;
+import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Encounter;
 import org.openmrs.Obs;
 import org.openmrs.api.context.Context;
@@ -10,11 +10,11 @@ import org.openmrs.calculation.result.SimpleResult;
 import org.openmrs.module.kenyacore.calculation.AbstractPatientCalculation;
 import org.openmrs.module.kenyacore.calculation.Calculations;
 import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
-import org.openmrs.module.ncdapp.NcdappUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,18 +30,18 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 		        .getEncounterTypeByUuid("11d3f37a-f282-11ea-a825-1b5b1ff1b854"), cohort, context);
 		for (Integer pId : cohort) {
 			StringBuilder labResults = new StringBuilder();
+			List<String> results = new ArrayList<String>();
 			
 			Encounter lastLabEncounterDetails = EmrCalculationUtils.encounterResultForPatient(lastLabEncounter, pId);
-			Set<Obs> Obs = new HashSet<Obs>();
+			Set<Obs> obs = new HashSet<Obs>();
 			if (lastLabEncounterDetails != null && lastLabEncounterDetails.getObs() != null) {
-				Obs = lastLabEncounterDetails.getObs();
+				obs = lastLabEncounterDetails.getObs();
 			}
 			String valueCoded = "";
 			String valueText = "";
 			String valueNumeric = "";
-			String obsDateTime = "";
 			String testName = "";
-			for (Obs labObs : Obs) {
+			for (Obs labObs : obs) {
 				if (labObs != null && labObs.getConcept() != null && labObs.getConcept().getName() != null
 				        && labObs.getConcept().getName().getName() != null) {
 					testName = labObs.getConcept().getName().getName();
@@ -55,13 +55,11 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 				if (labObs != null && labObs.getValueNumeric() != null) {
 					valueNumeric = String.valueOf(labObs.getValueNumeric());
 				}
-				if (labObs != null && labObs.getObsDatetime() != null) {
-					obsDateTime = NcdappUtils.formatDate(labObs.getObsDatetime());
-				}
 				labResults.append(testName).append(" ").append(valueCoded).append(" ").append(valueNumeric).append(" ")
-				        .append(valueText).append(" ").append(obsDateTime).append("\n");
+				        .append(valueText);
+				results.add(labResults.toString());
 			}
-			ret.put(pId, new SimpleResult(labResults, this));
+			ret.put(pId, new SimpleResult(StringUtils.join(results, ","), this));
 		}
 		
 		return ret;

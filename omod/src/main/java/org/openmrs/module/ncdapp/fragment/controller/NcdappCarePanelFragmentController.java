@@ -40,7 +40,7 @@ public class NcdappCarePanelFragmentController {
 		calculationResults.put("hba1c", EmrCalculationUtils.evaluateForPatient(HBA1cCalculation.class, null, patient));
 		calculationResults
 		        .put("bmi", EmrCalculationUtils.evaluateForPatient(BMIAtLastVisitCalculation.class, null, patient));
-		calculationResults.put("durgs",
+		calculationResults.put("drugs",
 		    EmrCalculationUtils.evaluateForPatient(CurrentDmHtnDrugsCalculation.class, null, patient));
 		calculationResults.put("complications",
 		    EmrCalculationUtils.evaluateForPatient(CurrentDmHtnComplicationCalculation.class, null, patient));
