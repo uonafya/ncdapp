@@ -1,5 +1,7 @@
 <script>
     var drugOrder = [];
+    var index = 0;
+    var count = 0;
 
     var getJSON = function (dataToParse) {
         if (typeof dataToParse === "string") {
@@ -234,7 +236,11 @@
 
                         var tbody = jq('#drugsTable').children('tbody');
                         var table = tbody.length ? tbody : jq('#drugsTable');
-                        table.append('<tr><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td></tr>');
+
+                        index = drugOrder.length
+                        count = index + 1;
+
+                        table.append('<tr id="' + index + '"><td>' + count + '</td><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td> <td><a onclick="removerFunction(' + index + ')" class="remover"><i class="icon-remove small" style="color:red"></i></td></tr>');
                         drugOrder.push(
                             {
                                 name: jq("#drugName").val(),
@@ -255,7 +261,13 @@
                 }
             });
 
+        function resets(){
+            jq('form')[0].reset();
+            jq('#drug-name').change();
+        }
+
             jq("#addDrugsButton").on("click", function (e) {
+                resets();
                 adddrugdialog.show();
             });
 
@@ -301,7 +313,25 @@
                 })
             );
         });
+
     });//end of doc ready
+
+    function removerFunction(rowId){
+        if (confirm("Are you sure about this?")){
+            jq('#drugsTable > tbody > tr').remove();
+            var tbody = jq('#drugsTable').children('tbody');
+            var table = tbody.length ? tbody : jq('#drugsTable');
+            drugOrder = jq.grep(drugOrder, function (item, index){
+                return (rowId !== index);
+            });
+
+            jq.each(drugOrder, function (rowId){
+                tbody.append('<tr id = "' + (rowId + 1) + '"><td>' + (rowId + 1) + ' </td><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td> <td><a onclick="removerFunction(' + index + ')" class="remover"><i class="icon-remove small" style="color:red"></i></td></tr>');
+            });
+        }else {
+            return false;
+        }
+    }
 </script>
 
 <style>
@@ -672,12 +702,14 @@ fieldset select {
 
             <table id="drugsTable">
                 <thead>
+                <th>#</th>
                 <th style="width: auto;">Drug Name</th>
                 <th>Dosage</th>
                 <th>Formulation</th>
                 <th>Frequency</th>
                 <th>Number of Days</th>
                 <th>Comment</th>
+                <th></th>
                 </thead>
                 <tbody>
                 </tbody>
@@ -693,20 +725,21 @@ fieldset select {
             <p style="display: none">
                 <button class="button submit confirm" style="display: none;"></button>
             </p>
-
-            <span value="Submit" class="button submit confirm right" id="treatmentSubmit" style="margin: 5px 10px;">
+            <span>
+            <a value="Submit" type="submit" class="button confirm" id="treatmentSubmit" style="margin: 5px 10px;" href = ''>
                 <i class="icon-save small"></i>
                 Save
-            </span>
+            </a>
 
-            <span id="cancelButton" class="button cancel" style="margin: 5px">
+            <a id="cancelButton" class="button cancel" style="margin: 5px">
                 <i class="icon-remove small"></i>
                 Cancel
+            </a>
             </span>
         </div>
     </div>
 </form>
-
+<form>
 <div id="addDrugDialog" class="dialog" style="display: none">
     <div class="dialog-header">
         <i class="icon-folder-open"></i>
@@ -760,3 +793,4 @@ fieldset select {
         <span class="button cancel">Cancel</span>
     </div>
 </div>
+</form>
