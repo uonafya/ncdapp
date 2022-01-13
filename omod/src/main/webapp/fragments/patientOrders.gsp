@@ -267,7 +267,14 @@
         }
 
             jq("#addDrugsButton").on("click", function (e) {
-                resets();
+                jq('drugName').val('');
+                jq('formulationsSelect').hide();
+                jq('drugFrequency').hide();
+                jq('drugDays').val('');
+                jq('drugComment').val('');
+                jq('drugDosage').val('');
+                jq('drugUnitSelect').hide();
+
                 adddrugdialog.show();
             });
 
@@ -281,15 +288,14 @@
             jq("selectedProcedureList option").each(function () {
                 selectedProc.push(jq(this).val());
             });
+            console.log(JSON.stringify(selectedProc) + "here")
 
             var selectedInv = new Array;
             jq("#selectedInvestigationList option").each(function () {
                 selectedInv.push(jq(this).val());
             });
-            console.log(JSON.stringify(selectedInv) + "heere")
 
             drugOrder = JSON.stringify(drugOrder);
-            console.log(drugOrder + "here");
 
             var treatmentFormData = {
                 'patientId': ${patient.patientId},
@@ -301,6 +307,8 @@
             function successFn(successly_) {
                 jq().toastmessage('removeToast', savingMessage);
                 jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
+                var summaryLink = ui.pageLink("ncdapp","ncdFacilitySummary");
+                window.location = summaryLink.substring(0, summaryLink.length - 1);
             }
 
             jq("#treatmentForm").submit(
