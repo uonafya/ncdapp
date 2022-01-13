@@ -19,7 +19,11 @@ import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
 import org.openmrs.module.kenyaemr.reporting.data.converter.CalculationResultConverter;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.ncdapp.NcdappUtils;
+import org.openmrs.module.ncdapp.calculation.DmHtnComplicationsCalculation;
+import org.openmrs.module.ncdapp.calculation.DmHtnDiagnosisCalculation;
 import org.openmrs.module.ncdapp.calculation.DmHtnEncounterDateCalculation;
+import org.openmrs.module.ncdapp.calculation.DmHtnPatientStatusCalculation;
+import org.openmrs.module.ncdapp.calculation.DmHtnTreatmentCalculation;
 import org.openmrs.module.ncdapp.calculation.VillageCalculation;
 import org.openmrs.module.ncdapp.reporting.data.converter.ObjectCounterConverter;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
@@ -108,6 +112,14 @@ public class SetupPermanentRegisterReport extends AbstractHybridReportBuilder {
 		dsd.addColumn("telTs",
 		    getObservation(Context.getConceptService().getConceptByUuid("160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")), "",
 		    new ObsValueConverter());
+		dsd.addColumn("diagnosis", new CalculationDataDefinition("diagnosis", new DmHtnDiagnosisCalculation()), "",
+		    new CalculationResultConverter());
+		dsd.addColumn("complications", new CalculationDataDefinition("complications", new DmHtnComplicationsCalculation()),
+		    "", new CalculationResultConverter());
+		dsd.addColumn("treatment", new CalculationDataDefinition("treatment", new DmHtnTreatmentCalculation()), "",
+		    new CalculationResultConverter());
+		dsd.addColumn("status", new CalculationDataDefinition("status", new DmHtnPatientStatusCalculation()), "",
+		    new CalculationResultConverter());
 		dsd.addColumn("diaYear",
 		    getObservation(Context.getConceptService().getConceptByUuid("159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")), "",
 		    new ObsValueConverter());
