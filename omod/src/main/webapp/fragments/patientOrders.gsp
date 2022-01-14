@@ -11,18 +11,34 @@
     }
 
     jq(function () {
+        jq("#addDrugsButton").on("click", function (e) {
+            e.preventDefault()
+            adddrugdialog.show();
+            resets();
+            jq('#drugName').val('');
+            jq('#formulationsSelect').val('');
+            jq('#drugFrequency').val('');
+            jq('#drugDays').val('');
+            jq('#drugComment').val('');
+            jq('#drugDosage').val('');
+            jq('#drugUnitSelect').val('');
+            jq('#drugName').change();
+        });
+
             jq("#procedure").autocomplete({
                 source: function (request, response) {
                     jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getProcedures") }', {
                         q: request.term
                     }).success(function (data) {
-                        procedureMatches = [];
+                     var results = [];
                         for (var i in data) {
-                            var result = {label: data[i].label, value: data[i].id, schedulable: data[i].schedulable};
-                            procedureMatches.push(result);
+                            var result = {label: data[i].label,
+                                value: data[i].id};
+                            results.push(result);
                         }
-                        response(procedureMatches);
+                        response(results);
                     });
+
                 },
                 minLength: 3,
                 select: function (event, ui) {
@@ -262,21 +278,11 @@
             });
 
         function resets(){
-            jq('form')[0].reset();
+            jq('form')[1].reset();
             jq('#drug-name').change();
         }
 
-            jq("#addDrugsButton").on("click", function (e) {
-                jq('drugName').val('');
-                jq('formulationsSelect').hide();
-                jq('drugFrequency').hide();
-                jq('drugDays').val('');
-                jq('drugComment').val('');
-                jq('drugDosage').val('');
-                jq('drugUnitSelect').hide();
 
-                adddrugdialog.show();
-            });
 
         jq("#treatmentSubmit").click(function (event) {
             jq().toastmessage({
@@ -288,7 +294,6 @@
             jq("selectedProcedureList option").each(function () {
                 selectedProc.push(jq(this).val());
             });
-            console.log(JSON.stringify(selectedProc) + "here")
 
             var selectedInv = new Array;
             jq("#selectedInvestigationList option").each(function () {
@@ -307,7 +312,7 @@
             function successFn(successly_) {
                 jq().toastmessage('removeToast', savingMessage);
                 jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
-                var summaryLink = ui.pageLink("ncdapp","ncdFacilitySummary");
+                var summaryLink = ui.pageLink("ncdapp","ncdappSummary");
                 window.location = summaryLink.substring(0, summaryLink.length - 1);
             }
 
@@ -747,8 +752,10 @@ fieldset select {
         </div>
     </div>
 </form>
-<form>
+
+
 <div id="addDrugDialog" class="dialog" style="display: none">
+    <form>
     <div class="dialog-header">
         <i class="icon-folder-open"></i>
 
@@ -800,5 +807,5 @@ fieldset select {
         <span class="button confirm right" style="margin-right: 1px">Confirm</span>
         <span class="button cancel">Cancel</span>
     </div>
+    </form>
 </div>
-</form>

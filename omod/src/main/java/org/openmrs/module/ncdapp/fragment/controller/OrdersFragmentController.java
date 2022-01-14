@@ -32,8 +32,7 @@ public class OrdersFragmentController {
 			proceduresPriority.add(new Procedure(myConcept));
 		}
 		
-		List<SimpleObject> proceduresList = SimpleObject
-		        .fromCollection(proceduresPriority, ui, "id", "label", "schedulable");
+		List<SimpleObject> proceduresList = SimpleObject.fromCollection(proceduresPriority, ui, "id", "label");
 		return proceduresList;
 	}
 	
