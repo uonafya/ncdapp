@@ -312,7 +312,7 @@
             function successFn(successly_) {
                 jq().toastmessage('removeToast', savingMessage);
                 jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
-                var summaryLink = ui.pageLink("ncdapp","ncdappSummary");
+                var summaryLink = ui.pageLink("ncdapp","ncdFacilitySummary");
                 window.location = summaryLink.substring(0, summaryLink.length - 1);
             }
 
