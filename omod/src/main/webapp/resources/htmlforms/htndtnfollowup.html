@@ -41,6 +41,8 @@
             populateDrugFields();
             jq('.hfe-seconds').css('display', 'none');
             jq('#test-history :input[type=radio]').change(everTested);
+            visitInfoValidation();
+
         });
 
         function glucose() {
@@ -396,9 +398,23 @@
         }
 
         function visitInfoValidation() {
+            jq('#tr-other-complains').hide();
+
             if (getValue('pregnancyOption.value') == "") {
 
             }
+            if (getValue('')==""){
+                jQ('#otherComplains').hide()
+                // Specify other
+                            }
+
+
+            if (getValue('tr-other-complains') == 5622){
+                jq('#tr-other-complains').show();
+            }else{
+                jq('#tr-other-complains').hide();
+            }
+
 
         }
 
@@ -689,11 +705,11 @@
                                 <tbody>
                                 <tr>
                                     <td valign="top">
-                                        Treatment supporter's name:
+                                        Treatment supporter's name:&#160;&#160;&#160;&#160;&#160;
                                         <obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="supporter_name"/>
                                     </td>
                                     <td valign="top">
-                                        Treatment Supporter's Cell phone Number:
+                                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;Treatment Supporter's Cell phone Number:&#160;&#160;&#160;&#160;&#160;
                                         <obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                              id="supporter_phone_number"/>
                                     </td>
@@ -702,7 +718,7 @@
                             </table>
                             <table>
                                 <tbody>
-                                <td>Visit Type:</td>
+                                <td>Visit Type:&#160;&#160;&#160;&#160;</td>
                                 <td>
                                     <obs conceptId="164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerSeparator=""
@@ -718,82 +734,77 @@
                         <fieldset>
                             <legend>Clinical Notes</legend>
                             <table width="50%">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <label>Chief complaint/Reason for encounter </label>
+                                    <tr>
+                                        <label>Chief complaint/Reason for encounter&#160;&#160; </label>
                                         <obs id="chief_complaint" conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                              answerConceptIds="110265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130987AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112961AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,6005AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                             answerLabels="Shortness of breath on activity,Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Others"
+                                             answerLabels="Shortness of breath on activity,Palpitations (heart racing),Recurrent dizziness,Fainting,Leg swelling,Loss of consciousness,Blurring of vision,Focal weakness,Foot complaints,Other"
                                              answerSeparator=""/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
-                                        <label>Specify other complains</label>
+                                    </tr>
+                                    <tr id="tr-other-complains">
+                                        <label>&#160;&#160;&#160;&#160;&#160;Specify other complains&#160;&#160;&#160;&#160;</label>
                                         <obs id="other_reasons_for_encounter"
-                                             conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="3" cols="50"
+                                             conceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" cols="70"
                                              style="textarea"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top">
-                                        <label>Clinical notes </label>
-                                        <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="5" cols="50"
+                                    </tr>
+                                <br/>
+                                <br/>
+                                    <tr>
+                                        <label>Clinical notes &#160;&#160;&#160;&#160;&#160; </label>
+                                        <obs conceptId="159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" cols="75"
                                              style="textarea"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    </tr>
+                            </table>                                                                
                         </fieldset>
                         <fieldset>
                             <legend>Existing complications</legend>
-                            <tr id="existing_complications">
-                                <th colpan="2">Tick as appropriate</th>
-                                <br/>
-                                <td>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="159298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Visual Impairment" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="139069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Heart Failure" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="121849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Kidney Failure(CKD)" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="142451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Diabetic Foot Ulcer" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="118983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Peripheral neuropathy" style="checkbox"></obs>
-                                    <br/>
-                                </td>
-                                <td>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="156162AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Erectile dysfunction" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="111103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Stroke"
-                                         style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="114212AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Peripheral vascular Disease" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="161644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Hypertension urgency/emergency" style="checkbox"/>
-                                    <br/>
-                                    <label>Other </label>
-                                    <input type="text"/>
-                                </td>
-                            </tr>
+                            <table style="width: 50%">
+                                <th align="left" colspan="2"><i>Tick as appropriate</i></th>
+                                <tr id="existing_complications">
+                                    <td>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="159298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Visual Impairment" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="139069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Heart Failure" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="121849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Kidney Failure(CKD)" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="142451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Diabetic Foot Ulcer" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="118983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Peripheral neuropathy" style="checkbox"></obs>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="156162AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Erectile dysfunction" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="111103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Stroke"
+                                             style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="114212AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Peripheral vascular Disease" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="161644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Hypertension urgency/emergency" style="checkbox"/>
+                                        <br/>
+                                        <label>Other </label>
+                                        <input type="text"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </fieldset>
 
 
@@ -804,47 +815,47 @@
 
                         <fieldset>
                             <legend>TB Screening</legend>
-                            <tr>
-                                <th>Any features of TB?</th>
-                                <td><br/>
-                                    <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cough"
-                                         style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Night Sweat" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Weight Loss" style="checkbox"/>
-                                    <br/>
-                                    <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="111953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Lymph Nodes" style="checkbox"/>
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label>Status after TB screening</label>
-                                <td>
-                                    <obs conceptId="1659AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptIds="1660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabels="No Signs,Presumed,On TB Treatment" style="..."/>
-                                </td>
-                                <td>
-                                    <obs conceptId="1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerConceptId="5487AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                         answerLabel="Refer to TB Clinic" style="checkbox"/>
-                                    <br/>
-                                </td>
-                                <td>
-                                    <label>Client not referred, specify action</label>
-                                    <obs conceptId="164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" style="textarea"/>
-                                </td>
+                            <table>
+                                <tr>
+                                    <td><i>Any features of TB?</i>
+                                        <br/>
+                                        <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabel="Cough"
+                                             style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Night Sweat" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Weight Loss" style="checkbox"/>
+                                        <br/>
+                                        <obs conceptId="1069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="111953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Lymph Nodes" style="checkbox"/>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Status after TB screening&#160;&#160;&#160;<obs conceptId="1659AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptIds="1660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabels="No Signs,Presumed,On TB Treatment" style="..."/>
+                                    </td>
+                                    <td>&#160;&#160;&#160;
+                                        <obs conceptId="1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerConceptId="5487AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                             answerLabel="Refer to TB Clinic" style="checkbox"/>
+                                        <br/>
+                                    </td>
+                                    <td>&#160;&#160;&#160;
+                                        <label>Client not referred, specify action</label>
+                                        <obs conceptId="164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2,50" style="textarea"/>
+                                    </td>
 
-                            </tr>
-
+                                </tr>
+                            </table>
                         </fieldset>
                         <fieldset>
                             <legend>History of HIV Testing</legend>
@@ -958,7 +969,7 @@
                                 <label>Consumption of a Healthy Diet</label>
                             </td>
                             <td>
-                                <label>Diet History</label>
+                                <label>Diet History&#160;&#160;</label>
                                 <input type="text"/>
                             </td>
                             <br/>
@@ -970,7 +981,7 @@
                             </td>
                             <br/>
                             <td>
-                                <label>Meal planning</label>
+                                <label>Meal planning&#160;&#160;</label>
                                 <input type="text"/>
                             </td>
                         </tr>
@@ -978,6 +989,8 @@
                     </fieldset>
                 </div>
                 <div id="tabs-4">
+                    <table width="100%">
+                        <td valign="top">
                     <fieldset>
                         <legend>Vital signs</legend>
                         <table cellspacing="5">
@@ -1034,10 +1047,11 @@
                             </tr>
                         </table>
                     </fieldset>
-
+                        </td>
+                        <td>
                     <fieldset>
                         <legend>General Examination</legend>
-                        <table cellspacing="2">
+                        <table>
                             <tr>
                                 <td>
                                     <table cellspacing="20">
@@ -1100,10 +1114,11 @@
                                         </includeIf>
                                     </table>
                                 </td>
-                                <td>
+                                <td width="60%">
 
                                     <fieldset>
                                         <legend>---</legend>
+
                                         <obs conceptId="1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                              answerConceptId="5245AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                              answerLabel="Pallor" style="checkbox"/>
@@ -1125,55 +1140,54 @@
                             </tr>
                         </table>
                     </fieldset>
-
+                        </td>
+                    </table>
                     <fieldset>
                         <legend>Systemic examinations</legend>
 
-                        <table>
+                        <table width="70%">
                             <tr>
-                                <td valign="top">
+                                <td>
                                     <table>
-                                        <th>Cardiovascular</th>
+                                        <th align="left" colspan="2">Cardiovascular</th>
                                         <tr>
-                                            <td>Pulses</td>
                                             <td>
+                                                Pulses &#160;
                                                 <obs conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
-                                            <td><span class="value"><input type="text"/></span></td>
+                                            <td>&#160;&#160;<span class="value"><input type="text"/></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Heart sounds</td>
                                             <td>
+                                                Heart sounds &#160;
                                                 <obs conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
-                                            <td><span class="value"><input type="text"/></span></td>
+                                            <td>&#160;&#160;<span class="value"><input type="text"/></span></td>
                                         </tr>
                                         <tr>
-                                            <td> JVP</td>
-                                            <td>
+                                            <td>JVP &#160;&#160;
                                                 <obs conceptId="1482AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
-                                            <td><span class="value"><input type="text"/></span></td>
+                                            <td>&#160;&#160;<span class="value"><input type="text"/></span></td>
                                         </tr>
+                                        <th align="left" colspan="2">Respiratory System</th>
                                         <tr>
-                                            <td><strong>Respiratory System</strong> (air entry, abnormal sounds)</td>
-                                            <td>
+                                            <td>(air entry, abnormal sounds)
                                                 <obs conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
-                                        <th>Abdominopelvic</th>
+                                        <th align="left" colspan="2">Abdominopelvic</th>
                                         <tr>
-                                            <td>Organomegally</td>
-                                            <td>
+                                            <td>Organomegally
                                                 <obs conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
@@ -1181,37 +1195,31 @@
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Ascities</td>
-                                            <td>
+                                            <td>&#160;Ascities&#160;&#160;
                                                 <obs conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
-
+                                        <th align="left" colspan="2">Oral status</th>
                                         <tr>
-                                            <td><strong>Oral status</strong> (cavity; presence of gum disease;oral
-                                                Lesions)
-                                            </td>
-                                            <td>
+                                            <td>(cavity; presence of gum disease;<br/>oral Lesions)
                                                 <obs conceptId="127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
-                                            </td>
                                             <td><span class="value"><input type="text"/></span></td>
+                                            </td>
                                         </tr>
 
                                     </table>
                                 </td>
 
-                                <td valign="top">
+                                <td>
                                     <table>
-                                        <td>
-                                        <th>Neurological Exam</th>
+                                        <th colspan="2">Neurological Exam</th>
                                         <tr>
-                                            <td>Motor</td>
-                                            <td>
+                                            <td>Motor
                                                 <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
@@ -1219,30 +1227,28 @@
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Sensory</td>
-                                            <td>
+                                            <td>Sensory
                                                 <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
-                                        </td>
+
+                                        <th colspan="3">&#160;&#160;&#160;&#160;</th>
                                         <tr>
-                                            <td><br/>
-                                                <label><strong>Has diabetic Foot?</strong></label>
+                                            <td><strong><i>Has diabetic Foot?</i></strong>
                                                 <obs id="hasdiebeticfoot"
                                                      conceptId="142452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabel="YES,NO" style="radio"/>
                                             </td>
                                         </tr>
+                                        <th colspan="2">Foot Risk Assesment</th>
                                         <td id="footAssesment">
-                                        <th>Foot Risk Assesment</th>
                                         <div>
                                             <tr>
-                                                <td>Low sensation</td>
-                                                <td>
+                                                <td>Low sensation
                                                     <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerLabels="Normal,Abnomal" style="radio"/>
@@ -1250,8 +1256,7 @@
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
-                                                <td>Absent pulses</td>
-                                                <td>
+                                                <td>Absent pulses
                                                     <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerLabels="Normal,Abnomal" style="radio"/>
@@ -1259,8 +1264,7 @@
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
-                                                <td>Prior amputation</td>
-                                                <td>
+                                                <td>Prior amputation
                                                     <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerLabels="Normal,Abnomal" style="radio"/>
@@ -1268,8 +1272,7 @@
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
-                                                <td>Foot deformity</td>
-                                                <td>
+                                                <td>Foot deformity
                                                     <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerLabels="Normal,Abnomal" style="radio"/>
@@ -1277,8 +1280,7 @@
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
-                                                <td>History of ulcer</td>
-                                                <td>
+                                                <td>History of ulcer
                                                     <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                          answerLabels="Normal,Abnomal" style="radio"/>
