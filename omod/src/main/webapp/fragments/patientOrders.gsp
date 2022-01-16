@@ -1,5 +1,7 @@
 <script>
     var drugOrder = [];
+    var index = 0;
+    var count = 0;
 
     var getJSON = function (dataToParse) {
         if (typeof dataToParse === "string") {
@@ -9,18 +11,34 @@
     }
 
     jq(function () {
+        jq("#addDrugsButton").on("click", function (e) {
+            e.preventDefault()
+            adddrugdialog.show();
+            resets();
+            jq('#drugName').val('');
+            jq('#formulationsSelect').val('');
+            jq('#drugFrequency').val('');
+            jq('#drugDays').val('');
+            jq('#drugComment').val('');
+            jq('#drugDosage').val('');
+            jq('#drugUnitSelect').val('');
+            jq('#drugName').change();
+        });
+
             jq("#procedure").autocomplete({
                 source: function (request, response) {
                     jq.getJSON('${ ui.actionLink("ncdapp", "Orders", "getProcedures") }', {
                         q: request.term
                     }).success(function (data) {
-                        procedureMatches = [];
+                     var results = [];
                         for (var i in data) {
-                            var result = {label: data[i].label, value: data[i].id, schedulable: data[i].schedulable};
-                            procedureMatches.push(result);
+                            var result = {label: data[i].label,
+                                value: data[i].id};
+                            results.push(result);
                         }
-                        response(procedureMatches);
+                        response(results);
                     });
+
                 },
                 minLength: 3,
                 select: function (event, ui) {
@@ -234,7 +252,11 @@
 
                         var tbody = jq('#drugsTable').children('tbody');
                         var table = tbody.length ? tbody : jq('#drugsTable');
-                        table.append('<tr><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td></tr>');
+
+                        index = drugOrder.length
+                        count = index + 1;
+
+                        table.append('<tr id="' + index + '"><td>' + count + '</td><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td> <td><a onclick="removerFunction(' + index + ')" class="remover"><i class="icon-remove small" style="color:red"></i></td></tr>');
                         drugOrder.push(
                             {
                                 name: jq("#drugName").val(),
@@ -255,9 +277,12 @@
                 }
             });
 
-            jq("#addDrugsButton").on("click", function (e) {
-                adddrugdialog.show();
-            });
+        function resets(){
+            jq('form')[1].reset();
+            jq('#drug-name').change();
+        }
+
+
 
         jq("#treatmentSubmit").click(function (event) {
             jq().toastmessage({
@@ -274,10 +299,8 @@
             jq("#selectedInvestigationList option").each(function () {
                 selectedInv.push(jq(this).val());
             });
-            console.log(JSON.stringify(selectedInv) + "heere")
 
             drugOrder = JSON.stringify(drugOrder);
-            console.log(drugOrder + "here");
 
             var treatmentFormData = {
                 'patientId': ${patient.patientId},
@@ -289,6 +312,8 @@
             function successFn(successly_) {
                 jq().toastmessage('removeToast', savingMessage);
                 jq().toastmessage('showSuccessToast', "Patient Treatment has been updated Successfully");
+                var summaryLink = ui.pageLink("ncdapp","ncdFacilitySummary");
+                window.location = summaryLink.substring(0, summaryLink.length - 1);
             }
 
             jq("#treatmentForm").submit(
@@ -301,7 +326,25 @@
                 })
             );
         });
+
     });//end of doc ready
+
+    function removerFunction(rowId){
+        if (confirm("Are you sure about this?")){
+            jq('#drugsTable > tbody > tr').remove();
+            var tbody = jq('#drugsTable').children('tbody');
+            var table = tbody.length ? tbody : jq('#drugsTable');
+            drugOrder = jq.grep(drugOrder, function (item, index){
+                return (rowId !== index);
+            });
+
+            jq.each(drugOrder, function (rowId){
+                tbody.append('<tr id = "' + (rowId + 1) + '"><td>' + (rowId + 1) + ' </td><td>' + jq("#drugName").val() + '</td><td>' + jq("#drugDosage").val() + jq("#drugUnitSelect option:selected").text() + '</td><td>' + jq("#formulationsSelect option:selected").text() + '</td><td>' + jq("#drugFrequency option:selected").text() + '</td><td>' + jq("#drugDays").val() + '</td><td>' + jq("#drugComment").val() + '</td> <td><a onclick="removerFunction(' + index + ')" class="remover"><i class="icon-remove small" style="color:red"></i></td></tr>');
+            });
+        }else {
+            return false;
+        }
+    }
 </script>
 
 <style>
@@ -672,12 +715,14 @@ fieldset select {
 
             <table id="drugsTable">
                 <thead>
+                <th>#</th>
                 <th style="width: auto;">Drug Name</th>
                 <th>Dosage</th>
                 <th>Formulation</th>
                 <th>Frequency</th>
                 <th>Number of Days</th>
                 <th>Comment</th>
+                <th></th>
                 </thead>
                 <tbody>
                 </tbody>
@@ -693,21 +738,24 @@ fieldset select {
             <p style="display: none">
                 <button class="button submit confirm" style="display: none;"></button>
             </p>
-
-            <span value="Submit" class="button submit confirm right" id="treatmentSubmit" style="margin: 5px 10px;">
+            <span>
+            <a value="Submit" type="submit" class="button confirm" id="treatmentSubmit" style="margin: 5px 10px;" href = ''>
                 <i class="icon-save small"></i>
                 Save
-            </span>
+            </a>
 
-            <span id="cancelButton" class="button cancel" style="margin: 5px">
+            <a id="cancelButton" class="button cancel" style="margin: 5px">
                 <i class="icon-remove small"></i>
                 Cancel
+            </a>
             </span>
         </div>
     </div>
 </form>
 
+
 <div id="addDrugDialog" class="dialog" style="display: none">
+    <form>
     <div class="dialog-header">
         <i class="icon-folder-open"></i>
 
@@ -759,4 +807,5 @@ fieldset select {
         <span class="button confirm right" style="margin-right: 1px">Confirm</span>
         <span class="button cancel">Cancel</span>
     </div>
+    </form>
 </div>
