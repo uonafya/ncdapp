@@ -29,7 +29,7 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 		CalculationResultMap lastLabEncounter = Calculations.lastEncounter(Context.getEncounterService()
 		        .getEncounterTypeByUuid("11d3f37a-f282-11ea-a825-1b5b1ff1b854"), cohort, context);
 		for (Integer pId : cohort) {
-			StringBuilder labResults = new StringBuilder();
+			String labResults = "";
 			List<String> results = new ArrayList<String>();
 			
 			Encounter lastLabEncounterDetails = EmrCalculationUtils.encounterResultForPatient(lastLabEncounter, pId);
@@ -42,6 +42,7 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 			String valueNumeric = "";
 			String testName = "";
 			for (Obs labObs : obs) {
+				System.out.println("The obs for the Labs are >>" + labObs);
 				if (labObs != null && labObs.getConcept() != null && labObs.getConcept().getName() != null
 				        && labObs.getConcept().getName().getName() != null) {
 					testName = labObs.getConcept().getName().getName();
@@ -55,9 +56,9 @@ public class CurrentDmHtnLabOrdersCalculation extends AbstractPatientCalculation
 				if (labObs != null && labObs.getValueNumeric() != null) {
 					valueNumeric = String.valueOf(labObs.getValueNumeric());
 				}
-				labResults.append(testName).append(" ").append(valueCoded).append(" ").append(valueNumeric).append(" ")
-				        .append(valueText);
-				results.add(labResults.toString());
+				labResults = testName + " " + valueCoded + " " + valueNumeric + " " + valueText;
+				
+				results.add(labResults);
 			}
 			ret.put(pId, new SimpleResult(StringUtils.join(results, ","), this));
 		}

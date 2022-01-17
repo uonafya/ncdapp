@@ -43,6 +43,7 @@ public class CurrentDmHtnDrugsCalculation extends AbstractPatientCalculation {
 			
 			for (OpdDrugOrder opdDrugOrder : opdDrugs) {
 				if (opdDrugOrder != null) {
+					System.out.println("Patient has a drug order of >>" + opdDrugOrder);
 					if (opdDrugOrder.getInventoryDrug() != null) {
 						drugName = opdDrugOrder.getInventoryDrug().getName();
 					}

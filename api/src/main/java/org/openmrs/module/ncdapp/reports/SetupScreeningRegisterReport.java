@@ -87,7 +87,6 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		String paramMapping = "startDate=${startDate},endDate=${endDate+1d}";
 		dsd.setName("screening");
 		dsd.setDescription("Visit Screening information");
-		dsd.addSortCriteria("Screening Date", SortCriteria.SortDirection.ASC);
 		dsd.addParameter(new Parameter("startDate", "Start Date", Date.class));
 		dsd.addParameter(new Parameter("endDate", "End Date", Date.class));
 		dsd.addRowFilter(allScreenedPatientsCohort(screeningEncounter.getEncounterTypeId()), paramMapping);
@@ -108,7 +107,7 @@ public class SetupScreeningRegisterReport extends AbstractHybridReportBuilder {
 		DataConverter nameFormatter = new ObjectFormatter("{familyName}, {givenName} {middleName}");
 		DataDefinition nameDef = new ConvertedPersonDataDefinition("name", new PreferredNameDataDefinition(), nameFormatter);
 		
-		dsd.addColumn("counnt", new PersonIdDataDefinition(), "", new ObjectCounterConverter());
+		dsd.addColumn("count", new PersonIdDataDefinition(), "", new ObjectCounterConverter());
 		dsd.addColumn("id", new PatientIdDataDefinition(), "");
 		dsd.addColumn("Name", nameDef, "");
 		dsd.addColumn("NationalId", nationalId, "");

@@ -2,6 +2,7 @@ package org.openmrs.module.ncdapp.fragment.controller;
 
 import org.openmrs.Concept;
 import org.openmrs.Encounter;
+import org.openmrs.EncounterType;
 import org.openmrs.Obs;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
@@ -16,12 +17,13 @@ import org.openmrs.module.ncdapp.NcdappUtils;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NcdSummaryFragmentController {
+public class FacilitySummaryFragmentController {
 	
 	public void controller(FragmentModel model) {
 		
@@ -44,6 +46,54 @@ public class NcdSummaryFragmentController {
 		Set<Integer> alivePatients = Filters.alive(cohort, context);
 		Set<Integer> male = NcdappUtils.male(alivePatients, context);
 		Set<Integer> female = Filters.female(alivePatients, context);
+		
+		//declare concepts
+		Concept diabeticfoot = Dictionary.getConcept("142452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		Concept yes = Dictionary.getConcept("1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		Concept no = Dictionary.getConcept("1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
+		//get the attribute to be displayed to the page
+		model.addAttribute("dFMY", getCountTbPositive(diabeticfoot, male, context, Arrays.asList(yes)));
+		model.addAttribute("dFMN", getCountTbPositive(diabeticfoot, male, context, Arrays.asList(no)));
+		model.addAttribute("dFFY", getCountTbPositive(diabeticfoot, female, context, Arrays.asList(yes)));
+		model.addAttribute("dFFN", getCountTbPositive(diabeticfoot, female, context, Arrays.asList(no)));
+		
+		//declare concepts
+		EncounterType initial = Context.getEncounterService().getEncounterTypeByUuid("cb5f27f0-18f8-11eb-88d7-fb1a7178f8ea");
+		EncounterType followup = Context.getEncounterService()
+		        .getEncounterTypeByUuid("f1573d1c-18f8-11eb-a453-63d51e56f5cb");
+		
+		//get the attribute to be displayed to the page
+		model.addAttribute("vM", getCountVisit(initial, followup, male, context));
+		model.addAttribute("vF", getCountVisit(initial, followup, female, context));
+		model.addAttribute("rvM", getCountRevisit(followup, male, context));
+		model.addAttribute("rvF", getCountRevisit(followup, female, context));
+		
+		//declare concepts
+		Concept waist_circumference = Dictionary.getConcept("163080AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
+		model.addAttribute("over102", getWC(waist_circumference, male, context, 102.0));
+		model.addAttribute("over88", getWC(waist_circumference, female, context, 88.0));
+		
+		Concept hba1c = Dictionary.getConcept("159644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
+		model.addAttribute("hba1cM", getHba1cDone(hba1c, male, context));
+		model.addAttribute("hba1cF", getHba1cDone(hba1c, male, context));
+		model.addAttribute("hba1cMu7", getHba1c(hba1c, male, context));
+		model.addAttribute("hba1cMu7", getHba1c(hba1c, female, context));
+		
+		//declare concepts
+		Concept screened_for_tb = Dictionary.getConcept("1659AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		Concept on_treatment = Dictionary.getConcept("1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		Concept tb_diagnosed = Dictionary.getConcept("159393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
+		//get the attribute to be displayed to the page
+		model.addAttribute("srnM", getCountScreenedForTb(screened_for_tb, male, context));
+		model.addAttribute("scrF", getCountScreenedForTb(screened_for_tb, female, context));
+		model.addAttribute("ptvM",
+		    getCountTbPositive(screened_for_tb, male, context, Arrays.asList(on_treatment, tb_diagnosed)));
+		model.addAttribute("ptvF",
+		    getCountTbPositive(screened_for_tb, female, context, Arrays.asList(on_treatment, tb_diagnosed)));
 		
 		Concept diseaseType = Dictionary.getConcept("74eb8e8d-d078-4fa3-8973-2d710d8f46df");
 		Concept newDiabetic = Dictionary.getConcept("ac58e607-21b9-4c5b-aa67-fa63ff789a12");
@@ -199,6 +249,115 @@ public class NcdSummaryFragmentController {
 		model.addAttribute("above14090M", getPressure(systtollic, diastollic, male, context, 140, 90));
 		model.addAttribute("above14090F", getPressure(systtollic, diastollic, female, context, 140, 90));
 		
+		//declare concepts
+		Concept newDm = Dictionary.getConcept("ac58e607-21b9-4c5b-aa67-fa63ff789a12");
+		Concept newHtn = Dictionary.getConcept("8d64fd71-8b49-4ecb-8cb8-033597fef7c1");
+		
+		//get the attribute to be displayed to the page
+		model.addAttribute("dTMDM", getCountOfDiseaseType(diseaseType, male, context, Arrays.asList(newDm)));
+		model.addAttribute("dTMHTN", getCountOfDiseaseType(diseaseType, male, context, Arrays.asList(newHtn)));
+		model.addAttribute("dTFDM", getCountOfDiseaseType(diseaseType, female, context, Arrays.asList(newDm)));
+		model.addAttribute("dTFHTN", getCountOfDiseaseType(diseaseType, female, context, Arrays.asList(newHtn)));
+	}
+	
+	private Integer getCountTbPositive(Concept q, Set<Integer> cohort, PatientCalculationContext context, List<Concept> list) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		
+		CalculationResultMap map = Calculations.lastObs(q, cohort, context);
+		for (Integer pId : cohort) {
+			Obs obs = EmrCalculationUtils.obsResultForPatient(map, pId);
+			if (obs != null && list.contains(obs.getValueCoded())) {
+				allSet.add(pId);
+			}
+		}
+		return allSet.size();
+	}
+	
+	private Integer getCountVisit(EncounterType q1, EncounterType q2, Set<Integer> cohort, PatientCalculationContext context) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		
+		CalculationResultMap map1 = Calculations.lastEncounter(q1, cohort, context);
+		CalculationResultMap map2 = Calculations.lastEncounter(q2, cohort, context);
+		for (Integer pId : cohort) {
+			Encounter encounter1 = EmrCalculationUtils.encounterResultForPatient(map1, pId);
+			Encounter encounter2 = EmrCalculationUtils.encounterResultForPatient(map2, pId);
+			if (encounter1 != null && encounter2 == null) {
+				allSet.add(pId);
+			}
+		}
+		return allSet.size();
+	}
+	
+	private Integer getCountRevisit(EncounterType q2, Set<Integer> cohort, PatientCalculationContext context) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		
+		CalculationResultMap map2 = Calculations.lastEncounter(q2, cohort, context);
+		for (Integer pId : cohort) {
+			Encounter encounter2 = EmrCalculationUtils.encounterResultForPatient(map2, pId);
+			if (encounter2 != null) {
+				allSet.add(pId);
+			}
+		}
+		return allSet.size();
+	}
+	
+	private Integer getWC(Concept q1, Set<Integer> cohort, PatientCalculationContext context, double minValue) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		CalculationResultMap waistCircumMap = Calculations.lastObs(q1, cohort, context);
+		for (Integer pId : cohort) {
+			Double cirm = EmrCalculationUtils.numericObsResultForPatient(waistCircumMap, pId);
+			Obs obs = EmrCalculationUtils.obsResultForPatient(waistCircumMap, pId);
+			if (cirm != null && obs != null) {
+				if (cirm > minValue) {
+					allSet.add(pId);
+				}
+			}
+			
+		}
+		return allSet.size();
+	}
+	
+	private Integer getHba1c(Concept q1, Set<Integer> cohort, PatientCalculationContext context) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		CalculationResultMap hbac1Map = Calculations.lastObs(q1, cohort, context);
+		for (Integer pId : cohort) {
+			Double hbac1 = EmrCalculationUtils.numericObsResultForPatient(hbac1Map, pId);
+			Obs obs = EmrCalculationUtils.obsResultForPatient(hbac1Map, pId);
+			if (hbac1 != null && obs != null) {
+				if (hbac1 < 7.0) {
+					allSet.add(pId);
+				}
+			}
+			
+		}
+		return allSet.size();
+	}
+	
+	private Integer getHba1cDone(Concept q1, Set<Integer> cohort, PatientCalculationContext context) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		CalculationResultMap hbac1Map = Calculations.lastObs(q1, cohort, context);
+		for (Integer pId : cohort) {
+			Double hbac1 = EmrCalculationUtils.numericObsResultForPatient(hbac1Map, pId);
+			if (hbac1 != null) {
+				allSet.add(pId);
+			}
+			
+		}
+		return allSet.size();
+	}
+	
+	private Integer getCountScreenedForTb(Concept q, Set<Integer> cohort, PatientCalculationContext context) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		
+		CalculationResultMap map = Calculations.lastObs(q, cohort, context);
+		for (Integer pId : cohort) {
+			Concept concept = EmrCalculationUtils.codedObsResultForPatient(map, pId);
+			Obs obs = EmrCalculationUtils.obsResultForPatient(map, pId);
+			if (obs != null) {
+				allSet.add(pId);
+			}
+		}
+		return allSet.size();
 	}
 	
 	private Integer getDiabeticPatients(Concept q, Concept a1, Set<Integer> cohort, PatientCalculationContext context,
@@ -257,6 +416,20 @@ public class NcdSummaryFragmentController {
 				}
 			}
 			
+		}
+		return allSet.size();
+	}
+	
+	private Integer getCountOfDiseaseType(Concept q, Set<Integer> cohort, PatientCalculationContext context,
+	        List<Concept> list) {
+		Set<Integer> allSet = new HashSet<Integer>();
+		
+		CalculationResultMap map = Calculations.lastObs(q, cohort, context);
+		for (Integer pId : cohort) {
+			Obs obs = EmrCalculationUtils.obsResultForPatient(map, pId);
+			if (obs != null && list.contains(obs.getValueCoded())) {
+				allSet.add(pId);
+			}
 		}
 		return allSet.size();
 	}
