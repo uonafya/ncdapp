@@ -40,8 +40,6 @@
         jq(document).ready(function () {
             populateDrugFields();
             jq('.hfe-seconds').css('display', 'none');
-            jq('#test-history :input[type=radio]').change(everTested);
-            visitInfoValidation();
 
         });
 
@@ -400,20 +398,14 @@
         function visitInfoValidation() {
             jq('#tr-other-complains').hide();
 
-            if (getValue('pregnancyOption.value') == "") {
-
-            }
-            if (getValue('')==""){
-                jQ('#otherComplains').hide()
-                // Specify other
-                            }
-
-
-            if (getValue('tr-other-complains') == 5622){
-                jq('#tr-other-complains').show();
-            }else{
-                jq('#tr-other-complains').hide();
-            }
+            jq('#chief_complaint').change( () => {
+                    if (getValue('chief_complaint') === 5622) {
+                        jq('#tr-other-complains').show();
+                    } else {
+                        jq('#tr-other-complains').hide();
+                    }
+                }
+            );
 
 
         }
@@ -469,15 +461,14 @@
             var val = jq(this).val();
             var testResults = jq('#ever-tested');
             var testDate = jq('#duration_months');
-            var eligibleForTesting = jq('#eligible-test');
 
-            if (val == 1066 ){
+
+            if (val === 1066 ){
                 clearHiddenSections(testDate);
                 clearHiddenSections(testResults);
                 jq('#test-result').hide();
             }
-            if (val == 1065){
-                clearHiddenSections(eligibleForTesting);
+            if (val === 1065){
                 jq('#test-result').show();
             }
         }
@@ -515,9 +506,12 @@
                 flagInputByRange('urea', 2.70, 8.0);
             });
 
-            jq('#hasdiebeticfoot').challenge(function () {
+            visitInfoValidation();
+            jq('#test-history :input[type=radio]').change(everTested);
+
+            jq('#hasdiebeticfoot').change(function () {
                 var diebeticfoot = getValue("hasdiebeticfoot.value")
-                if (diebeticfoot = "1065") {
+                if (diebeticfoot === "1065") {
                     jq('#footAssesment').show();
                 } else {
                     jq('#footAssesment').hide();
@@ -1051,6 +1045,14 @@
                                 <td><span class="value"><recentObs
                                         conceptId="5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
                             </tr>
+                            <tr>
+                                <td>HbA1c</td>
+                                <td>
+                                    <obs conceptId="159644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>%
+                                </td>
+                                <td><span class="value"><recentObs
+                                        conceptId="159644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span></td>
+                            </tr>
                         </table>
                     </fieldset>
                         </td>
@@ -1227,8 +1229,8 @@
                                         <tr>
                                             <td>Motor
                                                 <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                     answerLabels="Normal,Abnomal" style="radio"/>
+                                                     answerConceptIds="160275AAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                     answerLabels="Normal psychomotor,Impaired psychomotor" style="radio"/>
                                             </td>
                                             <td><span class="value"><input type="text"/></span></td>
                                         </tr>
@@ -1238,7 +1240,7 @@
                                                      answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                                      answerLabels="Normal,Abnomal" style="radio"/>
                                             </td>
-                                            <td><span class="value"><input type="text"/></span></td>
+                                            <td><span class="value"><obs conceptId="160994AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2,30" style="textarea"/></span></td>
                                         </tr>
 
                                         <th colspan="3">&#160;&#160;&#160;&#160;</th>
@@ -1255,41 +1257,41 @@
                                         <div>
                                             <tr>
                                                 <td>Low sensation
-                                                    <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabels="Normal,Abnomal" style="radio"/>
+                                                    <obs conceptId="113030AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabel="YES,NO" style="radio"/>
                                                 </td>
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Absent pulses
-                                                    <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabels="Normal,Abnomal" style="radio"/>
+                                                    <obs conceptId="150518AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabel="YES,NO" style="radio"/>
                                                 </td>
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Prior amputation
-                                                    <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabels="Normal,Abnomal" style="radio"/>
+                                                    <obs conceptId="148934AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabels="Normal,Abnomal,N/A" style="radio"/>
                                                 </td>
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
                                                 <td>Foot deformity
-                                                    <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabels="Normal,Abnomal" style="radio"/>
+                                                    <obs conceptId="142677AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabel="YES,NO" style="radio"/>
                                                 </td>
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
                                             <tr>
                                                 <td>History of ulcer
-                                                    <obs conceptId="163579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                         answerLabels="Normal,Abnomal" style="radio"/>
+                                                    <obs conceptId="163411AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabel="YES,NO" style="radio"/>
                                                 </td>
                                                 <td><span class="value"><input type="text"/></span></td>
                                             </tr>
