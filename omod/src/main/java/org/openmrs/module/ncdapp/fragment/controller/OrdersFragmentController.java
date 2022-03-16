@@ -26,7 +26,7 @@ import org.openmrs.module.hospitalcore.model.PatientServiceBillItem;
 import org.openmrs.module.hospitalcore.util.PatientDashboardConstants;
 import org.openmrs.module.ncdapp.model.Prescription;
 import org.openmrs.module.ncdapp.model.Procedure;
-import org.openmrs.module.patientdashboardapp.model.Option;
+import org.openmrs.module.hospitalcore.model.Option;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
 import org.springframework.web.bind.annotation.RequestParam;
